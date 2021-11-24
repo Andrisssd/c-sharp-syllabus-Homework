@@ -13,7 +13,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exercise1", "Exercise1\Exer
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CheckOddEven Exercise2", "Exercise2\CheckOddEven Exercise2.csproj", "{6414C5A9-7E77-4DE8-AF82-32B382EEFA5C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exercise4", "Exercise4\Exercise4.csproj", "{A9BB4ACA-7383-4C88-95E7-5C7DD6690573}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Product1ToN Exercise4", "Exercise4\Product1ToN Exercise4.csproj", "{A9BB4ACA-7383-4C88-95E7-5C7DD6690573}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
