@@ -25,6 +25,15 @@ namespace Exercise4
                 Console.WriteLine("Contains!");
             }
             */
+            int loggedNumToFind = Convert.ToInt32(Console.ReadLine());
+            if (myArray.Contains(loggedNumToFind))
+            {
+                Console.WriteLine("Contains!");
+            }
+            else
+            {
+                Console.WriteLine("Array doesn't contain logged num!");
+            }
         }
     }
 }
