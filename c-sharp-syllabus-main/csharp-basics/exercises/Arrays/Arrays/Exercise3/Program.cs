@@ -19,6 +19,14 @@
             fixme - calculate average value 
             Console.WriteLine("Average value of the array elements is : " + average);
             */
+            int sum = 0; 
+            for(int i=0; i<numbers.Length; i++)
+            {
+                sum+=numbers[i];
+            }
+            int averageValue = sum/numbers.Length;
+
+            System.Console.WriteLine(averageValue);
         }
     }
 }
