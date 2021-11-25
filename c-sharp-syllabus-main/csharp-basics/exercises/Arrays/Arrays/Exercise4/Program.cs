@@ -18,13 +18,15 @@ namespace Exercise4
                 1456, 2265, 1457, 2456
             };
 
-            /*
-            fixme - check if contains number 1245 
-            for (?) {
-                ......
+            int loggedNumToFind = Convert.ToInt32(Console.ReadLine());
+            if (myArray.Contains(loggedNumToFind))
+            {
                 Console.WriteLine("Contains!");
             }
-            */
+            else
+            {
+                Console.WriteLine("Array doesn't contain logged num!");
+            }
         }
     }
 }
