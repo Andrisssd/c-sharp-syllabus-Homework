@@ -25,7 +25,6 @@ namespace Exercise8
         {
             ChooseRandomWord();
             Console.WriteLine(MakeHiddenWord());
-            
         }
         
         private static string MakeHiddenWord()
