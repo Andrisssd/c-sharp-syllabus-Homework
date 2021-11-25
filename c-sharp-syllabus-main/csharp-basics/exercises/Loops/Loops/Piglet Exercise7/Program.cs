@@ -35,6 +35,7 @@ namespace Piglet_Exercise7
         {
             Console.Write("Roll again? Y/n ");
             string answer = Console.ReadLine().ToLower();
+            Console.WriteLine("===================");
             if(answer == "y")
             {
                 Roll();
@@ -54,18 +55,19 @@ namespace Piglet_Exercise7
         {
             Console.Write("Play again? Y/n ");
             string answer = Console.ReadLine().ToLower();
+            Console.WriteLine("===================");
             if (answer == "y")
             {
-                StartGame();
+                  StartGame();
             }
             else if (answer == "n")
             {
-                Environment.Exit(0);
+                  Environment.Exit(0);
             }
             else
             {
-                Console.WriteLine("Wrong input");
-                AskForRematch();
+                  Console.WriteLine("Wrong input");
+                   AskForRematch();
             }
         }
         public static void GameOver()
