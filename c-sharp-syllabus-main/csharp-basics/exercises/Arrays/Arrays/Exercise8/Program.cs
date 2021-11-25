@@ -11,55 +11,144 @@ namespace Exercise8
             "codelex",
             "programmer"
         };
-        public static char[] choosedWord;
-        public static char[] missed;
-        public static char[] leftChars = { };
+        public static string choosedWord;
+        public static string missed;
         public static char[] hiddenWord;
-        public static char[] guessedChars;
+        public static char[] correctGuesses = { };
+        public static char guess;
+        public static int turn = 0;
         static void Main(string[] args)
         {
-            InitializeWordGame();
+            InitializeGame();
 
         }
-        private static void InitializeWordGame()
-        {
-            ChooseRandomWord();
-            Console.WriteLine(MakeHiddenWord());
-        }
         
-        private static string MakeHiddenWord()
+        private static void InitializeGame()
         {
-            string hiddenWordStr = "";
-            for(int i=0; i<choosedWord.Length; i++)
+        BaseStart:
+            missed = "";
+            turn = 0;
+            guess = default;
+            ChooseRandomWord();
+            MakeHiddenWord();
+            Console.WriteLine("Welcome! You have 14 tries!");
+        Start:
+            string board = $"Try number {turn}!";
+            board += "\nWord: ";
+            PrintGuessedWords();
+            for(int i = 0; i < hiddenWord.Length; i++)
             {
-                if (Array.IndexOf(guessedChars, choosedWord[i])==-1)
-                {
-                    hiddenWordStr+="_ ";
-                }
-                else
-                {
-                    hiddenWordStr+=$"{choosedWord[i]} ";
-                }
+                board += hiddenWord[i] + " ";
             }
-            return hiddenWordStr;
-            
+            board += "\nMisses: ";
+            board += missed;
+            board += "\nGuess: ";
+            Console.WriteLine(board);
+            guess = Convert.ToChar(Console.ReadLine());
+            AddToMissedChar(guess);
+            PrintGuessedWords();
+            if (YouWin())
+            {
+                goto WinPart;
+            }
+
+            turn++;
+            if (OutOfTry())
+            {
+                Console.WriteLine("Out of tries!");
+                goto QuitAnswer;
+            }
+
+            goto Start;
+            WinPart:
+            board = $"Try number {turn}!";
+            board += "\nWord: ";
+            PrintGuessedWords();
+            for (int i = 0; i < hiddenWord.Length; i++)
+            {
+                board += hiddenWord[i] + " ";
+            }
+
+            board += "\nMisses: ";
+            board += missed;
+            board += "\nYOU GOT IT!";
+            Console.WriteLine(board);
+            QuitAnswer:
+            Console.WriteLine(@"Play 'again' or 'quit'?");
+            string answer = Console.ReadLine();
+            if (ChoosedAgain(answer))
+            {
+                goto BaseStart;
+            }
+            else
+            {
+                Environment.Exit(0);
+            }
+        }
+        private static void PrintGuessedWords()
+        {
+                for (int i = 0; i <choosedWord.Length; i++)
+                {
+                if (guess==choosedWord[i])
+                {
+                    hiddenWord[i] = choosedWord[i];
+                }
+                }
+        }
+        private static void AddToMissedChar(char letter)
+        {
+            if (!isCorrect(letter))
+            {
+                missed += letter + " ";
+            }
+        }
+        private static void MakeHiddenWord()
+        {
+            hiddenWord = new char[choosedWord.Length];
+            for(int i = 0; i < choosedWord.Length; i++)
+            {
+                hiddenWord[i] = '_';
+            }
         }
         private static void ChooseRandomWord()
         {
-            string leftCharStr = "";
-            int index = 0;
-            string randomWord = words[new Random().Next(0, 4)];
-            choosedWord = new char[randomWord.Length];
-            for(int i=0; i<randomWord.Length; i++)
+            choosedWord = words[new Random().Next(0, words.Length)];
+        }
+        private static bool isCorrect(char letter)
+        {
+            if (choosedWord.Contains(letter))
             {
-                choosedWord[i] = randomWord[i];
-                if (Array.IndexOf(leftChars, randomWord[i])==-1)
-                {
-                    leftCharStr+=randomWord[i];
-                }
+                return true;
             }
-            
-            
+            return false;
+        }
+
+        private static bool OutOfTry()
+        {
+            if (turn>14)
+            {
+                return true;
+            }
+            return false;
+        }
+        private static bool YouWin()
+        {
+            if (Array.IndexOf(hiddenWord, '_')==-1)
+            {
+                return true;
+            }
+            return false;
+        }
+        private static bool ChoosedAgain(string choice)
+        {
+            if (choice.ToLower()=="again")
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }
