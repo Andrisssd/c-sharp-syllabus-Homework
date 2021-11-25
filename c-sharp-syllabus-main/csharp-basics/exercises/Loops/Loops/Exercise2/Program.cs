@@ -7,6 +7,7 @@ namespace Exercise2
         static void Main(string[] args)
         {
             int i, n;
+            int result = 1;
             
             Console.WriteLine("Input number of terms : ");
             n = Convert.ToInt32(Console.ReadLine());
@@ -15,6 +16,7 @@ namespace Exercise2
             */
             for (i = 0; i < n; i++)
             {
+                result*=
             }
 
             Console.ReadKey();
