@@ -14,14 +14,17 @@ namespace Exercise8
         public static string choosedWord;
         public static string missed;
         public static char[] hiddenWord;
-        public static char[] correctGuesses = { };
+        public static char[] correctGuesses = 
+        { 
+
+        };
         public static char guess;
         public static int turn = 0;
         static void Main(string[] args)
         {
             InitializeGame();
-
         }
+
         private static void InitializeGame()                                           
         {
         BaseStart:
@@ -84,6 +87,7 @@ namespace Exercise8
                 Environment.Exit(0);
             }
         }
+
         private static void PrintGuessedWords()
         {
                 for (int i = 0; i <choosedWord.Length; i++)
@@ -94,6 +98,7 @@ namespace Exercise8
                 }
                 }
         }
+
         private static void AddToMissedChar(char letter)
         {
             if (!isCorrect(letter))
@@ -101,6 +106,7 @@ namespace Exercise8
                 missed += letter + " ";
             }
         }
+
         private static void MakeHiddenWord()
         {
             hiddenWord = new char[choosedWord.Length];
@@ -109,10 +115,12 @@ namespace Exercise8
                 hiddenWord[i] = '_';
             }
         }
+
         private static void ChooseRandomWord()
         {
             choosedWord = words[new Random().Next(0, words.Length)];
         }
+
         private static bool isCorrect(char letter)
         {
             if (choosedWord.Contains(letter))
@@ -130,6 +138,7 @@ namespace Exercise8
             }
             return false;
         }
+
         private static bool YouWin()
         {
             if (Array.IndexOf(hiddenWord, '_')==-1)
@@ -138,16 +147,10 @@ namespace Exercise8
             }
             return false;
         }
+
         private static bool ChoosedAgain(string choice)
         {
-            if (choice.ToLower()=="again")
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return choice.ToLower()=="again";
         }
     }
 }
