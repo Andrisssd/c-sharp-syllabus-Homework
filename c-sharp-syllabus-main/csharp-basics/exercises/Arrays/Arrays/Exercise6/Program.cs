@@ -8,7 +8,7 @@ namespace Exercise6
         {
             int[] array1 = new int[10];
             string str = "";
-            for(int i =0; i<array1.Length; i++)
+            for(int i = 0; i < array1.Length; i++)
             {
                 array1[i] = new Random().Next(1, 101);
             }

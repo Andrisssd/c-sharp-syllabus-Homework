@@ -8,14 +8,13 @@ namespace TicTacToe
         private static bool gameOver = false;
         private static bool isTie = false;
         public static int turn = 1;
-        public static char[] winnerArray = { 'X','O' }; // by making winnerArray[turn%2] we get potencional winner
+        public static char[] winnerArray = { 'X','O' };
 
         private static void Main(string[] args)
         {
             InitBoard();
             DisplayBoard();
             MakeTurn();
-            
         }
         public static void MakeTurn()
         {
@@ -35,7 +34,8 @@ namespace TicTacToe
                     Console.WriteLine("Wrong row/column input");
                     goto XCheckPoint;
                 }
-            }else if (turn%2==0)
+            }
+            else if (turn%2==0)
             {
                 OCheckPoint:
                 Console.WriteLine(@"'O', choose your location (row, column):");
@@ -57,17 +57,16 @@ namespace TicTacToe
             if (gameOver!=true && isTie!=true)
             {
                 MakeTurn();
-            }else if(isTie == true)
+            }
+            else if(isTie == true)
             {
                 Console.WriteLine("The game is tie!");
-            }else if(gameOver == true)
+            }
+            else if(gameOver == true)
             {
                 Console.WriteLine($"{winnerArray[turn%2]} wins!");
             }
-            
-
         }
-        // 00-01-02 10-11-12 2
        private static void CheckForWinners(char XOrO)
         {
             if (board[0, 0]==XOrO&&board[0, 1]==XOrO&&board[0, 1]==XOrO&&board[0, 2]==XOrO
@@ -89,13 +88,11 @@ namespace TicTacToe
         }
         private static void InitBoard()
         {
-            // fills up the board with blanks
             for (var r = 0; r < 3; r++)
             {
                 for (var c = 0; c < 3; c++)
                     board[r, c] = ' ';
             }
-            
         }
 
         private static void DisplayBoard()
