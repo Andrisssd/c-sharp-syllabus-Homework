@@ -22,8 +22,7 @@ namespace Exercise8
             InitializeGame();
 
         }
-        
-        private static void InitializeGame()
+        private static void InitializeGame()                                           
         {
         BaseStart:
             missed = "";
