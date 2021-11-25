@@ -27,65 +27,65 @@ namespace Exercise8
 
         private static void InitializeGame()                                           
         {
-        BaseStart:
-            missed = "";
-            turn = 0;
-            guess = default;
-            ChooseRandomWord();
-            MakeHiddenWord();
-            Console.WriteLine("Welcome! You have 14 tries!");
-        Start:
-            string board = $"Try number {turn}!";
-            board += "\nWord: ";
-            PrintGuessedWords();
-            for(int i = 0; i < hiddenWord.Length; i++)
-            {
-                board += hiddenWord[i] + " ";
-            }
-            board += "\nMisses: ";
-            board += missed;
-            board += "\nGuess: ";
-            Console.WriteLine(board);
-            guess = Convert.ToChar(Console.ReadLine());
-            AddToMissedChar(guess);
-            PrintGuessedWords();
-            if (YouWin())
-            {
-                goto WinPart;
-            }
+            BaseStart:
+                missed = "";
+                turn = 0;
+                guess = default;
+                ChooseRandomWord();
+                MakeHiddenWord();
+                Console.WriteLine("Welcome! You have 14 tries!");
+            Start:
+                string board = $"Try number {turn}!";
+                board += "\nWord: ";
+                PrintGuessedWords();
+                for(int i = 0; i < hiddenWord.Length; i++)
+                {
+                   board += hiddenWord[i] + " ";
+                }
+                board += "\nMisses: ";
+                board += missed;
+                board += "\nGuess: ";
+                Console.WriteLine(board);
+                guess = Convert.ToChar(Console.ReadLine());
+                AddToMissedChar(guess);
+                PrintGuessedWords();
+                if (YouWin())
+                {
+                    goto WinPart;
+                }
 
-            turn++;
-            if (OutOfTry())
-            {
-                Console.WriteLine("Out of tries!");
-                goto QuitAnswer;
-            }
+                turn++;
+                if (OutOfTry())
+                {
+                    Console.WriteLine("Out of tries!");
+                    goto QuitAnswer;
+                }
 
-            goto Start;
-            WinPart:
-            board = $"Try number {turn}!";
-            board += "\nWord: ";
-            PrintGuessedWords();
-            for (int i = 0; i < hiddenWord.Length; i++)
-            {
-                board += hiddenWord[i] + " ";
-            }
+                goto Start;
+                WinPart:
+                board = $"Try number {turn}!";
+                board += "\nWord: ";
+                PrintGuessedWords();
+                for (int i = 0; i < hiddenWord.Length; i++)
+                {
+                    board += hiddenWord[i] + " ";
+                }
 
-            board += "\nMisses: ";
-            board += missed;
-            board += "\nYOU GOT IT!";
-            Console.WriteLine(board);
-            QuitAnswer:
-            Console.WriteLine(@"Play 'again' or 'quit'?");
-            string answer = Console.ReadLine();
-            if (ChoosedAgain(answer))
-            {
-                goto BaseStart;
-            }
-            else
-            {
+                board += "\nMisses: ";
+                board += missed;
+                board += "\nYOU GOT IT!";
+                Console.WriteLine(board);
+                QuitAnswer:
+                Console.WriteLine(@"Play 'again' or 'quit'?");
+                string answer = Console.ReadLine();
+                if (ChoosedAgain(answer))
+                {
+                    goto BaseStart;
+                }
+                else
+                {
                 Environment.Exit(0);
-            }
+                }
         }
 
         private static void PrintGuessedWords()
