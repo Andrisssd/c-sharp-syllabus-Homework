@@ -9,7 +9,7 @@ namespace Foo_Corporation_Exercise8
             decimal payment = 0;
             if (oneHourPayment>=8)
             {
-                for (int i = 1; i<=hourstAWeek; i++)
+                for (int i = 1; i <= hourstAWeek; i++)
                 {
                     if (i<=40)
                     {
@@ -19,7 +19,6 @@ namespace Foo_Corporation_Exercise8
                     {
                         throw new Exception("Maximum hours a week is 60!");
                     }
-
                     else
                     {
                         payment+=oneHourPayment*1.5M;

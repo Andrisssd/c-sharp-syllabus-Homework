@@ -7,14 +7,11 @@ namespace Exercise4
         static void Main(string[] args)
         {
             int sum = 1;
-
-            for (int i = 1; i<=10; i++) {
+            for (int i = 1; i<=10; i++)
+            {
                 sum*=i;
             }
             Console.WriteLine(sum);
-
-
-
         }
     }
 }
