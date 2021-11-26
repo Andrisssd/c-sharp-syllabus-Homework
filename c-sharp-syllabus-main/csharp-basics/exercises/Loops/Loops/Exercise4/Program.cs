@@ -2,26 +2,18 @@
 {
     class Program
     {
-        //TODO: print all vowels using for and foreach
         static void Main(string[] args)
         {
             char[] vowels = {'a', 'e', 'i', 'o', 'u'};
-
-            /*
-            todo - use for
-            for (?) 
+            for(int i = 0; i < vowels.Length; i++)
             {
-                Console.WriteLine(vowels[i]);
+                System.Console.WriteLine(vowels[i]);
             }
-            */
 
-            /*
-            todo - use foreach
-            for (?) 
+            foreach(var vowel in vowels)
             {
-                Console.WriteLine(vowel);
+                System.Console.WriteLine(vowel);
             }
-            */
         }
     }
 }
