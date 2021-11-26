@@ -28,6 +28,7 @@ namespace Exercise6
                 {
                     baseStr += i + " ";
                 }
+
                 if (i%20==0)
                 {
                     baseStr += "\n";

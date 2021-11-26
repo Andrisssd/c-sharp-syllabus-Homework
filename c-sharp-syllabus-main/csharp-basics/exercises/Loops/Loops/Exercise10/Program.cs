@@ -4,8 +4,8 @@ namespace Exercise10
 {
     class Program
     {
-        private static int min { get; set; }
-        private static int max { get; set; }
+        private static int _min;
+        private static int _max;
 
         static void Main(string[] args)
         {
@@ -14,22 +14,22 @@ namespace Exercise10
 
         public static int GetMax()
         {
-            return max;
+            return _max;
         }
 
         public static int GetMin()
         {
-            return min;
+            return _min;
         }
 
         public static void SetMax(int num)
         {
-            max = num;
+            _max = num;
         }
 
         public static void SetMin(int num)
         {
-            min = num;
+            _min = num;
         }
 
         public static void StartProgram()

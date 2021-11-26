@@ -9,6 +9,7 @@ namespace Piglet_Exercise7
         {
             StartGame();
         }
+
         public static void Roll()
         {
 
@@ -25,12 +26,14 @@ namespace Piglet_Exercise7
                 GameOver();
             }
         }
+
         public static void StartGame()
         {
             score = 0;
             Console.WriteLine("Welcome to Piglet!");
             Roll();
         }
+
         public static void AskForRoll()
         {
             Console.Write("Roll again? Y/n ");

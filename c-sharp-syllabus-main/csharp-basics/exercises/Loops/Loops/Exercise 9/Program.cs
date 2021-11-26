@@ -15,7 +15,6 @@ namespace Exercise_9
             }
             catch (Exception)
             {
-
                 throw new Exception("Wrong input format");
             }
             
