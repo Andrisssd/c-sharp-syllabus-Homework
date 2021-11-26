@@ -6,7 +6,8 @@ namespace Exercise_3
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Car sportCar = new Car();
+            sportCar.StartCar(101);
         }
     }
 }

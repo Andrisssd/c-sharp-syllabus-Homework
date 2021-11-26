@@ -6,7 +6,31 @@ using System.Threading.Tasks;
 
 namespace Exercise_3
 {
-    
+    class Car
+    {
+        FuelGauge fuelGauge;
+        Odometer odometer;
+        public Car()
+        {
+            fuelGauge = new FuelGauge();
+            odometer = new Odometer();
+        }
+        public void StartCar(int kilometers)
+        {
+            fuelGauge.SetFuelLevel(70);
+            for(int i = 0; i < kilometers; i++)
+            {
+                odometer.IncrementMileage();
+                Console.WriteLine($"km : {i}");
+                if(i % 10 == 0)
+                {
+                    fuelGauge.DecrementFuelLevel();
+                    fuelGauge.PrintFuelLevel();
+                    odometer.PrintMileage();
+                }
+            }
+        }
+    }
     class FuelGauge
     {
         private int liters;
@@ -15,6 +39,7 @@ namespace Exercise_3
         {
             this.liters = liters;
         }
+
         public void IncrementFuelLevel()
         {
             if(liters < 70)
@@ -26,6 +51,7 @@ namespace Exercise_3
                 Console.WriteLine("Max fuel");
             }
         }
+
         public void DecrementFuelLevel()
         {
             if(liters >0)
@@ -35,15 +61,23 @@ namespace Exercise_3
             else
             {
                 Console.WriteLine("None fuel left");
+                Console.WriteLine("Filling tank...");
+                FillTankFull();
             }
         }
 
-        public void PrintGuelLevel()
+        public void FillTankFull()
+        {
+            liters = 70;
+        }
+
+        public void PrintFuelLevel()
         {
             Console.WriteLine($"{liters} L");
         }
 
     }
+
     class Odometer
     {
         private int mileage;
@@ -52,10 +86,19 @@ namespace Exercise_3
         {
             mileage = 0;
         }
+
         public void IncrementMileage()
         {
             mileage++;
-            if(mileage == 1)
+            if(mileage == 1_000_000)
+            {
+                mileage = 0;
+            }
+        }
+
+        public void PrintMileage()
+        {
+            Console.WriteLine($"Current mileage: {mileage}");
         }
     }
 }
