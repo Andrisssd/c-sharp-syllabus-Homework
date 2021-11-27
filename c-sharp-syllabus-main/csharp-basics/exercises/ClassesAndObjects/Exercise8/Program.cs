@@ -11,15 +11,6 @@ namespace Exercise8
         private decimal deposited = 0;
         private decimal withdrawn = 0;
 
-        public SavingsAccount(decimal balance)
-        {
-            this.balance = balance;
-        }
-        public SavingsAccount(decimal balance, decimal rate)
-        {
-            this.balance = balance;
-            this.rate = rate;
-        }
         public SavingsAccount(decimal balance, decimal rate, int months)
         {
             this.balance = balance;
@@ -32,11 +23,13 @@ namespace Exercise8
             withdrawn += amount;
             balance -= amount;
         }
+
         public void Deposit(decimal amount)
         {
             deposited += amount;
             balance += amount;
         }
+
         public void AddMonthlyInterest()
         {
             interestEarned += balance*(rate/12);
@@ -52,8 +45,6 @@ namespace Exercise8
             Console.Write("How long has the account been opened? ");
             int months = Convert.ToInt32(Console.ReadLine());
             return new SavingsAccount(newBalance, newRate, months);
-
-            
         }
        
         public void TakeInfoAboutOperations()
@@ -69,6 +60,7 @@ namespace Exercise8
                 AddMonthlyInterest();
             }
         }
+
         public void PrintFinalInfo()
         {
             Console.WriteLine("Total deposited: ${0}",Math.Round(deposited,2));
@@ -76,8 +68,8 @@ namespace Exercise8
             Console.WriteLine("Interest earned: ${0}",Math.Round(interestEarned,2));
             Console.WriteLine("Ending balance: ${0}",Math.Round(balance,2));
         }
-
     }
+
     class Program
     {
         static void Main(string[] args)
@@ -85,8 +77,6 @@ namespace Exercise8
             SavingsAccount account1 = SavingsAccount.InitializeAccount();
             account1.TakeInfoAboutOperations();
             account1.PrintFinalInfo();
-
         }
-
     }
 }

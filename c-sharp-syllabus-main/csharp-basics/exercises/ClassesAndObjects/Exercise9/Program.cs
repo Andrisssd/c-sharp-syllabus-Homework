@@ -14,7 +14,6 @@ namespace Exercise9
             firstPoint.Y = secondPoint.Y;
             secondPoint.X = bufferX;
             secondPoint.Y = bufferY;
-
         }
         static void Main(string[] args)
         {

@@ -6,31 +6,27 @@ namespace VideoStore
     class VideoStore
     {
         public static int _LastIndex = 0;
-        Video[] Inventory = new Video[Program._countOfMovies];
+        List<Video> Inventory = new List<Video>();
 
         public void AddVideo(string title)
         {
-            Inventory[_LastIndex] = new Video(title); 
+            Inventory.Add(new Video(title));
         }
         
         public void Checkout(string title)
         {
-            for(int i =0; i < Inventory.Length; i++)
+            for(int i =0; i < Inventory.Count; i++)
             {
                 if(Inventory[i].Title == title && Inventory[i].isAvailable == true)
                 {
                     Inventory[i].BeingCheckedOut();
-                }
-                else
-                {
-                    Console.WriteLine("Wrong input");
                 }
             }
         }
 
         public void ReturnVideo(string title)
         {
-            for (int i = 0; i < Inventory.Length; i++)
+            for (int i = 0; i < Inventory.Count; i++)
             {
                 if (Inventory[i].Title == title && Inventory[i].isAvailable == false)
                 {
@@ -47,6 +43,16 @@ namespace VideoStore
         {
             Inventory[_LastIndex].ReceivingRating(rating);
             _LastIndex++;
+        }
+        public void TakeSingleUsersRating(string name, double newRate)
+        {
+            for(int i = 0; i < Inventory.Count; i++)
+            {
+                if(Inventory[i].Title == name)
+                {
+                    Inventory[i].ReceivingRating(newRate);
+                }
+            }
         }
 
         public void ListInventory()

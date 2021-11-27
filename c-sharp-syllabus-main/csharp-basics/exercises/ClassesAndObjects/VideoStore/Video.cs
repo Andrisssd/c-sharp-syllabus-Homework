@@ -1,17 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace VideoStore
 {
     class Video
     {
         public bool isAvailable;
-        public double rate = 0;
+        public List<double> rate;
         
         public Video(string title)
         {
             Title = title;
             isAvailable = true;
+            rate = new List<double>();
         }
 
         public void BeingCheckedOut()
@@ -26,12 +28,17 @@ namespace VideoStore
 
         public void ReceivingRating(double rating)
         {
-            rate += rating;
+            rate.Add(rating);
         }
 
         public double AverageRating()
         {
-            return rate;
+            double rateSum = 0;
+            foreach(var num in rate)
+            {
+                rateSum += num;
+            }
+            return rateSum/rate.Count();
         }
 
         public bool Available()
@@ -43,7 +50,7 @@ namespace VideoStore
 
         public override string ToString()
         {
-            return $"{Title} {AverageRating()} {Available()}";
+            return $"Title:{Title} || Average rating: {AverageRating()} || IsAvailable: {Available()}";
         }
     }
 }
