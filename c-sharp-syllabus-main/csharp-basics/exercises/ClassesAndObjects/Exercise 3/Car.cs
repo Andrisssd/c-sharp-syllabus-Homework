@@ -10,11 +10,13 @@ namespace Exercise_3
     {
         FuelGauge fuelGauge;
         Odometer odometer;
+
         public Car()
         {
             fuelGauge = new FuelGauge();
             odometer = new Odometer();
         }
+
         public void StartCar(int kilometers)
         {
             fuelGauge.SetFuelLevel(70);
@@ -31,6 +33,7 @@ namespace Exercise_3
             }
         }
     }
+
     class FuelGauge
     {
         private int liters;
