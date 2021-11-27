@@ -38,6 +38,7 @@ namespace VideoStore
             {
                 rateSum += num;
             }
+
             return rateSum/rate.Count();
         }
 

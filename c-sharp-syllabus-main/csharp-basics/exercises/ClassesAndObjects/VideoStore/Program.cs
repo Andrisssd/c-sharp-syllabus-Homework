@@ -10,6 +10,7 @@ namespace VideoStore
     {
         public static int _countOfMovies = 3;
         private static VideoStore _videoStore = new VideoStore();
+
         private static void Main(string[] args)
         {
             while (true)
@@ -70,6 +71,7 @@ namespace VideoStore
                 _videoStore.TakeUsersRating(rating);
             }
         }
+
         private static void AddNewVideo()
         {
             _countOfMovies++;
@@ -80,6 +82,7 @@ namespace VideoStore
             _videoStore.AddVideo(movieName);
             _videoStore.TakeUsersRating(rating);
         }
+
         private static void RateAVideo()
         {
             Console.WriteLine("Enter video title: ");
