@@ -12,8 +12,8 @@ namespace MoreVariablesAndPrinting
 
             name = "Zed A. Shaw";
             age = 35;
-            height = Math.Round(74 * 2.54,2);  // inches
-            weight = Math.Round(180 * 0.453592,2); // lbs
+            height = Math.Round(74 * 2.54,2); 
+            weight = Math.Round(180 * 0.453592,2); 
             eyes = "Blue";
             teeth = "White";
             hair = "Brown";
@@ -29,8 +29,6 @@ namespace MoreVariablesAndPrinting
                                + " I get " + (age + height + weight) + ".");
 
             Console.ReadKey();
-            //1 inch = 2.54 cm
-            //1 pound = 0.453592 kg
         }
     }
 }
