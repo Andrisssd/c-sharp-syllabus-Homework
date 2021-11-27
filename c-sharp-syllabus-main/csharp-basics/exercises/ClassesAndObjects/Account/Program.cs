@@ -29,6 +29,15 @@ namespace Account
             myAccaunt.Deposit(100);
             Console.WriteLine(mattsAccount.ToString());
             Console.WriteLine(myAccaunt.ToString());
+            Transfer(mattsAccount, myAccaunt, 100);
+            Console.WriteLine(mattsAccount.ToString());
+            Console.WriteLine(myAccaunt.ToString());
+        }
+
+        public static void Transfer(Account from, Account to, double howMuch)
+        {
+            from.Withdrawal(howMuch);
+            to.Deposit(howMuch);
         }
     }
 }
