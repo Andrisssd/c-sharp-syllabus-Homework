@@ -21,8 +21,8 @@ namespace ListExercise6
 
             Console.WriteLine(string.Join(",", colors));
 
-            //TODO: Remove the third element from the list.
-
+ 
+            colors.Remove(colors[2]);
             Console.WriteLine("After removing third element from the list:");
             Console.WriteLine(string.Join(",", colors));
         }
