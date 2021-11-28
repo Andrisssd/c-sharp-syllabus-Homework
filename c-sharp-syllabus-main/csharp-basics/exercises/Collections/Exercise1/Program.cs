@@ -22,11 +22,31 @@ namespace Exercise1
         {
             string[] array = { "Audi", "BMW", "Honda", "Mercedes", "VolksWagen", "Mercedes", "Tesla" };
 
-            //todo - replace array with an List and print out the results
+            List<string> list = new List<string>(array);
+            foreach (var brand in list)
+            {
+                Console.WriteLine(brand);
+            }
 
-            //todo - replace array with a HashSet and print out the results
+            HashSet<string> hashSet = new HashSet<string>(array);
+            foreach(var brand in hashSet)
+            {
+                Console.WriteLine(brand);
+            }
 
-            //todo - replace array with a Dictionary (use brand as key and origination as value) and print out the results
+            Dictionary<string, string> dictionary = new Dictionary<string, string>()
+            {
+                {array[0], "Germany" },
+                {array[1], "Germany" },
+                {array[2], "Japan" },
+                {array[4], "Germany" },
+                {array[5], "Germany" },
+                {array[6], "USA" },
+            };
+            foreach(var pair in dictionary)
+            {
+                Console.WriteLine($"Brand: {pair.Key} is from {pair.Value}");
+            }
         }
     }
 }
