@@ -16,7 +16,6 @@ namespace ConvertCurrency_14
 
         static void Main(string[] args)
         {
-
             var product = "learning C sharp";
             var price = 12.5;
             var priceInUSD = ConvertToUSD(price);
@@ -31,13 +30,13 @@ namespace ConvertCurrency_14
         //change this method accordingly
         static double ConvertToUSD(double price)
         {
-            return price;
+            return Math.Round(price*1.4*1.01,2);
         }
 
         //change this method accordingly
         static double ConvertToBRL(double price)
         {
-            return price;
+            return Math.Round(ConvertToUSD(price)*5.61,2);
         }
     }
 }

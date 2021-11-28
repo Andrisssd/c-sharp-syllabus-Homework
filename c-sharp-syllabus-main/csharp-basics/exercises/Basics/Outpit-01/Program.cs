@@ -12,6 +12,7 @@ namespace Output_01
 
         static void Main(string[] args)
         {
+            Console.WriteLine(GetNumber());
             Console.ReadKey();
         }
 

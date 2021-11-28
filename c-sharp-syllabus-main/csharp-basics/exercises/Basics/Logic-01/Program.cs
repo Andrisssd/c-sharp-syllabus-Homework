@@ -13,7 +13,7 @@ namespace Logic_01
 
         static string Trim(string text)
         {
-            Trim();
+            return text.Trim();
         }
     }
 }

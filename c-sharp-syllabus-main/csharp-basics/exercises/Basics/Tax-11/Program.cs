@@ -22,13 +22,11 @@ namespace Tax_11
             Console.WriteLine("Sales tax: £" + salesTax);
             Console.WriteLine("Total: £" + (price + salesTax));
             Console.ReadKey();
-
         }
 
-        //change only this method accordingly.
         static double CalculateSalesTax(double price)
         {
-            return price;
+            return Math.Round(price*1.20,2);
         }
     }
 }

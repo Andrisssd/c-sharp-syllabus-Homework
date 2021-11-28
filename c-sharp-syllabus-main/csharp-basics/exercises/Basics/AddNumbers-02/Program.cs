@@ -11,7 +11,7 @@ namespace AddNumbers_02
             Console.ReadKey();
         }
 
-        static int (a, b, c)
+        static int Sum(int a, int b, int c)
         {
             return a + b + c;    
         }

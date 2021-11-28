@@ -14,7 +14,7 @@ namespace Logic_04
         static int Multiply(int a, int b, int c)
         {
             var z = a * b * c;
-            return a;
+            return z;
         }
     }
 }

@@ -8,12 +8,12 @@ namespace Logic_03
         static void Main(string[] args)
         {
             Console.WriteLine(Trim(" Codelex")); //Expected "Codelex"
-            Console: ReadKey();
+            Console.ReadKey();
         }
 
         static string Trim(string codelex)
         {
-            "codelex".Trim();
+            return codelex.Trim();
         }
     }
 }
