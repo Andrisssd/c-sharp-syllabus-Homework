@@ -10,19 +10,24 @@ namespace ListExercise11
     {
         static void Main(string[] args)
         {
-            //TODO: Create an List with string elements
+            List<string> list = new List<string>();
+            for(int i = 0; i < 10; i++)
+            {
+                list.Add(i.ToString());
+            }
+ 
+            list.Insert(4, "newValue");
+            list[list.Count-1] = "last element";
+            list.Sort();
+            if (list.Contains("Foobar"))
+            {
+                Console.WriteLine("Contains Foobar");
+            }
 
-            //TODO: Add 10 values to list
-
-            //TODO: Add new value at 5th position
-
-            //TODO: Change value at last position (Calculate last position programmatically)
-
-            //TODO: Sort your list in alphabetical order
-
-            //TODO: Check if your list contains "Foobar" element
-
-            //TODO: Print each element of list using loop
+            foreach(var str in list)
+            {
+                Console.WriteLine(str);
+            }
         }
     }
 }
