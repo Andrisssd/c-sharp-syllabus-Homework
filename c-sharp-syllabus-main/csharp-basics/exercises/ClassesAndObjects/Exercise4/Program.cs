@@ -8,11 +8,11 @@ namespace Exercise4
         private string _studio;
         private string _rating;
 
-        public Movie(string Title, string Studio, string Rating)
+        public Movie(string title, string studio, string rating)
         {
-            this.Title = Title;
-            this.Studio = Studio;
-            this.Rating = Rating;
+            this.Title = title;
+            this.Studio = studio;
+            this.Rating = rating;
         }
 
         public Movie(string Title, string Studio)

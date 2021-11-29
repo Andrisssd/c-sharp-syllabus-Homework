@@ -8,27 +8,27 @@ namespace Exercise_3
 {
     class Car
     {
-        FuelGauge fuelGauge;
-        Odometer odometer;
+        private FuelGauge _fuelGauge;
+        private Odometer _odometer;
 
         public Car()
         {
-            fuelGauge = new FuelGauge();
-            odometer = new Odometer();
+            _fuelGauge = new FuelGauge();
+            _odometer = new Odometer();
         }
 
         public void StartCar(int kilometers)
         {
-            fuelGauge.SetFuelLevel(70);
+            _fuelGauge.SetFuelLevel(70);
             for(int i = 0; i < kilometers; i++)
             {
-                odometer.IncrementMileage();
+                _odometer.IncrementMileage();
                 Console.WriteLine($"km : {i}");
                 if(i % 10 == 0)
                 {
-                    fuelGauge.DecrementFuelLevel();
-                    fuelGauge.PrintFuelLevel();
-                    odometer.PrintMileage();
+                    _fuelGauge.DecrementFuelLevel();
+                    _fuelGauge.PrintFuelLevel();
+                    _odometer.PrintMileage();
                 }
             }
         }
@@ -36,18 +36,18 @@ namespace Exercise_3
 
     class FuelGauge
     {
-        private int liters;
+        private int _liters;
         
         public void SetFuelLevel(int liters)
         {
-            this.liters = liters;
+            this._liters = liters;
         }
 
         public void IncrementFuelLevel()
         {
-            if(liters < 70)
+            if(_liters < 70)
             {
-                liters++;
+                _liters++;
             }
             else
             {
@@ -57,9 +57,9 @@ namespace Exercise_3
 
         public void DecrementFuelLevel()
         {
-            if(liters >0)
+            if(_liters >0)
             {
-                liters--;
+                _liters--;
             }
             else
             {
@@ -71,12 +71,12 @@ namespace Exercise_3
 
         public void FillTankFull()
         {
-            liters = 70;
+            _liters = 70;
         }
 
         public void PrintFuelLevel()
         {
-            Console.WriteLine($"{liters} L");
+            Console.WriteLine($"{_liters} L");
         }
 
     }

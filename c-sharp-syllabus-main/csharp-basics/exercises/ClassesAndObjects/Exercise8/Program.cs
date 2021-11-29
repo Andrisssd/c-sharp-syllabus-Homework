@@ -4,36 +4,36 @@ namespace Exercise8
 {
     class SavingsAccount
     {
-        private decimal rate;
-        private decimal balance;
-        private int monthAccountLives;
-        private decimal interestEarned = 0;
-        private decimal deposited = 0;
-        private decimal withdrawn = 0;
+        private decimal _rate;
+        private decimal _balance;
+        private int _monthAccountLives;
+        private decimal _interestEarned = 0;
+        private decimal _deposited = 0;
+        private decimal _withdrawn = 0;
 
         public SavingsAccount(decimal balance, decimal rate, int months)
         {
-            this.balance = balance;
-            this.rate = rate;
-            this.monthAccountLives = months;
+            this._balance = balance;
+            this._rate = rate;
+            this._monthAccountLives = months;
         }
 
         public void Withdraw(decimal amount)
         {
-            withdrawn += amount;
-            balance -= amount;
+            _withdrawn += amount;
+            _balance -= amount;
         }
 
         public void Deposit(decimal amount)
         {
-            deposited += amount;
-            balance += amount;
+            _deposited += amount;
+            _balance += amount;
         }
 
         public void AddMonthlyInterest()
         {
-            interestEarned += balance*(rate/12);
-            balance = balance + balance*(rate/12);
+            _interestEarned += _balance*(_rate/12);
+            _balance = _balance + _balance*(_rate/12);
         }
 
         public static SavingsAccount InitializeAccount()
@@ -49,7 +49,7 @@ namespace Exercise8
        
         public void TakeInfoAboutOperations()
         {
-            for(int i = 1; i <= monthAccountLives; i++)
+            for(int i = 1; i <= _monthAccountLives; i++)
             {
                 Console.Write("Enter amount deposited for month: {0}: ",i);
                 decimal amountToDeposit = Convert.ToDecimal(Console.ReadLine());
@@ -63,10 +63,10 @@ namespace Exercise8
 
         public void PrintFinalInfo()
         {
-            Console.WriteLine("Total deposited: ${0}",Math.Round(deposited,2));
-            Console.WriteLine("Total withdrawn: ${0}",Math.Round(withdrawn,2));
-            Console.WriteLine("Interest earned: ${0}",Math.Round(interestEarned,2));
-            Console.WriteLine("Ending balance: ${0}",Math.Round(balance,2));
+            Console.WriteLine("Total deposited: ${0}",Math.Round(_deposited,2));
+            Console.WriteLine("Total withdrawn: ${0}",Math.Round(_withdrawn,2));
+            Console.WriteLine("Interest earned: ${0}",Math.Round(_interestEarned,2));
+            Console.WriteLine("Ending balance: ${0}",Math.Round(_balance,2));
         }
     }
 

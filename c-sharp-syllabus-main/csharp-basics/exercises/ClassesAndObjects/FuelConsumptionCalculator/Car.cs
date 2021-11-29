@@ -2,10 +2,10 @@
 {
     public class Car
     {
-        public double startOdo;
-        public double endingOdo;
-        public double mileage;
-        public double liters;
+        private double startOdo;
+        private double endingOdo;
+        private double mileage;
+        private double liters;
 
         public Car(double startOdo, double endingOdo, double liters)
         {
