@@ -7,17 +7,19 @@
 
         public Account(string v1, double v2)
         {
-            
+            _name = v1;
+            _money = v2;
         }
 
         public double Withdrawal(double i)
         {
+            RemoveMoney(i);
             return i;
         }
 
         public void Deposit(double i)
         {
-            
+            AddMoney(i);
         }
 
         public double Balance()
@@ -28,6 +30,23 @@
         public override string ToString()
         {
             return $"{_name}: {_money}";
+        }
+
+        private void RemoveMoney(double i)
+        {
+            if (_money-i>=0)
+            {
+                _money -= i;
+            }
+            else
+            {
+                System.Console.WriteLine("Not enought money.");
+            }
+        }
+
+        private void AddMoney(double i)
+        {
+            _money += i;
         }
 
         public string Name

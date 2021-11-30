@@ -1,44 +1,57 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace VideoStore
 {
     class Video
     {
+        public bool isAvailable;
+        public List<double> rate;
+        
         public Video(string title)
         {
-            
+            Title = title;
+            isAvailable = true;
+            rate = new List<double>();
         }
 
         public void BeingCheckedOut()
         {
-            
+            isAvailable = false;
         }
 
         public void BeingReturned()
         {
-            
+            isAvailable = true;
         }
 
         public void ReceivingRating(double rating)
         {
-            
+            rate.Add(rating);
         }
 
         public double AverageRating()
         {
-            return 0;
+            double rateSum = 0;
+            foreach(var num in rate)
+            {
+                rateSum += num;
+            }
+
+            return rateSum/rate.Count();
         }
 
         public bool Available()
         {
-            return true;
+            return isAvailable;
         }
 
-        public string Title => "";
+        public string Title { get; set; }
 
         public override string ToString()
         {
-            return $"{Title} {AverageRating()} {Available()}";
+            return $"Title:{Title} || Average rating: {AverageRating()} || IsAvailable: {Available()}";
         }
     }
 }
