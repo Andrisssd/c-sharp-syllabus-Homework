@@ -14,7 +14,6 @@ namespace Exercise5
         public static void ConvertCharsToNums(string input)
         {
             char[] inChar = input.ToLower().ToCharArray();
-
             for(int i = 0; i < inChar.Length; i++)
             {
                 switch (inChar[i])
@@ -69,7 +68,6 @@ namespace Exercise5
                         break;
                 }
             }
-                
         }
     }
 }
