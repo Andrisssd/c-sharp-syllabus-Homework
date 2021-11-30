@@ -18,7 +18,7 @@ namespace PositiveNegativeNumber
 
                 throw new System.FormatException("Wrong input");
             }
-            
+
             Console.WriteLine();
             if(number > 0)
             {
