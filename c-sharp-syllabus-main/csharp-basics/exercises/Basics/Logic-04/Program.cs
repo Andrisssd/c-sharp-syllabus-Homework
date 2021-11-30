@@ -4,10 +4,9 @@ namespace Logic_04
 {
     class Program
     {
-        //todo: fix the code
         static void Main(string[] args)
         {
-            Console.WriteLine(Multiply(1,3,4)); //Expected 12;
+            Console.WriteLine(Multiply(1,3,4));
             Console.ReadKey();
         }
 

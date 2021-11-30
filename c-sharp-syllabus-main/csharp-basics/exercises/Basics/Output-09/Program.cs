@@ -4,7 +4,6 @@ namespace Output_09
 {
     class Program
     {
-        //todo: using function return hello world and display it.
         static void Main(string[] args)
         {
             Console.WriteLine(Concat("Hello ","World!"));

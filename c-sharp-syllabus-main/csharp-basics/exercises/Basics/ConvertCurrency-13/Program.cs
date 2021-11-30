@@ -4,12 +4,6 @@ namespace ConvertCurrency_13
 {
     class Program
     {
-        /**
-         * Currency Formatting
-         *
-         * The business is breaking out into a new market and need to convert prices to USD
-         * Write a function that converts a price to USD (exchange rate is 1.4 $ to £)
-         */
         static void Main(string[] args)
         {
             var product = "learning C sharp";
@@ -21,8 +15,6 @@ namespace ConvertCurrency_13
             Console.ReadKey();
         }
 
-
-        //change this method accordingly
         static double ConvertToUSD(double price)
         {
             return Math.Round(price*1.4,2);

@@ -4,16 +4,6 @@ namespace ConvertCurrency_14
 {
     class Program
     {
-
-        /**
-         * Currency Formatting
-         *
-         * The business is now breaking into the Brazilian market
-         * Write a new function for converting to the Brazilian real
-         * They have also decided that they should add a 1% fee to all foreign transactions
-         * Find a way to add 1% to all currency conversions (think about the DRY principle)
-         */
-
         static void Main(string[] args)
         {
             var product = "learning C sharp";
@@ -27,13 +17,11 @@ namespace ConvertCurrency_14
             Console.ReadKey();
         }
 
-        //change this method accordingly
         static double ConvertToUSD(double price)
         {
             return Math.Round(price*1.4*1.01,2);
         }
 
-        //change this method accordingly
         static double ConvertToBRL(double price)
         {
             return Math.Round(ConvertToUSD(price)*5.61,2);
