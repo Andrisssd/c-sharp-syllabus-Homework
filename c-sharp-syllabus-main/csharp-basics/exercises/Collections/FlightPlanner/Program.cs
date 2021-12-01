@@ -9,15 +9,19 @@ namespace FlightPlanner
 {
     class Program
     {
-        private const string Path = @"C:\Users\User\Desktop\homework\c-sharp-syllabus-Homework\c-sharp-syllabus-main\csharp-basics\exercises\Collections\FlightPlanner\flights.txt";
-
+        private const string _path = @"C:\Users\User\Desktop\homework\c-sharp-syllabus-Homework\c-sharp-syllabus-main\csharp-basics\exercises\Collections\FlightPlanner\flights.txt";
+        private static string[] _plannerPlan = File.ReadAllLines(_path);
         private static void Main(string[] args)
         {
-            var readText = File.ReadAllLines(Path);
+            var readText = File.ReadAllLines(_path);
+            var text = File.ReadAllText(_path);
             foreach (var s in readText)
             {
                 Console.WriteLine(s);
             }
+            InvokeFlyManager(text, readText);
+
+            
         }
 
         static void InvokeFlyManager(string text, string[] textLines)
@@ -40,6 +44,27 @@ namespace FlightPlanner
             }
         }
 
+        static Dictionary<string,string> GetCityList()
+        {
+            HashSet<string> cityList = new HashSet<string>();
+            foreach(var )
+        }
+
+        static void PrintAvialibleCities()
+        {
+            int indexNeeded = 0;
+            foreach(var city in GetCityList())
+            {
+                Console.WriteLine(city.Key+$": {indexNeeded}");
+                indexNeeded++;
+            }
+        }
+
+        static void AskStartCity()
+        {
+            Console.Write("Enter number of city you are starting from: ");
+        }
+
         static void ManageCities(string[] textLines)
         {
             Console.WriteLine("To select a city from which you would like to start press 1");
@@ -49,6 +74,7 @@ namespace FlightPlanner
             switch (input)
             {
                 case "1":
+                    PrintAvialibleCities();
                     break;
                 case "#":
                     Console.WriteLine("Thanks for using our app!");
@@ -59,7 +85,6 @@ namespace FlightPlanner
                     ManageCities(textLines);
                     break;
             }
-            HashSet<string> avialibleCities = new 
         }
 
         static void PrintListOfTheCities(string[] textLines)
@@ -71,6 +96,7 @@ namespace FlightPlanner
             }
 
             Console.WriteLine("==================================");
+            ManageCities(textLines);
         }
     }
 }
