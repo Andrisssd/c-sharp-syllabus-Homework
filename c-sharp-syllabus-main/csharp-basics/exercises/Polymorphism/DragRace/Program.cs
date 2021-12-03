@@ -2,6 +2,18 @@
 
 namespace DragRace
 {
+    interface ICar
+    {
+        public void SpeedUp();
+        public void SlowDown();
+        public string ShowCurrentSpeed();
+        public void StartEngine();
+
+    }
+    interface IBoostable
+    {
+        public void UseNitrousOxideEngine();
+    }
     class Program
     {
         /**
@@ -18,7 +30,7 @@ namespace DragRace
 
         private static void Main(string[] args)
         {
-            
+            Volvo
         }
     }
 }
