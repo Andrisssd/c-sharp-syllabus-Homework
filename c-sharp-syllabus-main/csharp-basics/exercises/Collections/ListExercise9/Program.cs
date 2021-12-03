@@ -18,9 +18,7 @@ namespace ListExercise9
                 "White",
                 "Pink"
             };
-
             Console.WriteLine(string.Join(",", firstList));
-
             var secondList = new List<string>
             {
                 "Red",
@@ -29,9 +27,7 @@ namespace ListExercise9
                 "White",
                 "Pink"
             };
-
             Console.WriteLine(string.Join(",", secondList));
-
             firstList.AddRange(secondList);
             Console.WriteLine(string.Join(",", firstList));
         }

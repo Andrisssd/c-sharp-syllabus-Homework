@@ -18,7 +18,6 @@ namespace ListExercise10
                 "White",
                 "Pink"
             };
-
             Console.WriteLine("Original array list: ");
             Console.WriteLine(string.Join(",", colors));
 

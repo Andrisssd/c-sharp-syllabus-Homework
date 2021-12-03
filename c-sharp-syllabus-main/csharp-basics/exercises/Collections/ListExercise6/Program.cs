@@ -18,10 +18,7 @@ namespace ListExercise6
                 "White",
                 "Black"
             };
-
             Console.WriteLine(string.Join(",", colors));
-
- 
             colors.Remove(colors[2]);
             Console.WriteLine("After removing third element from the list:");
             Console.WriteLine(string.Join(",", colors));

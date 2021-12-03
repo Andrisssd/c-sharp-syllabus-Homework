@@ -18,7 +18,6 @@ namespace ListExercise7
                 "White",
                 "Black"
             };
-
             bool containsWhite = colors.Contains("White");
             Console.WriteLine(containsWhite);
         }

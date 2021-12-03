@@ -18,10 +18,8 @@ namespace ListExercise4
                 "White",
                 "Black"
             };
-
             string element = colors[0];
             Console.WriteLine("First element: " + element);
-
             element = colors[2];
             Console.WriteLine("Third element: " + element);
         }

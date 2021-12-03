@@ -18,9 +18,7 @@ namespace ListExercise5
                 "White",
                 "Black"
             };
-
             Console.WriteLine(string.Join(",", colors));
-
             colors[2] = "Yellow";
             Console.WriteLine(string.Join(",", colors));
         }
