@@ -3,7 +3,7 @@ using DragRace;
 
 namespace DragRace
 {
-    public class Volvo : ICar , IBoostable;
+    public class Volvo : ICar , IBoostable
     {
         private int currentSpeed = 0;
 

@@ -2,7 +2,7 @@ using System;
 
 namespace DragRace
 {
-    public class Lexus : ICar , IBoostable;
+    public class Lexus : ICar , IBoostable
     {
         private int currentSpeed = 0;
 
