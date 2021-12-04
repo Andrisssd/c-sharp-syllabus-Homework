@@ -18,11 +18,8 @@ namespace ListExercise5
                 "White",
                 "Black"
             };
-
             Console.WriteLine(string.Join(",", colors));
-
-            //TODO: Change the third element with "Yellow"
-
+            colors[2] = "Yellow";
             Console.WriteLine(string.Join(",", colors));
         }
     }

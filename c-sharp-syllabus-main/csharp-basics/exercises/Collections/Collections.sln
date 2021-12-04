@@ -5,8 +5,6 @@ VisualStudioVersion = 16.0.29806.167
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exercise1", "Exercise1\Exercise1.csproj", "{387BD104-0786-4B7B-AD53-FD01CD05D578}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exercise3", "Exercise2\Exercise3.csproj", "{690AAD4B-4F9A-417C-8D88-BDFCABED6FA3}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlightPlanner", "FlightPlanner\FlightPlanner.csproj", "{7617A60C-18A2-4FF5-9191-7137C7C2E8DA}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Histogram", "Histogram\Histogram.csproj", "{5FB314A2-710C-4A70-80B8-2382B7B7D2CE}"
@@ -39,6 +37,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ListExercise10", "ListExerc
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ListExercise11", "ListExercise11\ListExercise11.csproj", "{88737D25-5F14-427D-AAC9-910094585997}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Exercise 3", "Exercise 3\Exercise 3.csproj", "{D8907AA6-2523-4480-83AF-37D4AD0969CA}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Exercise4", "Exercise4\Exercise4.csproj", "{E26BF4FC-F9B9-4C00-A25B-4317C2144BB9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exercise9", "Exercise9\Exercise9.csproj", "{20C635BD-56C4-4868-9FC4-2076C6FAA460}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -49,10 +53,6 @@ Global
 		{387BD104-0786-4B7B-AD53-FD01CD05D578}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{387BD104-0786-4B7B-AD53-FD01CD05D578}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{387BD104-0786-4B7B-AD53-FD01CD05D578}.Release|Any CPU.Build.0 = Release|Any CPU
-		{690AAD4B-4F9A-417C-8D88-BDFCABED6FA3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{690AAD4B-4F9A-417C-8D88-BDFCABED6FA3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{690AAD4B-4F9A-417C-8D88-BDFCABED6FA3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{690AAD4B-4F9A-417C-8D88-BDFCABED6FA3}.Release|Any CPU.Build.0 = Release|Any CPU
 		{7617A60C-18A2-4FF5-9191-7137C7C2E8DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{7617A60C-18A2-4FF5-9191-7137C7C2E8DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7617A60C-18A2-4FF5-9191-7137C7C2E8DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -113,6 +113,18 @@ Global
 		{88737D25-5F14-427D-AAC9-910094585997}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{88737D25-5F14-427D-AAC9-910094585997}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{88737D25-5F14-427D-AAC9-910094585997}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D8907AA6-2523-4480-83AF-37D4AD0969CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D8907AA6-2523-4480-83AF-37D4AD0969CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D8907AA6-2523-4480-83AF-37D4AD0969CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D8907AA6-2523-4480-83AF-37D4AD0969CA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E26BF4FC-F9B9-4C00-A25B-4317C2144BB9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E26BF4FC-F9B9-4C00-A25B-4317C2144BB9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E26BF4FC-F9B9-4C00-A25B-4317C2144BB9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E26BF4FC-F9B9-4C00-A25B-4317C2144BB9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{20C635BD-56C4-4868-9FC4-2076C6FAA460}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{20C635BD-56C4-4868-9FC4-2076C6FAA460}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{20C635BD-56C4-4868-9FC4-2076C6FAA460}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{20C635BD-56C4-4868-9FC4-2076C6FAA460}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

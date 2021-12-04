@@ -18,8 +18,8 @@ namespace ListExercise7
                 "White",
                 "Black"
             };
-
-            //      TODO: Check if list contains "White" element
+            bool containsWhite = colors.Contains("White");
+            Console.WriteLine(containsWhite);
         }
     }
 }
