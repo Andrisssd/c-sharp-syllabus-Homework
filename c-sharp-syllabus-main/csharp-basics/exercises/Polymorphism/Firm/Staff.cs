@@ -11,7 +11,7 @@ namespace Firm
         //-----------------------------------------------------------------
         public Staff()
         {
-            staffList = new StaffMember[6];
+            staffList = new StaffMember[8];
             staffList[0] = new Executive("Sam", "123 Main Line",
                 "555-0469", "123-45-6789", 2423.07);
             staffList[1] = new Employee("Carla", "456 Off Line",
@@ -24,8 +24,14 @@ namespace Firm
                 "555-8374");
             staffList[5] = new Volunteer("Cliff", "321 Duds Lane",
                 "555-7282");
+            staffList[6] = new Commissions("Andris", "333 Blvd.", "555-8888", "333-33-3333", 6.25, 0.2f);
+            staffList[7] = new Commissions("Agris", "444 Blvd.", "666-9999", "222-22-2222", 9.75, 0.15f);
             ((Executive) staffList[0]).AwardBonus(500.00);
             ((Hourly) staffList[3]).AddHours(40);
+            ((Commissions)staffList[6]).AddHours(35);
+            ((Commissions)staffList[6]).AddSales(400);
+            ((Commissions)staffList[7]).AddHours(40);
+            ((Commissions)staffList[7]).AddSales(950);
         }
 
         //-----------------------------------------------------------------
