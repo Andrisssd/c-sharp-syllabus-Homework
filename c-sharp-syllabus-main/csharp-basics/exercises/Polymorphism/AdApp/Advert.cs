@@ -3,7 +3,6 @@ namespace AdApp
     public class Advert
     {
         private int _fee;
-
         public Advert() 
         {
             _fee = 0;
@@ -19,7 +18,7 @@ namespace AdApp
             _fee = fee;
         }
 
-        public int Cost() 
+        public virtual int Cost() 
         {
             return _fee;
         }

@@ -2,13 +2,24 @@ namespace AdApp
 {
     public class TVAd: Advert
     {
-        public TVAd(int fee) : base(fee)
+        private int _rate;
+        private int _seconds;
+        private bool _isPrimeTime;
+        public TVAd(int fee, int rate, int seconds, bool isPrimeTime) : base(fee)
         {
+            _rate = rate;
+            _seconds = seconds;
+            _isPrimeTime = isPrimeTime;
         }
         
-        public new int Cost() 
+        public override int Cost() 
         {
-            return base.Cost();
+            int sum = _seconds * _rate;
+            if (_isPrimeTime)
+            {
+                sum *= 2;
+            }
+            return base.Cost() + sum;
         }
 
         public override string ToString() 
