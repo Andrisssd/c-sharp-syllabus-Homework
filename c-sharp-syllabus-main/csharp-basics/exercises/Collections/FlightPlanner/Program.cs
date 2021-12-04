@@ -8,8 +8,8 @@ using System.Threading.Tasks;
 namespace FlightPlanner
 {
     class Program
-    { 
-        private const string _path = @"C:\Users\User\Desktop\homework\c-sharp-syllabus-Homework\c-sharp-syllabus-main\csharp-basics\exercises\Collections\FlightPlanner\flights.txt";
+    {
+        private const string _path = "../flights.txt";
         private static string _firstCity = "  ";
         private static string _currentCity = " ";
         private static List<string> _fullPath;

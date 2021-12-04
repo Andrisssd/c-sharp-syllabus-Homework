@@ -21,13 +21,7 @@ namespace Exercise_3
                 StartAsking(names);
             }
 
-            string uniqueNames = "";
-            foreach(var name in names)
-            {
-                uniqueNames += name + " ";
-            }
-
-            Console.WriteLine($"Unique name list contains :{uniqueNames}");
+            Console.WriteLine($"Unique name list contains :{string.Join(' ',names)}");
             Environment.Exit(0);
         }
     }
