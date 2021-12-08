@@ -6,7 +6,7 @@ namespace Exercise6
 {
     class Program
     {
-        public static List<string> finalInfo = new List<string>();
+        private static List<string> finalInfo = new List<string>();
 
         static void Main(string[] args)
         {
@@ -47,8 +47,7 @@ namespace Exercise6
 
             if (inputs.Length == 5 && lowerType == "cat")
             {
-                
-                    return new Cat(inputs[0], inputs[1], inputs[3], result, inputs[4]);
+                return new Cat(inputs[0], inputs[1], inputs[3], result, inputs[4]);
             }
             else if(lowerType == "tiger")
             {
@@ -72,7 +71,7 @@ namespace Exercise6
         {
             string[] foodTypeAndCount = Console.ReadLine().Split(" ");
             string foodType = foodTypeAndCount[0].ToLower();
-            int foodCount ;
+            int foodCount;
 
             try
             {
@@ -92,7 +91,6 @@ namespace Exercise6
             {
                 animal.Eat(new Meat(foodCount));
             }
-            
         }
 
         static void PrintFullInfo(Animal animal)
