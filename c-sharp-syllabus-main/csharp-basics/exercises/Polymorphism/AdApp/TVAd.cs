@@ -5,6 +5,7 @@ namespace AdApp
         private int _rate;
         private int _seconds;
         private bool _isPrimeTime;
+
         public TVAd(int fee, int rate, int seconds, bool isPrimeTime) : base(fee)
         {
             _rate = rate;

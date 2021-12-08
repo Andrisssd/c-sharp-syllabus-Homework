@@ -3,6 +3,7 @@ namespace AdApp
     public class Advert
     {
         private int _fee;
+
         public Advert() 
         {
             _fee = 0;
