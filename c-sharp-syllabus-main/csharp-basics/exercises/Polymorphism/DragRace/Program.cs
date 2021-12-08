@@ -9,7 +9,6 @@ namespace DragRace
         void SlowDown();
         string ShowCurrentSpeed();
         void StartEngine();
-
     }
 
     interface IBoostable
@@ -32,6 +31,7 @@ namespace DragRace
             {
                 volvo, audi, lexus, tesla, bmw, lada
             };
+
             for (int i = 1; i <= 10; i++)
             {
                 foreach(var car in cars)
@@ -50,6 +50,7 @@ namespace DragRace
                     car.SpeedUp();
                 }
             }
+
             foreach(var car in cars)
             {
                 Console.WriteLine($"{car.GetType().Name} = {car.ShowCurrentSpeed()}");
