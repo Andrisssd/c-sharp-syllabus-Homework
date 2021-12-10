@@ -9,7 +9,6 @@ namespace AdApp
         {
             _column = column;
             _rate = rate;
-
         }
 
         public override int Cost()
