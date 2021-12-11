@@ -45,16 +45,4 @@ namespace Exercise6
             return dictionary;
         }
     }
-    abstract class Mammal : Animal
-    {
-        protected string _livingRegion;
-
-        public Mammal(string type, string name, double weight, string region) : base (name, type, weight)
-        {
-            _livingRegion = region;
-        }
-    }
-
-    
-    
 }

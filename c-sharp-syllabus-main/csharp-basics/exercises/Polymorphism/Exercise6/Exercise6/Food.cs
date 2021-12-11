@@ -20,18 +20,4 @@ namespace Exercise6
             return _quantity;
         }
     }
-
-    class Vegetable : Food
-    {
-        public Vegetable(int quantity) : base (quantity)
-        {
-        }
-    }
-
-    class Meat : Food
-    {
-        public Meat(int quantity) : base (quantity)
-        {
-        }
-    }    
 }
