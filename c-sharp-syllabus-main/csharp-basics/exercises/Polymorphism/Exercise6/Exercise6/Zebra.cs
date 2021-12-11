@@ -43,5 +43,4 @@ namespace Exercise6
             return $"[{info["type"]}, {info["weight"]}, {info["location"]}, {info["foodCount"]}]";
         }
     }
-
 }
