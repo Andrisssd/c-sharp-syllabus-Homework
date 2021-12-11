@@ -30,16 +30,16 @@ namespace Exercise6
             Console.WriteLine("***zebra's noises***");
         }
 
-        public override Dictionary<string, string> GetInfoArray()
+        public override Dictionary<string, string> AddInfoToInfoDictionary()
         {
-            var infos = base.GetInfoArray();
+            var infos = base.AddInfoToInfoDictionary();
             infos.Add("location", _livingRegion);
             return infos;
         }
 
         public override string GetInfo()
         {
-            var info = GetInfoArray();
+            var info = AddInfoToInfoDictionary();
             return $"[{info["type"]}, {info["weight"]}, {info["location"]}, {info["foodCount"]}]";
         }
     }

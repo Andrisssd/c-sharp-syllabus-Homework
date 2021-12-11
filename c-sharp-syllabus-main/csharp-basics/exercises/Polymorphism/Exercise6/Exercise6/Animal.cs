@@ -35,7 +35,7 @@ namespace Exercise6
             _foodEaten += food.GetQuantity();
         }
 
-        public virtual Dictionary<string, string> GetInfoArray()
+        public virtual Dictionary<string, string> AddInfoToInfoDictionary()
         { 
             Dictionary<string, string> dictionary = new Dictionary<string, string>();
             dictionary.Add("type", _animalType);

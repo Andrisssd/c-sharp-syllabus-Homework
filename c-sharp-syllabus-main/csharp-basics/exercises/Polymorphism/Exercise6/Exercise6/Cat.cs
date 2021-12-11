@@ -32,9 +32,9 @@ namespace Exercise6
             }
         }
 
-        public override Dictionary<string, string> GetInfoArray()
+        public override Dictionary<string, string> AddInfoToInfoDictionary()
         {
-            var infos = base.GetInfoArray();
+            var infos = base.AddInfoToInfoDictionary();
             infos.Add("breed", _breed);
             infos.Add("location", _livingRegion);
             return infos;
@@ -42,7 +42,7 @@ namespace Exercise6
 
         public override string GetInfo()
         {
-            var info = GetInfoArray();
+            var info = AddInfoToInfoDictionary();
             return $"[{info["type"]}, {info["breed"]}, {info["weight"]}, {info["location"]}, {info["foodCount"]}]";
         }
     }
