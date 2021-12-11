@@ -153,5 +153,25 @@ namespace ScooterRentAppTests
 
             Assert.AreEqual(expectedIncome, actuelIncome);
         }
+
+        [TestMethod]
+        public void Count_Total_Income_For_2_Scooters_YearNotIncluded_For_1_Hour()
+        {
+            ScooterService service = new ScooterService();
+            RentalCompany company = new RentalCompany();
+
+            var scooters = service.GetScooters();
+            service.AddScooter("0x003", 0.05M);
+            service.AddScooter("0x004", 0.05M);
+            company.StartRent("0x003", scooters);
+            company.StartRent("0x004", scooters);
+            company.EndRent("0x004", scooters, DateTime.Now.AddHours(1));
+            company.EndRent("0x003", scooters, DateTime.Now.AddHours(1));
+
+            decimal expectedIncome = 6M;
+            decimal actuelIncome = company.CalculateIncome(true, service.GetScooters(), DateTime.Now.AddHours(4));
+
+            Assert.AreEqual(expectedIncome, actuelIncome);
+        }
     }
 }
