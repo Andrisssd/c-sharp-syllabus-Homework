@@ -23,21 +23,21 @@ namespace ScooterRentApp
 
         public decimal CalculateIncome(int year, bool includeNotCompletedRentals, Dictionary<string, Scooter> scooters, DateTime callTime)
         {
-           
             if (includeNotCompletedRentals)
             {
                 CheckYearAndMakeNewYearKeyIfNeeded(YearAndTotalIncome, callTime);
+                decimal rentedScootersIncomeSum = 0;
 
                 foreach(var scooter in scooters)
                 {
                     if (scooter.Value.IsRented)
                     {
                         Scooter scooteR = scooter.Value;
-                        YearAndTotalIncome[year] += CountRentForActiveScooters(scooteR.Id, scooters, callTime);
+                        rentedScootersIncomeSum += CountRentForActiveScooters(scooteR.Id, scooters, callTime);
                     }
                 }
 
-                return YearAndTotalIncome[year];
+                return YearAndTotalIncome[year] + rentedScootersIncomeSum;
             }
             else
             {
@@ -143,13 +143,6 @@ namespace ScooterRentApp
                     }
 
                     totalIncomePerDay += scooter.PricePerMinute;
-
-                    CheckYearAndMakeNewYearKeyIfNeeded(YearAndTotalIncome, currentDateTime);
-                    CheckYearAndMakeNewYearKeyIfNeeded(YearAndTotalIncomeCompletedRentalsFalse, currentDateTime);
-
-                    YearAndTotalIncome[currentDateTime.Year] += scooter.PricePerMinute;
-                    YearAndTotalIncomeCompletedRentalsFalse[currentDateTime.Year] += scooter.PricePerMinute;
-
                     totalRentPrice += scooter.PricePerMinute;
                     currentDateTime = currentDateTime.AddMinutes(1);
                 }

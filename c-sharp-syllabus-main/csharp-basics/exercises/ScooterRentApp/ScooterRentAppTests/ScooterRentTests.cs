@@ -55,10 +55,9 @@ namespace ScooterRentAppTests
         public void Add_One_Scooter_To_Dictionary()
         {
             ScooterService service = new ScooterService();
-
-            service.AddScooter("0x004", 0.5M);
-
             int expectedDictionaryLength = service._scooterDictionary.Count+1;
+
+            service.AddScooter("0x004", 0.5M);  
             int actualDictionaryLength = service._scooterDictionary.Count;
 
             Assert.IsTrue(actualDictionaryLength == expectedDictionaryLength);
