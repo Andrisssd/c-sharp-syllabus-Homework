@@ -2,7 +2,7 @@ namespace Firm
 {
     public class Hourly : Employee
     {
-        private int _hoursWorked;
+        protected int _hoursWorked;
         //-----------------------------------------------------------------
         // Sets up this hourly employee using the specified information.
         //-----------------------------------------------------------------
@@ -16,7 +16,7 @@ namespace Firm
         // Adds the specified number of hours to this employee's
         // accumulated hours.
         //-----------------------------------------------------------------
-        public void AddHours(int moreHours)
+        public virtual void AddHours(int moreHours)
         {
             _hoursWorked += moreHours;
         }
@@ -24,8 +24,8 @@ namespace Firm
         //-----------------------------------------------------------------
         // Computes and returns the pay for this hourly employee.
         //-----------------------------------------------------------------
-        public override double Pay() 
-
+        public override double Pay()
+        { 
             var payment = payRate * _hoursWorked;
             _hoursWorked = 0;
             return payment;
