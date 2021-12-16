@@ -24,6 +24,7 @@ namespace bbit_rest_api_Exercise_1
             MaxValue.Value = 9;
         }
     }
+
     class Program
     {
         static void Main(string[] args)
