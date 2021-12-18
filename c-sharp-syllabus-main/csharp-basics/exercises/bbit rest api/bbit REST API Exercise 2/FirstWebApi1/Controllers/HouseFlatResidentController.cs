@@ -109,7 +109,7 @@ namespace FirstWebApi1.Controllers
         }
 
         [Microsoft.AspNetCore.Mvc.HttpPut]
-        [Microsoft.AspNetCore.Mvc.Route("UpdateResidentData")]
+        [Microsoft.AspNetCore.Mvc.Route("Resident/Update")]
         public IActionResult UpdateInfoData(string id, [Microsoft.AspNetCore.Mvc.FromBody] Resident resident)
         {
             if (_info.ContainsKey(id))
@@ -129,7 +129,7 @@ namespace FirstWebApi1.Controllers
         }
 
         [Microsoft.AspNetCore.Mvc.HttpDelete]
-        [Microsoft.AspNetCore.Mvc.Route("DeleteItem")]
+        [Microsoft.AspNetCore.Mvc.Route("HouseFlatResident/Delete")]
         public IActionResult DeleteItem(string id)
         {
             if (_info.ContainsKey(id))
