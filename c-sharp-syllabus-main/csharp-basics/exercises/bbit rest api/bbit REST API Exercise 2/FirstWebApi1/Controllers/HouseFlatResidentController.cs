@@ -5,11 +5,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using ClassLibrary;
+using System.Web.Http;
+
 
 namespace FirstWebApi1.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
     public class HouseFlatResidentController : ControllerBase
     {
         private static Dictionary<string, Object> _info = new Dictionary<string, object>();
@@ -20,50 +21,58 @@ namespace FirstWebApi1.Controllers
             _logger = logger;
         }
 
-        [HttpGet]
-        [Route("Info")]
+        [Microsoft.AspNetCore.Mvc.HttpGet]
+        [Microsoft.AspNetCore.Mvc.Route("HouseFlatResident/Info")]
         public Dictionary<string,Object>.ValueCollection GetAllElements()
         {
             return _info.Values;
         }
 
-        [HttpPost]
-        [Route("Flat")]
-        public void AddFlat(Flat flat)
+        [Microsoft.AspNetCore.Mvc.HttpPost]
+        [Microsoft.AspNetCore.Mvc.Route("Flat")]
+        public IActionResult AddFlat(Flat flat)
         {
-            double minimalLivingSpace = 5;
-            if (flat.Number>0 && flat.Floor>0 && flat.RoomCount>0 && flat.ResidentCount>=0 && flat.LivingSpace>minimalLivingSpace)
+            if (flat.IsValid())
             {
                 CheckKeyAndAddObject(flat.UniqueId, flat);
                 AddHouse(flat.HouseWhereLocated);
+                return Ok();
             }
+
+            return ValidationProblem();
         }
 
-        [HttpPost]
-        [Route("House")]
-        public void AddHouse(House house)
+        [Microsoft.AspNetCore.Mvc.HttpPost]
+        [Microsoft.AspNetCore.Mvc.Route("House")]
+        public IActionResult AddHouse(House house)
         {
-            if (house.Number > 0)
+            if (house.IsValid())
             {
                 CheckKeyAndAddObject(house.UniqueId, house);
+                return Ok();
             }
+
+            return ValidationProblem();
         }
 
-        [HttpPost]
-        [Route("Resident")]
-        public void AddResident(Resident resident)
+        [Microsoft.AspNetCore.Mvc.HttpPost]
+        [Microsoft.AspNetCore.Mvc.Route("Resident")]
+        public IActionResult AddResident(Resident resident)
         {
-            if (resident.PhoneNumber.ToString().Where(x => Char.IsDigit(x)).Count()==8 && resident.PersonalCode.Contains("-") && resident.PersonalCode.Length==13)
+            if (resident.IsValid())
             {
                 CheckKeyAndAddObject(resident.UniqueId, resident);
                 AddHouse(resident.LivingFlat.HouseWhereLocated);
                 AddFlat(resident.LivingFlat);
+                return Ok();
             }
+
+            return ValidationProblem();
         }
 
-        [HttpPut]
-        [Route("UpdateHouseData")]
-        public void UpdateInfoData(string id, [FromBody] House house)
+        [Microsoft.AspNetCore.Mvc.HttpPut]
+        [Microsoft.AspNetCore.Mvc.Route("House/Update")]
+        public IActionResult UpdateInfoData(string id, [Microsoft.AspNetCore.Mvc.FromBody] House house)
         {
             if (_info.ContainsKey(id))
             {
@@ -74,12 +83,15 @@ namespace FirstWebApi1.Controllers
                 houseToUpdate.Number = house.Number;
                 houseToUpdate.ZIPCode = house.ZIPCode;
                 _info[id] = houseToUpdate;
+                return Ok();
             }
+
+            return NotFound();
         }
 
-        [HttpPut]
-        [Route("UpdateFlatData")]
-        public void UpdateInfoData(string id, [FromBody] Flat flat)
+        [Microsoft.AspNetCore.Mvc.HttpPut]
+        [Microsoft.AspNetCore.Mvc.Route("Flat/Update")]
+        public IActionResult UpdateInfoData(string id, [Microsoft.AspNetCore.Mvc.FromBody] Flat flat)
         {
             if (_info.ContainsKey(id))
             {
@@ -90,12 +102,15 @@ namespace FirstWebApi1.Controllers
                 flatToUpdate.ResidentCount = flat.ResidentCount;
                 flatToUpdate.RoomCount = flat.RoomCount;
                 _info[id] = flatToUpdate;
+                return Ok();
             }
+
+            return NotFound();
         }
 
-        [HttpPut]
-        [Route("UpdateResidentData")]
-        public void UpdateInfoData(string id, [FromBody] Resident resident)
+        [Microsoft.AspNetCore.Mvc.HttpPut]
+        [Microsoft.AspNetCore.Mvc.Route("UpdateResidentData")]
+        public IActionResult UpdateInfoData(string id, [Microsoft.AspNetCore.Mvc.FromBody] Resident resident)
         {
             if (_info.ContainsKey(id))
             {
@@ -107,17 +122,23 @@ namespace FirstWebApi1.Controllers
                 residentToUpdate.PhoneNumber = resident.PhoneNumber;
                 residentToUpdate.Surname = resident.Surname;
                 _info[id] = residentToUpdate;
+                return Ok();
             }
+
+            return NotFound();
         }
 
-        [HttpDelete]
-        [Route("DeleteItem")]
-        public void DeleteItem(string id)
+        [Microsoft.AspNetCore.Mvc.HttpDelete]
+        [Microsoft.AspNetCore.Mvc.Route("DeleteItem")]
+        public IActionResult DeleteItem(string id)
         {
             if (_info.ContainsKey(id))
             {
                 _info.Remove(id);
+                return Ok();
             }
+
+            return NotFound();
         }
 
         private void CheckKeyAndAddObject(string Id, Object obj)

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ClassLibrary
 {
-    public class House 
+    public class House : IValidatable
     {
         public string UniqueId { get; set; }
 
@@ -19,5 +19,10 @@ namespace ClassLibrary
         public string Country { get; set; }
 
         public string ZIPCode { get; set; }
+
+        public bool IsValid()
+        {
+            return Number > 0;
+        }
     }
 }

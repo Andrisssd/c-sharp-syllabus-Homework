@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ClassLibrary
 {
-    public class Flat 
+    public class Flat : IValidatable
     {
         public string UniqueId { get; set; }
 
@@ -21,5 +21,11 @@ namespace ClassLibrary
         public double LivingSpace { get; set; }
 
         public House? HouseWhereLocated { get; set; }
+
+        public bool IsValid()
+        {
+            double minimalLivingSpace = 5;
+            return (Number>0 && Floor>0 && RoomCount>0 && ResidentCount>=0 && LivingSpace>minimalLivingSpace);
+        }
     }
 }
