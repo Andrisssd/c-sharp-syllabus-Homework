@@ -27,4 +27,15 @@ namespace If_Scooters_ver2
 
         }
     }
+
+    [Serializable]
+    public class AddScooterMethodException : Exception
+    {
+        public AddScooterMethodException() { }
+
+        public AddScooterMethodException(string id) : base(String.Format("Scooter with id : {0} already exists", id))
+        {
+
+        }
+    }
 }

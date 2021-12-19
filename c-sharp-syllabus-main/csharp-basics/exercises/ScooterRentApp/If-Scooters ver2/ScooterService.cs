@@ -23,7 +23,7 @@ namespace If_Scooters_ver2
             }
             else
             {
-                throw new Exception("This id is already taken");
+                throw new AddScooterMethodException(id);
             }
         }
 

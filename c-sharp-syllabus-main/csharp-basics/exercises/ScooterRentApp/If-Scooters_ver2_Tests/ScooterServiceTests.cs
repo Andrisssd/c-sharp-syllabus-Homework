@@ -28,7 +28,7 @@ namespace If_Scooters_ver2_Tests
             //Add one Scooter to ScooterService's scooterList
             scooterService.AddScooter("id", 0.05M);
             //Check if adding new Scooter with same id throws an Expection
-            Assert.ThrowsException<System.Exception>(() => scooterService.AddScooter("id", 0.05M));
+            Assert.ThrowsException<AddScooterMethodException>(() => scooterService.AddScooter("id", 0.05M));
         }
 
         [TestMethod]
