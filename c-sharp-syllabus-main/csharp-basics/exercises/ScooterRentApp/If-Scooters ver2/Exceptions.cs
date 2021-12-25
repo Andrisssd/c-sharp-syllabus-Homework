@@ -38,4 +38,15 @@ namespace If_Scooters_ver2
 
         }
     }
+
+    [Serializable]
+    public class ScooterNotFoundException : Exception
+    {
+        public ScooterNotFoundException() { }
+
+        public ScooterNotFoundException(string id) : base(String.Format("Scooter with id {0} not found", id))
+        {
+
+        }
+    }
 }

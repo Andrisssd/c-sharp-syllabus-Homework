@@ -44,7 +44,7 @@ namespace If_Scooters_ver2
         {
             Scooter scooter = ScooterService.GetScooterById(id);
             scooter.IsRented = true;
-            scooter.IncrementScootersNumberOfRides();
+            _incomeDataBase.IncrementScootersRideTimes(id);
             scooter.SetInvokeStartRentTime(DateTime.Now);
             _incomeDataBase.AddScootersTime(scooter, DateTime.Now);
         }

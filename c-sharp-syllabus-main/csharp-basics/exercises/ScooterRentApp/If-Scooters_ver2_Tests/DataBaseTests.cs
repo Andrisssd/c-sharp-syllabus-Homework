@@ -8,10 +8,12 @@ namespace If_Scooters_ver2_Tests
     public class DataBaseTests
     {
         [TestMethod]
-        public void ShouldBeAbleToMakeNewDataBaseObject()
+        public void DataBaseConstructor_NoParameters_NewDataBaseObject()
         {
+            //Arrange
             //Create dataBase object
             DataBase actualData = new DataBase();
+            //Assert
             //Check if this object exists
             Assert.IsNotNull(actualData);
         }
@@ -19,11 +21,13 @@ namespace If_Scooters_ver2_Tests
         [TestMethod]
         public void CountIncomeForScooter_OneScooterRentedFor4Hours_Return12()
         {
+            //Arrange
             //Make service and dataBase objects
             IScooterService service = new ScooterService();
             DataBase dataBase = new DataBase();
             //Set rentStart value to DateTime.Now - 6 hours
             DateTime rentStart = DateTime.Now - new TimeSpan(06, 00, 00);
+            //Act
             //Add scooter to scooterList
             service.AddScooter("id", 0.05M);
             //Make scooters object
@@ -34,6 +38,7 @@ namespace If_Scooters_ver2_Tests
             //Set expected IncomeForScooter and get actual IncomeForScooter
             decimal expected = 18M;
             decimal actual = dataBase.CountIncomeForScooter(scooter, DateTime.Now);
+            //Assert
             //Compare actual and expected values
             Assert.AreEqual(expected, actual);
         }
@@ -41,10 +46,12 @@ namespace If_Scooters_ver2_Tests
         [TestMethod]
         public void CountTotalIncome_2021AndFalse_Return18()
         {
+            //Arrange
             //Make service and dataBase objects
             IScooterService service = new ScooterService();
             DataBase dataBase = new DataBase();
             //Set RentStart and RentEnd DateTimes so in total ride lasts 6 hours
+            //Act
             DateTime rentStart = DateTime.Now - new TimeSpan(06, 00, 00);
             DateTime rentEnd = DateTime.Now;
             //Add one scooter to ScooterList
@@ -57,6 +64,7 @@ namespace If_Scooters_ver2_Tests
             //Set expected TotalIncome value and get actual TotalIncome value
             decimal expected = 18M;
             decimal actual = dataBase.CountTotalIncome(rentStart.Year, false);
+            //Assert
             //Compare expected and actual values
             Assert.AreEqual(expected, actual);
         }
@@ -64,8 +72,10 @@ namespace If_Scooters_ver2_Tests
         [TestMethod] 
         public void SetDictionaryData_Data_AddedDataToDictionary()
         {
+            //Arrange
             //Make dataBAse object
             DataBase dataBase = new DataBase();
+            //Act
             //Set time to DateTime.Now
             DateTime time = DateTime.Now;
             //Set dataBase dictionary data
@@ -75,6 +85,7 @@ namespace If_Scooters_ver2_Tests
             string expectedValue = $"0.05&{time.ToString()}&{time.ToString()}";
             //Get actual value for dataBase data by expected key
             string actualValue = dataBase.GetIncomeDataDictionary()[expectedKey];
+            //Assert
             //Compare expected value and actual value by expected key
             Assert.AreEqual(expectedValue, actualValue);
         }
@@ -82,14 +93,17 @@ namespace If_Scooters_ver2_Tests
         [TestMethod]
         public void GetScootersRideTimesAndRentStartYear_OneScooterRideTimes0AndRentStart2021_Return0and2021()
         {
+            //Arrange
             //Make scooter and dataBase objects
             Scooter scooter = new Scooter("id", 0.05M);
             DataBase dataBase = new DataBase();
+            //Act
             //Set invoke start rent time 
             scooter.SetInvokeStartRentTime(new DateTime(2021, 10, 10, 10, 10, 10));
             //Set expected key in dataBase and get actual key
             string expected = "id 0 2021";
             string actual = dataBase.GetScootersIdRideTimesAndRentStartYear(scooter);
+            //Assert
             //Compare expected and actual keys
             Assert.AreEqual(expected, actual);
         }
@@ -97,9 +111,11 @@ namespace If_Scooters_ver2_Tests
         [TestMethod]
         public void AddScooterTime_ScooterAndScootersStartRentTime_AddScootersTimeToDictionary()
         {
+            //Arrange
             //Make scooter and dataBase objects
             Scooter scooter = new Scooter("id", 0.05M);
             DataBase dataBase = new DataBase();
+            //Act
             //Make new DateTime and set it to scooter's invokeStartRentTime
             DateTime time = new DateTime(2021, 10, 10, 10, 10, 10);
             scooter.SetInvokeStartRentTime(time);
@@ -108,6 +124,7 @@ namespace If_Scooters_ver2_Tests
             //Set expected dataBase dictionary's length and get actual length
             int expectedLength = 1;
             int actualLength = dataBase.GetIncomeDataDictionary().Count;
+            //Assert
             //Compare actual and expected dataBase dictionary's length's
             Assert.AreEqual(expectedLength, actualLength);
         }
@@ -115,11 +132,14 @@ namespace If_Scooters_ver2_Tests
         [TestMethod]
         public void CheckDayLimitPrice_21_Return20()
         {
+            //Arrange
             //make dataBase object
             DataBase dataBase = new DataBase();
+            //Act
             //Set expected return and actual return from CheckDayLimitPrice method
             decimal expected = 20M;
             decimal actual = DataBase.CheckDayLimitPrice(21M, 20M);
+            //Assert
             //Compare expected and actual returned values
             Assert.AreEqual(expected, actual);
         }
@@ -127,15 +147,18 @@ namespace If_Scooters_ver2_Tests
         [TestMethod]
         public void CountIncomeByDates_TimePeriod4Days_Return80()
         {
+            //Arrange
             //Make new dataBase object
             DataBase dataBase = new DataBase();
+            //Act
             //Set all data's needed for CountIncomeByDates method, so result rent time will be 4 days
             DateTime startRentTime = new DateTime(2021, 10, 10, 00, 00, 00);
             DateTime endRentTime = new DateTime(2021, 10, 14, 00, 00, 00);
             decimal pricePerMinute = 0.05M;
             //Set expected amount to return and get actual amount returned 
             decimal expected = 80M;
-            decimal actual = dataBase.CountIncomeByDates(startRentTime, endRentTime, pricePerMinute);
+            decimal actual = dataBase.CountIncomeForRentalPeriod(startRentTime, endRentTime, pricePerMinute);
+            //Assert
             //Compare expected and actual returned amounts
             Assert.AreEqual(expected, actual);
         }

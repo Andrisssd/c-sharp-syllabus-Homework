@@ -8,7 +8,6 @@ namespace If_Scooters_ver2
 {
     public class Scooter
     {
-        private int _rideNumber;
         private DateTime _invokeStartRentTime;
         /// <summary>
         /// Create new instance of the scooter.
@@ -18,7 +17,6 @@ namespace If_Scooters_ver2
         public Scooter(string id, decimal pricePerMinute)
         {
             Id = id;
-            _rideNumber = 0;
             _invokeStartRentTime = default;
             if (pricePerMinute>0) 
             {
@@ -59,19 +57,6 @@ namespace If_Scooters_ver2
             {
                 throw new InvokeStartRentTimeException(_invokeStartRentTime);
             }
-        }
-
-        public void IncrementScootersNumberOfRides()
-        {
-            if(IsRented == true)
-            {
-                _rideNumber++;
-            }
-        }
-
-        public int GetNumberOfRides()
-        {
-            return _rideNumber;
         }
     }
 }

@@ -29,7 +29,12 @@ namespace If_Scooters_ver2
 
         public Scooter GetScooterById(string scooterId)
         {
-            return _scooterList.Where(x => x.Id==scooterId).First();
+            if (_scooterList.Where(x => x.Id==scooterId).Count() > 0)
+            {
+                return _scooterList.Where(x => x.Id==scooterId).First();
+            }
+
+            throw new ScooterNotFoundException(scooterId);
         }
 
         public IList<Scooter> GetScooters()
@@ -39,7 +44,13 @@ namespace If_Scooters_ver2
 
         public void RemoveScooter(string id)
         {
-            _scooterList.Remove(_scooterList.Where(x => x.Id==id).First());
+            if (_scooterList.Where(x => x.Id==id).Count() > 0)
+            {
+                _scooterList.Remove(_scooterList.Where(x => x.Id==id).First());
+                return;
+            }
+
+            throw new ScooterNotFoundException(id);
         }
     }
 }
