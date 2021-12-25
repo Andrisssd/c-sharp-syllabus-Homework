@@ -101,13 +101,14 @@ namespace If_Scooters_ver2
             DateTime rentStartTime = scooter.GetInvokeStartRentTime();
             TimeSpan totalRentTime = rentEndTime - rentStartTime;
             TimeSpan totalRentDays = rentEndTime.Date - rentStartTime.Date;
+            decimal dayIncome = (decimal)totalRentTime.TotalMinutes * pricePerMinute;
             decimal sum = 0;
 
             for (int i = 0; i <= totalRentDays.TotalDays; i++)
             {
                 if (totalRentDays.TotalDays == 0)
                 {
-                    decimal dayIncome = (decimal)totalRentTime.TotalMinutes * pricePerMinute;
+                    
                     sum = CheckDayLimitPrice(dayIncome, _dayLimitPrice);
                 }
                 else
