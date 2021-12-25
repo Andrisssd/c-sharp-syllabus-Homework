@@ -34,8 +34,8 @@ namespace If_Scooters_ver2
 
         public string GetScootersIdRideTimesAndRentStartYear(Scooter scooter)
         {
-            string IdRideTimesAndPricePerMinute = $"{scooter.Id} {scooter.GetNumberOfRides()} {scooter.GetInvokeStartRentTime().Year}";
-            return IdRideTimesAndPricePerMinute;
+            string IdRideTimesAndRentStartYear = $"{scooter.Id} {scooter.GetNumberOfRides()} {scooter.GetInvokeStartRentTime().Year}";
+            return IdRideTimesAndRentStartYear;
         }
 
         public static decimal CheckDayLimitPrice(decimal amount, decimal _dayLimitPrice)
@@ -52,13 +52,13 @@ namespace If_Scooters_ver2
         {
             TimeSpan totalRentTime = rentEndTime - rentStartTime;
             TimeSpan totalRentDays = rentEndTime.Date - rentStartTime.Date;
+            decimal dayIncome = (decimal)totalRentTime.TotalMinutes * pricePerMinute;
             decimal sum = 0;
 
             for (int i = 0; i <= totalRentDays.TotalDays; i++)
             {
                 if (totalRentDays.TotalDays == 0)
                 {
-                    decimal dayIncome = (decimal)totalRentTime.TotalMinutes * pricePerMinute;
                     sum = CheckDayLimitPrice(dayIncome, _dayLimitPrice);
                 }
                 else
