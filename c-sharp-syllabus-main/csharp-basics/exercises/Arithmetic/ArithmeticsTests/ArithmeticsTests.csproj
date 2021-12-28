@@ -15,6 +15,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Exercise1\Exercise1.csproj" />
+    <ProjectReference Include="..\Exercise2\CheckOddEven Exercise2.csproj" />
   </ItemGroup>
 
 </Project>
