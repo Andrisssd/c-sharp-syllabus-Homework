@@ -1,9 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <OutputType>Exe</OutputType>
     <TargetFramework>net5.0</TargetFramework>
-    <RootNamespace>bbit_rest_api_Exercise_1</RootNamespace>
+    <RootNamespace>If_Scooters_ver2</RootNamespace>
   </PropertyGroup>
 
 </Project>
