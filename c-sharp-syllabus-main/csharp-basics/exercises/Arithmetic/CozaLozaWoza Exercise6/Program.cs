@@ -12,6 +12,10 @@ namespace CozaLozaWoza_Exercise6
 
             for(int i=1; i<=110; i++)
             {
+                if(i%11 == 0)
+                {
+                    baseString += "\n";
+                }
                 baseString += core.GetCozaLozaWozaOrNumber(i);
             }
             Console.WriteLine(baseString);

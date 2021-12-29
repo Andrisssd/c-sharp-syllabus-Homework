@@ -10,10 +10,6 @@ namespace CozaLozaWoza_Exercise6
     {
         public string GetCozaLozaWozaOrNumber(int i)
         {
-            if (i%11==1)
-            {
-                return $"\n{i} ";
-            }
             if (i%15==0)
             {
                 return "CozaLoza ";
