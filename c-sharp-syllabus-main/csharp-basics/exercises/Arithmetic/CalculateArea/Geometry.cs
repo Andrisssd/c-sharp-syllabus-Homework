@@ -8,19 +8,38 @@ namespace CalculateArea
 {
     public class Geometry
     {
-        public static double AreaOfCircle(decimal radius)
+        public double AreaOfCircle(decimal radius)
         {
-            return (double)(Math.PI * Math.Pow((double)radius, 2));
+            if (radius >= 0)
+            {
+                return (double)(Math.PI * Math.Pow((double)radius, 2));
+            }
+
+            throw new InvalidParameterException(radius);
         }
 
-        public static double AreaOfRectangle(decimal length, decimal width)
+        public double AreaOfRectangle(decimal length, decimal width)
         {
-            return (double)(length * width);
+            if (length >= 0 && width >= 0)
+            {
+                return (double)(length * width);
+            }
+
+            decimal[] parameters = { length, width };
+
+            throw new InvalidParameterException(parameters.Min());
         }
 
-        public static double AreaOfTriangle(decimal ground, decimal h)
+        public double AreaOfTriangle(decimal ground, decimal h)
         {
-            return (double)(h*ground/2);
+            if (ground >= 0 && h >=0)
+            {
+                return (double)(h*ground/2);
+            }
+
+            decimal[] parameters = { ground, h };
+
+            throw new InvalidParameterException(parameters.Min());
         }
     }
 }

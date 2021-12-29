@@ -16,7 +16,7 @@ namespace ArithmeticsTests
         [Test]
         public void CalculateFinalPositionAfter_10Seconds_Return481Dot1805()
         {
-            //Assign
+            //Arrange
             double fallingTime = 10;
             double expectedFinalPosition = 481.1805;
             //Assert
@@ -26,7 +26,7 @@ namespace ArithmeticsTests
         [Test]
         public void CalculateFinalPositionAfter_NegativeSeconds_ShouldThrowException()
         {
-            //Assign
+            //Arrange
             double fallingTime = -1;
             //Assert
             Assert.Throws<InvalidInputTimeException>(() => _calculator.CalculateFinalPositionAfter(fallingTime));
@@ -35,7 +35,7 @@ namespace ArithmeticsTests
         [Test]
         public void GetResultString_ReturnResultString()
         {
-            //Assign
+            //Arrange
             string expectedResult = "The object's position after 10 seconds is 481.1805 m.";
             //Act
             _calculator.CalculateFinalPositionAfter(10);

@@ -17,7 +17,7 @@ namespace ArithmeticsTests
         [Test]
         public void GetFooEmployeesPaymentForHours_8And45_Return380()
         {
-            //Assign
+            //Arrange
             decimal expectedResult = 380M;
             //Act
             decimal actualResult = _calculator.GetFooEmployeesPaymentForHours(8, 45);
@@ -42,7 +42,7 @@ namespace ArithmeticsTests
         [Test]
         public void GetFooEmployeesPaymentForHours_8And30_ShouldThrowException()
         {
-            //Assign
+            //Arrange
             decimal expectedResult = 8 * 30;
             //Act
             decimal actualResult = _calculator.GetFooEmployeesPaymentForHours(8, 30);

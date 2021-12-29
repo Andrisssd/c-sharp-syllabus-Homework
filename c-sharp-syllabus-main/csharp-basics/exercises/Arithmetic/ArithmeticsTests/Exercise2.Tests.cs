@@ -17,7 +17,7 @@ namespace ArithmeticsTests
         [Test]
         public void AskNumber_Five_ReturnFive()
         {
-            //Assign 
+            //Arrange
             string input = "5";
             int number = 5;
             //Assert
@@ -27,7 +27,7 @@ namespace ArithmeticsTests
         [Test]
         public void AskNumber_InvalidInput_ThrowException()
         {
-            //Assign
+            //Arrange
             string input = "a";
             //Assert
             Assert.Throws<InvalidNumberInputException>(() => _core.AskNumber(input));
@@ -36,7 +36,7 @@ namespace ArithmeticsTests
         [Test]
         public void NumberStatus_OddNumber_ReturnOdd()
         {
-            //Assign
+            //Arrange
             int number = 5;
             string expectedReturn = "Odd";
             //Assert
@@ -46,7 +46,7 @@ namespace ArithmeticsTests
         [Test]
         public void NumberStatus_EvenNumber_ReturnEven()
         {
-            //Assign
+            //Arrange
             int number = 4;
             string expectedReturn = "Even";
             //Assert
@@ -56,7 +56,7 @@ namespace ArithmeticsTests
         [Test]
         public void AskForExitStatus_Y_ReturnFalse()
         {
-            //Assign
+            //Arrange
             string input = "Y";
             //Assert
             Assert.IsFalse(_core.AskForExitStatus(input));
@@ -65,7 +65,7 @@ namespace ArithmeticsTests
         [Test]
         public void AskForExitStatus_N_ReturnTrue()
         {
-            //Assign
+            //Arrange
             string input = "N";
             //Assert
             Assert.IsTrue(_core.AskForExitStatus(input));

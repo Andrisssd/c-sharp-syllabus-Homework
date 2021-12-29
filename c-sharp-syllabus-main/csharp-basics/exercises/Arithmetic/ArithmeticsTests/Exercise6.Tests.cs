@@ -16,7 +16,7 @@ namespace ArithmeticsTests
         [Test]
         public void GetCozaLozaWozaOrNumber_NumberThatDividesByFifteen_ReturnCozaLoza()
         {
-            //Assign
+            //Arrange
             int number = 15;
             string expectedResult = "CozaLoza ";
             //Assert
@@ -26,7 +26,7 @@ namespace ArithmeticsTests
         [Test]
         public void GetCozaLozaWozaOrNumber_NumberThatDividesBySeven_ReturnWoza()
         {
-            //Assign
+            //Arrange
             int number = 7;
             string expectedResult = "Woza ";
             //Assert
@@ -36,7 +36,7 @@ namespace ArithmeticsTests
         [Test]
         public void GetCozaLozaWozaOrNumber_NumberThatDividesByFive_ReturnLoza()
         {
-            //Assign
+            //Arrange
             int number = 5;
             string expectedResult = "Loza ";
             //Assert
@@ -46,7 +46,7 @@ namespace ArithmeticsTests
         [Test]
         public void GetCozaLozaWozaOrNumber_NumberThatDividesByThree_ReturnCoza()
         {
-            //Assign
+            //Arrange
             int number = 3;
             string expectedResult = "Coza ";
             //Assert
@@ -56,7 +56,7 @@ namespace ArithmeticsTests
         [Test]
         public void GetCozaLozaWozaOrNumber_NumberThatCantBeDividedByFifteenSevenFiveOrThree_ReturnNumber()
         {
-            //Assign
+            //Arrange
             int firstNumber = 11;
             int secondNumber = 1;
             string expectedResult1 = $"{firstNumber} ";
