@@ -17,16 +17,22 @@ namespace WordCount
         {
             if (File.Exists(TEXT_PATH))
             {
-                string text = File.ReadAllText(TEXT_PATH);
-                string[] textLines = File.ReadAllLines(TEXT_PATH);
+                //string text = File.ReadAllText(TEXT_PATH);
+                //string[] textLines = File.ReadAllLines(TEXT_PATH);
 
-                int numOfChars = textLines.Sum(s => s.Length);
-                int numOfLines = textLines.Length;
-                int numOfWords = Regex.Matches(text, @"\b\w+\b").Count;
+                //int numOfChars = textLines.Sum(s => s.Length);
+                //int numOfLines = textLines.Length;
+                //int numOfWords = Regex.Matches(text, @"\b\w+\b").Count;
 
-                Console.WriteLine("Lines = {0}",numOfLines);
-                Console.WriteLine("Words = {0}",numOfWords);
-                Console.WriteLine("Chars = {0}",numOfChars);
+                //Console.WriteLine("Lines = {0}",numOfLines);
+                //Console.WriteLine("Words = {0}",numOfWords);
+                //Console.WriteLine("Chars = {0}",numOfChars);
+
+                TextFileInfo worker = new TextFileInfo();
+                worker.SetTextPath(TEXT_PATH);
+                Console.WriteLine(worker.GetNumOfChars());
+                Console.WriteLine(worker.GetNumOfLines());
+                Console.WriteLine(worker.GetNumOfWords());
             }
         }
     }
