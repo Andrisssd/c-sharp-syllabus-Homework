@@ -17,6 +17,7 @@
     <ProjectReference Include="..\CozaLozaWoza Exercise6\CozaLozaWoza Exercise6.csproj" />
     <ProjectReference Include="..\Exercise1\Exercise1.csproj" />
     <ProjectReference Include="..\Exercise2\CheckOddEven Exercise2.csproj" />
+    <ProjectReference Include="..\GravityCalculator\GravityCalculator.csproj" />
   </ItemGroup>
 
 </Project>
