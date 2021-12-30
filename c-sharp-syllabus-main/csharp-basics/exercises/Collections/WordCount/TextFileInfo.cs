@@ -15,7 +15,7 @@ namespace WordCount
 
         public string SetTextPath(string path)
         {
-            if (FileValid(path))
+            if (IsFileValid(path))
             {
                 _textPath = path;
                 return _textPath;
@@ -26,7 +26,7 @@ namespace WordCount
 
         public int GetNumOfChars()
         {
-            if (FileValid(_textPath))
+            if (IsFileValid(_textPath))
             {
                 string[] textLines = File.ReadAllLines(_textPath);
                 return textLines.Sum(s => s.Length);
@@ -37,7 +37,7 @@ namespace WordCount
 
         public int GetNumOfLines()
         {
-            if (FileValid(_textPath))
+            if (IsFileValid(_textPath))
             {
                 string[] textLines = File.ReadAllLines(_textPath);
                 return textLines.Length;
@@ -48,7 +48,7 @@ namespace WordCount
 
         public int GetNumOfWords()
         {
-            if (FileValid(_textPath))
+            if (IsFileValid(_textPath))
             {
                 string text = File.ReadAllText(_textPath);
                 return Regex.Matches(text, @"\b\w+\b").Count;
@@ -57,7 +57,7 @@ namespace WordCount
             throw new FileNotFoundException(_textPath);
         }
 
-        public bool FileValid(string _path)
+        public bool IsFileValid(string _path)
         {
             return File.Exists(_path);
         }

@@ -99,7 +99,7 @@ namespace CollectionTests
         public void FileValid_ValidPath_ReturnTrue()
         {
             //Assert
-            Assert.IsTrue(_textAnalizator.FileValid(_textPath));
+            Assert.IsTrue(_textAnalizator.IsFileValid(_textPath));
         }
 
         [TestMethod]
@@ -108,7 +108,7 @@ namespace CollectionTests
             //Arrange
             string fakePath = "something";
             //Assert
-            Assert.IsFalse(_textAnalizator.FileValid(fakePath));
+            Assert.IsFalse(_textAnalizator.IsFileValid(fakePath));
         }
     }
 }
