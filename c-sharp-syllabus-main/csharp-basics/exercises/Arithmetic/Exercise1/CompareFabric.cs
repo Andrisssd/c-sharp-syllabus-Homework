@@ -15,7 +15,7 @@ namespace Exercise1
             _number = numberToCopmapre;
         }
 
-        public bool SumValid(int a, int b)
+        public bool IsSumValid(int a, int b)
         {
             return a + b == _number;
         }
@@ -33,7 +33,7 @@ namespace Exercise1
 
         public bool IsNumberValid(int a, int b)
         {
-            return SumValid(a, b) || DifferenceValid(a, b) || IsAnyNumberTheOneWeNeed(a, b);
+            return IsSumValid(a, b) || DifferenceValid(a, b) || IsAnyNumberTheOneWeNeed(a, b);
         }
     }
 }

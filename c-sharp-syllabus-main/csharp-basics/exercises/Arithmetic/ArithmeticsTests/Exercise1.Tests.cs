@@ -22,7 +22,7 @@ namespace ArithmeticsTests
             int firstNum = 10;
             int secondNum = 5;
             //Assert
-            Assert.IsTrue(_fabric.SumValid(firstNum, secondNum));
+            Assert.IsTrue(_fabric.IsSumValid(firstNum, secondNum));
         }
 
         [Test]
@@ -31,7 +31,7 @@ namespace ArithmeticsTests
             //Arrange
             int num = 10;
             //Assert
-            Assert.IsFalse(_fabric.SumValid(num, num));
+            Assert.IsFalse(_fabric.IsSumValid(num, num));
         }
 
         [Test]

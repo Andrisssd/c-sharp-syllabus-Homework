@@ -14,7 +14,6 @@ namespace CheckOddEven_Exercise2
 
             try
             {
-                
                 number = int.Parse(input);
             }
             catch
