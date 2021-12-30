@@ -1,44 +1,55 @@
 ﻿using System;
+using Exceptions;
 
 namespace Exercise5
 {
-    class Date
+    public class Date
     {
-        public int year
+        private int _year
         {
-            get => date.Year;
+            get => _date.Year;
         }
 
-        public int month
+        private int _month
         {
-            get => date.Month;
+            get => _date.Month;
         }
 
-        public int day
+        private int _day
         {
-            get => date.Day;
+            get => _date.Day;
         }
 
-        public DateTime date;
+        private DateTime _date;
 
-        public Date(int year, int month, int day)
+        public void SetDate(int year, int month, int day)
         {
-            date = new DateTime(year, month, day);
+            try
+            {
+                _date = new DateTime(year, month, day);
+            }
+            catch
+            {
+                throw new InvalidParameterException();
+            }
         }
 
-        public void DisplayDate()
+        public string GetDate()
         {
-            Console.WriteLine($"{year}/{month}/{day}");
+            return $"{_year}/{_month}/{_day}";
         }
     }
+
     class Program
     {
         static void Main(string[] args)
         {
-            var date = new Date(2000, 08, 01);
-            date.DisplayDate();
-            var date2 = new Date(2000, 45, 01);
-            date.DisplayDate();
+            var date = new Date();
+            date.SetDate(2021, 10, 10);
+            Console.WriteLine(date.GetDate());
+            var date2 = new Date();
+            date2.SetDate(2021, 45, 10);
+            Console.WriteLine(date2.GetDate());
         }
     }
 }

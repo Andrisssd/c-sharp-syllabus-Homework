@@ -16,6 +16,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Exceptions\Exceptions.csproj" />
     <ProjectReference Include="..\Exercise1\Exercise1.csproj" />
+    <ProjectReference Include="..\Exercise5\Exercise5.csproj" />
   </ItemGroup>
 
 </Project>

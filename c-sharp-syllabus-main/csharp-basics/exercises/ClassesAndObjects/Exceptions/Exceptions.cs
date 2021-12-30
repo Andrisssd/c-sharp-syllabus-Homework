@@ -19,4 +19,13 @@ namespace Exceptions
 
         }
     }
+    
+    [Serializable]
+    public class InvalidParameterException : Exception
+    {
+        public InvalidParameterException() : base(String.Format("Input parameter is in wrong format."))
+        {
+
+        }
+    }
 }
