@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Exercise6
 {
@@ -6,29 +8,19 @@ namespace Exercise6
     {
         static void Main(string[] args)
         {
-            int[] array1 = new int[10];
-            string str = "";
-            for(int i = 0; i < array1.Length; i++)
-            {
-                array1[i] = new Random().Next(1, 101);
-            }
+            ArrayContainer container = new ArrayContainer();
 
-            int[] array2 = new int[array1.Length];
-            Array.Copy(array1, array2, array1.Length);
-            array1[array1.Length-1] = -7;
-            str+="Array 1: ";
-            foreach(var num in array1)
-            {
-                str+=num+" ";
-            }
+            var array = container.MakeRandomArrayWithLength(10);
+            var array2 = container.CopyArrayFrom(array);
 
-            str+="\nArray 2: ";
-            foreach(var num in array2)
-            {
-                str+=num+" ";
-            }
+            container.ChangeLastElementWithMinusSevenIn(array2);
 
-            Console.WriteLine(str);
+            var arrays = container.GetArrays();
+
+            foreach(var arr in arrays)
+            {
+                Console.WriteLine(string.Join(" ",arr));
+            } 
         }
     }
 }
