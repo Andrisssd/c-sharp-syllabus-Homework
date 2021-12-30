@@ -28,4 +28,13 @@ namespace Exceptions
 
         }
     }
+
+    [Serializable]
+    public class NotEnoughMoneyException : Exception
+    {
+        public NotEnoughMoneyException() : base(String.Format("Not enough money for this operation"))
+        {
+
+        }
+    }
 }
