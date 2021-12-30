@@ -9,19 +9,19 @@ namespace Exercise6
     public class ArrayContainer
     {
         private IList<int[]> _arrays;
-        private Random random;
+        private Random _random;
 
         public ArrayContainer()
         {
             _arrays = new List<int[]>();
-            random = new Random();
+            _random = new Random();
         }
 
         public int[] MakeRandomArrayWithLength(int length)
         {
             if (IsValidLength(length))
             {
-                int[] array = new int[length].Select(x => x=random.Next(1, 101)).ToArray();
+                int[] array = new int[length].Select(x => x=_random.Next(1, 101)).ToArray();
                 _arrays.Add(array);
                 return array;
             }
