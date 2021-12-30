@@ -6,35 +6,21 @@ namespace CozaLozaWoza_Exercise6
     {
         static void Main(string[] args)
         {
+            CozaLozaWoza core = new CozaLozaWoza();
+
             string baseString = "";
+
             for(int i=1; i<=110; i++)
             {
-                if (i%11==1)
+                if(i%11 == 0)
                 {
-                    baseString+="\n";
+                    baseString += "\n";
                 }
-                if (i%15==0)
-                {
-                    baseString+="CozaLoza ";
-                }
-                else if (i%7==0)
-                {
-                    baseString+="Woza ";
-                }
-                else if (i%5==0)
-                {
-                    baseString+="Loza ";
-                }
-                else if (i%3==0)
-                {
-                    baseString+="Coza ";
-                }
-                else
-                {
-                    baseString+=i+" ";
-                }
+                baseString += core.GetCozaLozaWozaOrNumber(i);
             }
             Console.WriteLine(baseString);
         }
+
+        
     }
 }
