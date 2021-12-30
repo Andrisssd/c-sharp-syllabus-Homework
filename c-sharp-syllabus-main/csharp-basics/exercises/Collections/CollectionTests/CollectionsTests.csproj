@@ -50,12 +50,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Exercise5.Tests.cs" />
+    <Compile Include="Exercise6.Tests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\FlightPlanner\FlightPlanner.csproj">
+      <Project>{124264ee-f592-4cbd-9272-e2f64ff75114}</Project>
+      <Name>FlightPlanner</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WordCount\WordCount.csproj">
       <Project>{cc44658b-6a21-41e5-89ab-3372c1b0f257}</Project>
       <Name>WordCount</Name>
