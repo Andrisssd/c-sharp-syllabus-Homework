@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Exercise6
 {  
-    abstract class Food
+    public abstract class Food
     {
         protected int _quantity;
 

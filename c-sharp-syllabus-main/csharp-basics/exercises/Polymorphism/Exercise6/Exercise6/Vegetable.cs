@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Exercise6
 {
-    class Vegetable : Food
+    public class Vegetable : Food
     {
         public Vegetable(int quantity) : base(quantity)
         {

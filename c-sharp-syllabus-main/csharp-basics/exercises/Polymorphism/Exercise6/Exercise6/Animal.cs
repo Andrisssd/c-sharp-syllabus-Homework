@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Exercise6
 {
-    abstract class Animal
+    public abstract class Animal
     {
         protected string _animalName;
         protected string _animalType;
@@ -36,13 +36,18 @@ namespace Exercise6
         }
 
         public virtual Dictionary<string, string> AddInfoToInfoDictionary()
-        { 
+        {
             Dictionary<string, string> dictionary = new Dictionary<string, string>();
             dictionary.Add("type", _animalType);
             dictionary.Add("name", _animalName);
             dictionary.Add("weight", _animalWeight.ToString());
             dictionary.Add("foodCount", _foodEaten.ToString());
             return dictionary;
+        }
+
+        public int GetFoodEaten()
+        {
+            return _foodEaten;
         }
     }
 }

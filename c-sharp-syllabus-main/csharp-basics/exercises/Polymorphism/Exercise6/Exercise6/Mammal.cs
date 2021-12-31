@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Exercise6
 {
-    abstract class Mammal : Animal
+    public abstract class Mammal : Animal
     {
         protected string _livingRegion;
 
