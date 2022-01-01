@@ -29,7 +29,7 @@ namespace AccountNamespace
             myAccaunt.Deposit(100);
             Console.WriteLine(mattsAccount.ToString());
             Console.WriteLine(myAccaunt.ToString());
-            mattsAccount.Transfer(myAccaunt, 100);
+            Account.Transfer(mattsAccount, myAccaunt, 100);
             Console.WriteLine(mattsAccount.ToString());
             Console.WriteLine(myAccaunt.ToString());
         }

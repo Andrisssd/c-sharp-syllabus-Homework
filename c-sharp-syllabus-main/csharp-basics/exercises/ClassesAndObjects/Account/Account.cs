@@ -52,9 +52,9 @@ namespace AccountNamespace
             _money += i;
         }
 
-        public void Transfer(Account to, double howMuch)
+        public static void Transfer(Account from, Account to, double howMuch)
         {
-            RemoveMoney(howMuch);
+            from.RemoveMoney(howMuch);
             to.AddMoney(howMuch);
         }
 

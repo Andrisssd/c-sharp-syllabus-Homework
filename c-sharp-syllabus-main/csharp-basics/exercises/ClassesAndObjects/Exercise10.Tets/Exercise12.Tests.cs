@@ -58,7 +58,7 @@ namespace Exercise12.Tets
             double account1BalanceBefore = _account1.Balance();
             double account2BalanceBefore = _account2.Balance();
             //Act
-            _account1.Transfer(_account2, 10);
+            Account.Transfer(_account1, _account2, 10);
             bool account1WithdrawWorks = (account1BalanceBefore - _account1.Balance()) == 10;
             bool account2AddMoneyWorks = (account2BalanceBefore - _account2.Balance()) == -10;
             //Assert

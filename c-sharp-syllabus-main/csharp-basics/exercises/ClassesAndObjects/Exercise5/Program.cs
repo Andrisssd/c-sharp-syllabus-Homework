@@ -5,21 +5,9 @@ namespace Exercise5
 {
     public class Date
     {
-        private int _year
-        {
-            get => _date.Year;
-        }
-
-        private int _month
-        {
-            get => _date.Month;
-        }
-
-        private int _day
-        {
-            get => _date.Day;
-        }
-
+        private int _year;
+        private int _month;
+        private int _day;
         private DateTime _date;
 
         public void SetDate(int year, int month, int day)
@@ -27,6 +15,9 @@ namespace Exercise5
             try
             {
                 _date = new DateTime(year, month, day);
+                _day = _date.Day;
+                _month = _date.Month;
+                _year = _date.Year;
             }
             catch
             {

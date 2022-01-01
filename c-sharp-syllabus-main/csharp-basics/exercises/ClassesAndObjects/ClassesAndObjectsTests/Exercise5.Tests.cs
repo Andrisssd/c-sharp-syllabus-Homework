@@ -21,10 +21,10 @@ namespace ClassesAndObjectsTests
         }
 
         [Test]
-        public void GetDate_ReturnThreeOnes()
+        public void GetDate_ReturnThreeZeros()
         {
             //Arrange
-            string expectedResult = "1/1/1";
+            string expectedResult = "0/0/0";
             //Act
             string actualResult = _date.GetDate();
             //Assert
