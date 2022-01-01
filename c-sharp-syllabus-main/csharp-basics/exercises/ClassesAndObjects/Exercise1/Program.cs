@@ -8,8 +8,8 @@ namespace Exercise1
         {
             Product bananas = new Product("Bananas", 9.99, 10);
             bananas.PrintProduct();
-            bananas.SetNewAmount();
-            bananas.SetNewPrice();
+            bananas.SetNewAmount(10);
+            bananas.SetNewPrice(4.4);
             bananas.PrintProduct();
         }
     }

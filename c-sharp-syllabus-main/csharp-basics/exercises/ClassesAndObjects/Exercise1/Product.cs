@@ -3,39 +3,59 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Exceptions;
 
 namespace Exercise1
 {
-    class Product
+    public class Product
     {
-        private string name;
-        private double price;
-        private int amount;
+        private string _name;
+        private double _price;
+        private int _amount;
 
         public Product(string name, double price, int amount)
         {
-            this.name = name;
-            this.price = price;
-            this.amount = amount;
+            _name = name;
+            _price = price;
+            _amount = amount;
         }
 
-        public void SetNewPrice()
+        public void SetNewPrice(double price)
         {
-            Console.Write($"Enter new price for {name}: ");
-            double newPrice = Convert.ToDouble(Console.ReadLine());
-            price = newPrice;
+            if (price >= 0)
+            {
+                _price = price;
+                return;
+            }
+
+            throw new PriceIsLowerThanZeroException(price);
         }
 
-        public void SetNewAmount()
+        public void SetNewAmount(int amount)
         {
-            Console.Write($"Enter new amount for {name}: ");
-            int newAmount = Convert.ToInt32(Console.ReadLine());
-            amount = newAmount;
+            if (amount >= 0)
+            {
+                _amount = amount;
+                return;
+            }
+
+            throw new AmountIsLowerThanZeroException(amount);
+        }
+
+        public Dictionary<string, object> GetNamePriceAndAmount()
+        {
+            var parameterValue = new Dictionary<string, object>();
+
+            parameterValue.Add("Price", _price);
+            parameterValue.Add("Name", _name);
+            parameterValue.Add("Amount", _amount);
+
+            return parameterValue;
         }
 
         public void PrintProduct()
         {
-            Console.WriteLine($"{name}, price {price}, amount {amount}");
+            Console.WriteLine($"{_name}, price {_price}, amount {_amount}");
         }
     }
 }

@@ -1,6 +1,10 @@
-﻿namespace Account
+﻿using AccountNamespace;
+using System;
+
+namespace AccountNamespace
+    
 {
-    class Account
+    public class Account
     {
         private string _name;
         private double _money;
@@ -37,16 +41,21 @@
             if (_money-i>=0)
             {
                 _money -= i;
+                return;
             }
-            else
-            {
-                System.Console.WriteLine("Not enought money.");
-            }
+
+            throw new NotEnoughMoneyException();
         }
 
         private void AddMoney(double i)
         {
             _money += i;
+        }
+
+        public static void Transfer(Account from, Account to, double howMuch)
+        {
+            from.RemoveMoney(howMuch);
+            to.AddMoney(howMuch);
         }
 
         public string Name
