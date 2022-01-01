@@ -12,12 +12,12 @@ namespace WordCount
 {
     class Program
     {
-        private const string TEXT_PATH = @"C:\Users\User\Desktop\homework\c-sharp-syllabus-Homework\c-sharp-syllabus-main\csharp-basics\exercises\Collections\WordCount\lear.txt";
+        private const string TEXT_PATH = "../../lear.txt";
         static void Main(string[] args)
         {
             TextFileInfo worker = new TextFileInfo();
 
-            worker.SetTextPath(TEXT_PATH);
+            worker.SetTextPath(Path.GetFullPath(TEXT_PATH));
 
             Console.WriteLine(worker.GetNumOfChars());
             Console.WriteLine(worker.GetNumOfLines());

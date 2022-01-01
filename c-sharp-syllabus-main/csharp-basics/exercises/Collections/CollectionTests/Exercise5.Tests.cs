@@ -9,21 +9,22 @@ namespace CollectionTests
     public class Exercise5_Tests
     {
         private TextFileInfo _textAnalizator;
-        private string _textPath;
+        private string _textPath = "../../Texts/Text1.txt";
 
         [TestInitialize]
         public void Setup()
         {
             _textAnalizator = new TextFileInfo();
-            _textPath = @"C:\Users\User\Desktop\homework\c-sharp-syllabus-Homework\c-sharp-syllabus-main\csharp-basics\exercises\Collections\CollectionTests\Texts\Text1.txt";
+            _textPath = Path.GetFullPath(_textPath);
         }
 
         [TestMethod]
         public void SetTextPath_Path_ShouldSetTextPath()
         {
+            //Arrange
+            string expectedResult = _textPath;
             //Act
             _textAnalizator.SetTextPath(_textPath);
-            string expectedResult = _textPath;
             string actualResult = _textAnalizator.GetFullPath();
             //Assert
             Assert.AreEqual(expectedResult, actualResult);
