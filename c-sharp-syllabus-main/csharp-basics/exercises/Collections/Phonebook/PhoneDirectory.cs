@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace PhoneBook
+namespace Phonebook
 {
     public class PhoneDirectory
     {
@@ -10,16 +10,9 @@ namespace PhoneBook
             _data = new SortedDictionary<string, string>();
         }
 
-        private bool NameExists(string name) {
-            foreach(var data in _data)
-            {
-                if (_data.ContainsKey(name))
-                {
-                    return true;
-                }
-            }
-
-            return false;
+        public bool NameExists(string name) 
+        {
+            return _data.ContainsKey(name);
         }
 
         public string GetNumber(string name) 
@@ -29,17 +22,22 @@ namespace PhoneBook
                 return _data[name];
             }
 
-            return "Couldn't find name!";
+            throw new NameNotFoundException(name);
         }
 
         public void PutNumber(string name, string number) 
         {
-            if (name == null || number == null) 
+            if (string.IsNullOrEmpty(name) || string.IsNullOrEmpty(name)) 
             {
-                throw new Exception("name and number cannot be null");
+                throw new PutNumberNullParameterException();
             }
 
             _data.Add(name, number);
+        }
+
+        public Dictionary<string, string> GetDataDictionary()
+        {
+            return new Dictionary<string, string>(_data);
         }
     }
 }

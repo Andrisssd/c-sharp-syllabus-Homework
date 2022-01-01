@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -7,136 +8,111 @@ using System.Threading.Tasks;
 
 namespace FlightPlanner
 {
-    class Program
+    public class Program
     {
-        private const string _path = "../flights.txt";
-        private static string _firstCity = "  ";
-        private static string _currentCity = " ";
-        private static List<string> _fullPath;
-       
         private static void Main(string[] args)
         {
-            var readText = File.ReadAllLines(_path);
-            _fullPath = new List<string>();
-            string[][] array = File.ReadAllLines(_path).Select(x => x.Replace(" -> ", "-").Split('-')).ToArray();
-            List<string> root = new List<string>();
-            Dictionary<int, string> dictionary = new Dictionary<int, string>();
-            StartPlanner(dictionary,array);
-        }
+            string Path = @"C:\Users\User\Desktop\homework\c-sharp-syllabus-Homework\c-sharp-syllabus-main\csharp-basics\exercises\Collections\FlightPlanner\Flights.txt";
+            string[] flights = File.ReadAllLines(Path);
+            Dictionary<string, string> flightDictionary = ConvertArrayToDictionary(flights);
+            List<string> flightCities = new List<string>();
 
-        static void StartPlanner(Dictionary<int, string> dictionary, string[][] array)
-        {
-            dictionary = new Dictionary<int, string>();
-            Program._currentCity = "  ";
-            Program._firstCity = " ";
-            Program._fullPath = new List<string>();
-            Console.WriteLine("What would you like to do:");
+            Console.WriteLine("What would you like to do?");
             Console.WriteLine("To display list of the cities press 1");
             Console.WriteLine("To exit program press #");
+            var input = Console.ReadLine();
 
-            string input = Console.ReadLine();
-            switch (input)
+            if (input == "1")
             {
-                case "1":
-                    PrintAvailableCitiesFirst(dictionary, array);
-                    break;
-                case "#":
-                    Console.WriteLine("Exiting...");
-                    Environment.Exit(0);
-                    break;
-                default:
-                    Console.WriteLine("Wrong input, try again!");
-                    StartPlanner(dictionary, array);
-                    break;
-            }  
-                ChooseCity(dictionary, array);
+                Console.WriteLine(ReturnDestinations(flightDictionary));
+            }
+
+
+            Console.WriteLine("\nTo select a city from which you would like to start press 1");
+            input = Console.ReadLine();
+
+            if (input == "1")
+            {
+                Console.WriteLine(ReturnDepartures(flightDictionary));
+            }
+
+
+            Console.WriteLine("\nDeparture city: ");
+            input = Console.ReadLine();
+
+            if (flightDictionary.ContainsKey(input))
+            {
+                flightCities.Add(input);
+            }
+
+            Console.WriteLine("\nNext city to fly to:");
+            Console.WriteLine("Choose from: " + flightDictionary[input]);
+
+            var nextCity = Console.ReadLine();
+            flightCities.Add(nextCity);
+
+            do
+            {
+                Console.WriteLine("\nNext city to fly to:");
+                Console.WriteLine("Choose from: " + flightDictionary[nextCity]);
+                nextCity = Console.ReadLine();
+                flightCities.Add(nextCity);
+            } while (nextCity != input);
+
+            Console.WriteLine("\nYou made a roundtrip:");
+            foreach (var destination in flightCities)
+            {
+                Console.WriteLine(destination);
+            }
+
+            Console.ReadKey();
         }
 
-        static void PrintAvailableCitiesFirst(Dictionary<int, string> dictionary, string[][] array)
+        public static string ReturnDepartures(Dictionary<string, string> flightDictionary)
         {
-            HashSet<string> cities = new HashSet<string>();
-            foreach (var city in array)
+            string departures = String.Empty;
+            foreach (var element in flightDictionary)
             {
-                cities.Add(city[0]);
+                departures += "Departure: " + element.Key+".\n";
             }
 
-            string[] citiesWithNoDublicates = new string[cities.Count];
-            cities.CopyTo(citiesWithNoDublicates);
-
-            for(int i = 0; i < citiesWithNoDublicates.Length; i++)
-            {
-                dictionary.Add(i, citiesWithNoDublicates[i]);
-            }
-
-            foreach(var city in dictionary)
-            {
-                Console.WriteLine($"To choose {city.Value}, enter {city.Key}");
-            }
+            return departures;
         }
 
-        static void ChooseCity(Dictionary<int, string> dictionary, string[][] array)
+        public static Dictionary<string, string> ConvertArrayToDictionary(string[] flights)
         {
-                int choosedCity = int.Parse(Console.ReadLine());
-                string city = dictionary[choosedCity];
-                Program._firstCity = city;
-                Console.WriteLine($"You have choosed {city}");
-                Program._fullPath.Add(city);
-                PrintNextAvialibleCity(city, array,dictionary);
+            Dictionary<string, string> flightDictionary = new Dictionary<string, string>();
+
+            foreach (var s in flights)
+            {
+                string[] flightArray = s.Replace(" -> ", "&").Split('&');
+                for (int i = 0; i < flightArray.Length; i++)
+                {
+                    string elementTrim = flightArray[i].Trim();
+                    flightArray[i] = elementTrim;
+                }
+
+                if (!flightDictionary.ContainsKey(flightArray[0]))
+                {
+                    flightDictionary.Add(flightArray[0], flightArray[1]);
+                }
+                else
+                {
+                    flightDictionary[flightArray[0]] += $",{flightArray[1]}";
+                }
+            }
+            return flightDictionary;
         }
 
-        static void PrintNextAvialibleCity(string city, string[][] array, Dictionary<int, string> dictionary)
+        public static string ReturnDestinations(Dictionary<string, string> flightDictionary)
         {
-            string[][] nextCities = array.Where(x => x[0]==city).ToArray();
-            Console.WriteLine("Available cities:");
-
-            for (int i = 0; i < nextCities.Length; i++)
+            string destinations = String.Empty;
+            foreach (var element in flightDictionary)
             {
-                Console.WriteLine($"To go to {nextCities[i][1]} enter {i}");
+                destinations += "Departure: " + element.Key + ". Destination: " + element.Value+"\n";
             }
 
-            int input = int.Parse(Console.ReadLine());
-            Program._currentCity = nextCities[input][1];
-            Console.WriteLine($"You have choosed {nextCities[input][1]}");
-            Program._fullPath.Add(nextCities[input][1]);
-
-            if (Program._firstCity!=Program._currentCity)
-            {
-                PrintNextAvialibleCity(nextCities[input][1], array, dictionary);
-            }
-            else
-            {
-                PrintFinalPath(dictionary, array);
-            }
-
-        }
-
-        static void PrintFinalPath(Dictionary<int, string> dictionary,string[][] array)
-        {
-            Console.WriteLine("Welcome back home!");
-            Console.WriteLine("Your full path:");
-            foreach (var city in _fullPath)
-            {
-                Console.Write("|| "+city+" || ");
-            }
-
-            Console.WriteLine();
-            AskPoint:
-            Console.WriteLine("Wanna take another one trip? Y/n");
-            string answer = Console.ReadLine();
-            switch (answer.ToLower())
-            {
-                case "y":
-                    Console.WriteLine("Nice!");
-                    StartPlanner(dictionary, array);
-                    break;
-                case "n":
-                    Console.WriteLine("Thanks for using our app! Bye!");
-                    Environment.Exit(0);
-                    break;
-                default:
-                    Console.WriteLine("Wrong input");
-                    goto AskPoint;      
-            }
+            return destinations;
         }
     }
 }

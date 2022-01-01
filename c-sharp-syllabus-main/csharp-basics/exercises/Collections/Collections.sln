@@ -5,8 +5,6 @@ VisualStudioVersion = 16.0.29806.167
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exercise1", "Exercise1\Exercise1.csproj", "{387BD104-0786-4B7B-AD53-FD01CD05D578}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlightPlanner", "FlightPlanner\FlightPlanner.csproj", "{7617A60C-18A2-4FF5-9191-7137C7C2E8DA}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Histogram", "Histogram\Histogram.csproj", "{5FB314A2-710C-4A70-80B8-2382B7B7D2CE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Phonebook", "Phonebook\Phonebook.csproj", "{14C4C283-8C7A-4DB0-91BD-1DF9FD882E3A}"
@@ -41,7 +39,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Exercise 3", "Exercise 3\Ex
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Exercise4", "Exercise4\Exercise4.csproj", "{E26BF4FC-F9B9-4C00-A25B-4317C2144BB9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exercise9", "Exercise9\Exercise9.csproj", "{20C635BD-56C4-4868-9FC4-2076C6FAA460}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Exercise9", "Exercise9\Exercise9.csproj", "{20C635BD-56C4-4868-9FC4-2076C6FAA460}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CollectionsTests", "CollectionTests\CollectionsTests.csproj", "{1910C352-288B-4EDE-B54C-375A90B0B88D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlightPlanner", "FlightPlanner\FlightPlanner.csproj", "{124264EE-F592-4CBD-9272-E2F64FF75114}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -53,10 +55,6 @@ Global
 		{387BD104-0786-4B7B-AD53-FD01CD05D578}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{387BD104-0786-4B7B-AD53-FD01CD05D578}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{387BD104-0786-4B7B-AD53-FD01CD05D578}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7617A60C-18A2-4FF5-9191-7137C7C2E8DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7617A60C-18A2-4FF5-9191-7137C7C2E8DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7617A60C-18A2-4FF5-9191-7137C7C2E8DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7617A60C-18A2-4FF5-9191-7137C7C2E8DA}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5FB314A2-710C-4A70-80B8-2382B7B7D2CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{5FB314A2-710C-4A70-80B8-2382B7B7D2CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5FB314A2-710C-4A70-80B8-2382B7B7D2CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -125,6 +123,14 @@ Global
 		{20C635BD-56C4-4868-9FC4-2076C6FAA460}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{20C635BD-56C4-4868-9FC4-2076C6FAA460}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{20C635BD-56C4-4868-9FC4-2076C6FAA460}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1910C352-288B-4EDE-B54C-375A90B0B88D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1910C352-288B-4EDE-B54C-375A90B0B88D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1910C352-288B-4EDE-B54C-375A90B0B88D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1910C352-288B-4EDE-B54C-375A90B0B88D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{124264EE-F592-4CBD-9272-E2F64FF75114}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{124264EE-F592-4CBD-9272-E2F64FF75114}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{124264EE-F592-4CBD-9272-E2F64FF75114}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{124264EE-F592-4CBD-9272-E2F64FF75114}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,4 +1,4 @@
-namespace PhoneBook
+namespace Phonebook
 {
     public class PhoneEntry
     {

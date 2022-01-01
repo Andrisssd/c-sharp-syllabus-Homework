@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Exceptions.cs" />
     <Compile Include="PhoneDirectory.cs" />
     <Compile Include="PhoneEntry.cs" />
     <Compile Include="Program.cs" />

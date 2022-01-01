@@ -12,22 +12,16 @@ namespace WordCount
 {
     class Program
     {
-        private const string TEXT_PATH = @"C:\Users\User\Desktop\homework\c-sharp-syllabus-Homework\c-sharp-syllabus-main\csharp-basics\exercises\Collections\WordCount\lear.txt";
+        private const string TEXT_PATH = "../../lear.txt";
         static void Main(string[] args)
         {
-            if (File.Exists(TEXT_PATH))
-            {
-                string text = File.ReadAllText(TEXT_PATH);
-                string[] textLines = File.ReadAllLines(TEXT_PATH);
+            TextFileInfo worker = new TextFileInfo();
 
-                int numOfChars = textLines.Sum(s => s.Length);
-                int numOfLines = textLines.Length;
-                int numOfWords = Regex.Matches(text, @"\b\w+\b").Count;
+            worker.SetTextPath(Path.GetFullPath(TEXT_PATH));
 
-                Console.WriteLine("Lines = {0}",numOfLines);
-                Console.WriteLine("Words = {0}",numOfWords);
-                Console.WriteLine("Chars = {0}",numOfChars);
-            }
+            Console.WriteLine(worker.GetNumOfChars());
+            Console.WriteLine(worker.GetNumOfLines());
+            Console.WriteLine(worker.GetNumOfWords());
         }
     }
 }
