@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace Exercise6
 {
-    class Program
+    public class Program
     {
         private static List<string> finalInfo = new List<string>();
 
@@ -24,7 +24,8 @@ namespace Exercise6
 
                 animals.Add(MakeAnimal(ref inputs));
                 animals.Last().MakeSound();
-                FeedAnimal(animals.Last());
+                string[] foodTypeAndCount = Console.ReadLine().Split(" ");
+                FeedAnimal(animals.Last(), foodTypeAndCount);
                 PrintFullInfo(animals.Last());
             }
 
@@ -34,16 +35,8 @@ namespace Exercise6
         public static Animal MakeAnimal(ref string[] inputs)
         {
             string lowerType = inputs[0].ToLower();
-            double result = 0;
-
-            try
-            {
-                double.TryParse(inputs[2], out result);
-            }
-            catch (Exception)
-            {
-                throw new Exception("Error with parsing");
-            }
+            double result;
+            double.TryParse(inputs[2], out result);
 
             if (inputs.Length == 5 && lowerType == "cat")
             {
@@ -63,24 +56,28 @@ namespace Exercise6
             }
             else
             {
-                throw new Exception("Wrong type name");
+                throw new TypeNotExistException(lowerType);
             }
         }
 
-        static void FeedAnimal(Animal animal)
+        public static void FeedAnimal(Animal animal, string[] foodTypeAndCount)
         {
-            string[] foodTypeAndCount = Console.ReadLine().Split(" ");
             string foodType = foodTypeAndCount[0].ToLower();
+            string foodCountString = foodTypeAndCount[1];
             int foodCount;
 
             try
             {
-                int.TryParse(foodTypeAndCount[1], out foodCount );
+                foodCount = int.Parse(foodCountString);
             }
             catch (Exception)
             {
+                throw new StringToIntParseException(foodCountString);
+            }
 
-                throw new Exception("Wrong food count input");
+            if(foodCount < 0)
+            {
+                throw new WrongFoodCountException(foodCountString);
             }
 
             if(foodType == "vegetable")
@@ -93,19 +90,21 @@ namespace Exercise6
             }
         }
 
-        static void PrintFullInfo(Animal animal)
+        public static string PrintFullInfo(Animal animal)
         {
             if(animal.GetType().Name == "Cat")
             {
                 string info = animal.GetType().Name+((Cat)animal).GetInfo();
                 finalInfo.Add(info);
                 Console.WriteLine(info);
+                return info;
             }
             else
             {
                 string info = animal.GetType().Name+animal.GetInfo();
                 finalInfo.Add(info);
                 Console.WriteLine(info);
+                return info;
             }
         }
     }

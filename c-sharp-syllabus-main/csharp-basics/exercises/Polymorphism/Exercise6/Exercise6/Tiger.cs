@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Exercise6
 {
-    class Tiger : Felime
+    public class Tiger : Felime
     {
         public Tiger(string type, string name, double weight, string region) : base(name, type, weight, region)
         {
@@ -17,6 +17,7 @@ namespace Exercise6
             if (food.GetType().Name.ToLower()=="vegetable")
             {
                 Console.WriteLine("Tigers are not eating that type of food!");
+                throw new WrongFoodTypeException();
             }
             else
             {

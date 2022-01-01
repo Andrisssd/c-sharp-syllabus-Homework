@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace DragRace
 {
-    interface ICar
+     public interface ICar
     {
         void SpeedUp();
         void SlowDown();
@@ -11,7 +11,7 @@ namespace DragRace
         void StartEngine();
     }
 
-    interface IBoostable
+    public interface IBoostable
     {
         void UseNitrousOxideEngine();
     }

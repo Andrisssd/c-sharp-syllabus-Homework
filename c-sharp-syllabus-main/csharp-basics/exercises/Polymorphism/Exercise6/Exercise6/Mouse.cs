@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Exercise6
 {
-    class Mouse : Mammal
+    public class Mouse : Mammal
     {
         public Mouse(string type, string name, string region, double weight) : base(name, type, weight, region)
         {
@@ -23,6 +23,7 @@ namespace Exercise6
             if (food.GetType().Name.ToLower()=="meat")
             {
                 Console.WriteLine("Cats are not eating that type of food!");
+                throw new WrongFoodTypeException();
             }
             else
             {

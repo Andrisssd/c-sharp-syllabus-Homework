@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Exercise6
 {
-    class Cat : Felime
+    public class Cat : Felime
     {
         private string _breed;
 
@@ -25,6 +25,7 @@ namespace Exercise6
             if (food.GetType().Name.ToLower()=="vegetable")
             {
                 Console.WriteLine("Cats are not eating that type of food!");
+                throw new WrongFoodTypeException();
             }
             else
             {
