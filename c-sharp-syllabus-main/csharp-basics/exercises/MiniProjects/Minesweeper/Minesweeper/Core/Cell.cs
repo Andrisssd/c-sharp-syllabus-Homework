@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Minesweeper;
 
 namespace Minesweeper.Core
 {
@@ -17,8 +18,7 @@ namespace Minesweeper.Core
     {
         Opened, Closed
     }
-
-    public class Cell : Button
+        public class Cell : Button
     {
         public int XLoc { get; set; }
         public int YLoc { get; set; }
@@ -39,12 +39,45 @@ namespace Minesweeper.Core
 
         public void OnFlag()
         {
+            if (this.CellType != CellType.Flagged)
+            {
+                this.BackColor = Color.Gray;
+                this.ForeColor = Color.White;
+                this.Text = "?";
+                if (this.CellType == CellType.Mine)
+                {
+                    this.CellType = CellType.FlaggedMine;
+                    return;
+                }
 
+                this.CellType = CellType.Flagged;
+                return;
+            }
+
+            this.Text = String.Empty;
+            this.BackColor = DefaultBackColor;
+            this.ForeColor = DefaultForeColor;
+            this.CellType = CellType.Regular;
         }
 
         public void OnClick(bool recursiveCall = false)
         {
+            if (!recursiveCall && this.CellType != CellType.Mine && CellType != CellType.FlaggedMine && CellType != CellType.Flagged)
+            {
+                this.CellState = CellState.Opened;
+                this.BackColor = ColorTranslator.FromHtml("#cccfcf");
+                this.ForeColor = GetCellColour();
+                if (NumMines > 0)
+                {
+                    this.Text = NumMines.ToString();
+                }
+                return;
+            }
 
+            this.Text = "M";
+            MessageBox.Show("Game end!");
+            
+            
         }
 
         /// <summary>

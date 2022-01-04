@@ -15,10 +15,21 @@ namespace Minesweeper
     {
         public Minesweeper()
         {
-            InitializeComponent();
+            InitializeComponent(this);
 
             var board = new Board(this, 9, 9, 10);
             board.SetupBoard();
+
+            this.Width = board.Width * 52;
+            this.Height = board.Height * 52 + 25;
+            
         }
+
+        public void Minesweeper_Load(object sender, EventArgs e)
+        {
+            
+        }
+
+
     }
 }
