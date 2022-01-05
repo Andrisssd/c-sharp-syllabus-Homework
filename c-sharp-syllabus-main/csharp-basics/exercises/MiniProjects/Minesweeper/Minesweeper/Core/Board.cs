@@ -119,12 +119,13 @@ namespace Minesweeper.Core
 
         public void PutMines()
         {
+            Random random = new Random();
             int mineCount = 0;
             while(mineCount < NumMines)
             {
-                int XRandom = new Random().Next(0, Cells.GetLength(1));
-                int YRandom = new Random().Next(0, Cells.GetLength(0));
-                Cell currentCell = Cells[XRandom, YRandom];
+                int XRandom = random.Next(0, Cells.GetLength(1));
+                int YRandom = random.Next(0, Cells.GetLength(0));
+                Cell currentCell = Cells[YRandom, XRandom];
                 if (currentCell.CellType != CellType.Mine && currentCell.CellState == CellState.Closed)
                 {
                     currentCell.CellType = CellType.Mine;
