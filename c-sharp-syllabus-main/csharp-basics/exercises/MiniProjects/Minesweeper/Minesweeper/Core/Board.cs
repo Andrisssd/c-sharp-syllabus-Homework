@@ -35,6 +35,7 @@ namespace Minesweeper.Core
             {
                 this.NumMines = mines;
             }
+
             this.Cells = new Cell[width, height];
             Counter.TotalMines = NumMines;
             Counter.TotalRegular = (width * height) - NumMines;
@@ -69,7 +70,6 @@ namespace Minesweeper.Core
             {
                 int XPoint = cell.XLoc;
                 int YPoint = cell.YLoc;
-
                 for (int k = -1; k <= 1; k++)
                 {
                     for (int kk = -1; kk <= 1; kk++)
@@ -96,7 +96,6 @@ namespace Minesweeper.Core
                 for(int j = 0; j < Cells.GetLength(1); j++)
                 {
                     int mineCount = 0;
-
                     for (int k = -1; k <= 1; k++)
                     {
                         for(int kk = -1; kk <= 1; kk++)
@@ -112,7 +111,8 @@ namespace Minesweeper.Core
                             }catch{ };
                         }
                     }
-                        Cells[i, j].NumMines = mineCount;
+
+                    Cells[i, j].NumMines = mineCount;
                 }
             }
         }
@@ -120,12 +120,10 @@ namespace Minesweeper.Core
         public void PutMines()
         {
             int mineCount = 0;
-
             while(mineCount < NumMines)
             {
                 int XRandom = new Random().Next(0, Cells.GetLength(1));
                 int YRandom = new Random().Next(0, Cells.GetLength(0));
-
                 Cell currentCell = Cells[XRandom, YRandom];
                 if (currentCell.CellType != CellType.Mine && currentCell.CellState == CellState.Closed)
                 {

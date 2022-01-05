@@ -30,7 +30,6 @@ namespace Minesweeper.Core
 
         public void SetupDesign()
         {
-            //this.BackColor = SystemColors.ButtonFace;
             this.Location = new Point(XLoc * CellSize, YLoc * CellSize);
             this.Size = new Size(CellSize, CellSize);
             this.UseVisualStyleBackColor = false;
@@ -94,8 +93,6 @@ namespace Minesweeper.Core
             MessageBox.Show("Game end!");
             Application.Restart();
             Environment.Exit(0);
-
-
         }
 
         /// <summary>
