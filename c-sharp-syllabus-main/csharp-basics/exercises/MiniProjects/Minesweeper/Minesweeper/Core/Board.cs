@@ -11,10 +11,15 @@ namespace Minesweeper.Core
     public class Board
     {
         public bool FirstClick = true;
+
         public Minesweeper Minesweeper { get; set; }
+
         public int Width { get; set; }
+
         public int Height { get; set; }
+
         public int NumMines { get; set; }
+
         public Cell[,] Cells { get; set; }
 
         public Board(Minesweeper minesweeper, int width, int height, int mines)
@@ -22,8 +27,17 @@ namespace Minesweeper.Core
             this.Minesweeper = minesweeper;
             this.Width = width;
             this.Height = height;
-            this.NumMines = mines;
+            if(mines > (width * height)-1)
+            {
+                this.NumMines = (width * height)-1;
+            }
+            else
+            {
+                this.NumMines = mines;
+            }
             this.Cells = new Cell[width, height];
+            Counter.TotalMines = NumMines;
+            Counter.TotalRegular = (width * height) - NumMines;
         }
 
         public void SetupBoard()
@@ -43,16 +57,13 @@ namespace Minesweeper.Core
                     };
                     c.SetupDesign();
                     c.MouseDown += Cell_MouseClick;
-                    //c.Location = new System.Drawing.Point(i * c.CellSize, j * c.CellSize);
-
                     this.Cells[i, j] = c;
                     this.Minesweeper.Controls.Add(c);      
                 }
             }
-            
         }
 
-        private void OpenAllCellsNeighbors(Cell cell)
+        public void OpenAllCellsNeighbors(Cell cell)
         {
             if (cell.NumMines == 0)
             {
@@ -65,7 +76,12 @@ namespace Minesweeper.Core
                     {
                         try
                         {
-                            Cells[YPoint+k, XPoint+kk].OnClick();
+                            Cell Cell = Cells[YPoint+k, XPoint+kk];
+                            if(Cell.CellState == CellState.Closed)
+                            {
+                                Cell.OnClick();
+                                OpenAllCellsNeighbors(Cell);
+                            }
                         }
                         catch { };
                     }
@@ -73,7 +89,7 @@ namespace Minesweeper.Core
             }
         }
 
-        private void GetNumOfMinesAroundCells()
+        public void GetNumOfMinesAroundCells()
         {
             for (int i = 0; i < Cells.GetLength(0); i++)
             {
@@ -101,9 +117,10 @@ namespace Minesweeper.Core
             }
         }
 
-        private void PutMines()
+        public void PutMines()
         {
             int mineCount = 0;
+
             while(mineCount < NumMines)
             {
                 int XRandom = new Random().Next(0, Cells.GetLength(1));
@@ -118,7 +135,7 @@ namespace Minesweeper.Core
             }
         }
 
-        private void Cell_MouseClick(object sender, MouseEventArgs e)
+        public void Cell_MouseClick(object sender, MouseEventArgs e)
         {
             var cell = (Cell) sender;
             
@@ -130,7 +147,7 @@ namespace Minesweeper.Core
                 case MouseButtons.Left:
                     if (FirstClick)
                     {
-                        cell.OnClick();
+                        cell.CellState = CellState.Opened;
                         PutMines();
                         GetNumOfMinesAroundCells();
                         cell.OnClick();

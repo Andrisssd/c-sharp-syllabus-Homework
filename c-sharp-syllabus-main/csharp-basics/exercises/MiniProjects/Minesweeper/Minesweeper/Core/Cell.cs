@@ -47,6 +47,8 @@ namespace Minesweeper.Core
                 if (this.CellType == CellType.Mine)
                 {
                     this.CellType = CellType.FlaggedMine;
+                    Counter.MinesFlagged++;
+                    Counter.CheckForWin();
                     return;
                 }
 
@@ -54,15 +56,21 @@ namespace Minesweeper.Core
                 return;
             }
 
+            if(this.CellType == CellType.FlaggedMine)
+            {
+                Counter.MinesFlagged--;
+            }
+
             this.Text = String.Empty;
             this.BackColor = DefaultBackColor;
             this.ForeColor = DefaultForeColor;
             this.CellType = CellType.Regular;
+            Counter.CheckForWin();
         }
 
         public void OnClick(bool recursiveCall = false)
         {
-            if (!recursiveCall && this.CellType != CellType.Mine && CellType != CellType.FlaggedMine && CellType != CellType.Flagged)
+            if (!recursiveCall && this.CellType != CellType.Mine)
             {
                 this.CellState = CellState.Opened;
                 this.BackColor = ColorTranslator.FromHtml("#cccfcf");
@@ -71,20 +79,30 @@ namespace Minesweeper.Core
                 {
                     this.Text = NumMines.ToString();
                 }
+                else
+                {
+                    this.Text = String.Empty;
+                }
+
+                Counter.OpenedRegular++;
+                Counter.CheckForWin();
                 return;
             }
 
             this.Text = "M";
+            Counter.RebootCounter();
             MessageBox.Show("Game end!");
-            
-            
+            Application.Restart();
+            Environment.Exit(0);
+
+
         }
 
         /// <summary>
         /// Return the colour code associated with the number of surrounding mines
         /// </summary>
         /// <returns></returns>
-        private Color GetCellColour()
+        public Color GetCellColour()
         {
             switch (this.NumMines)
             {
