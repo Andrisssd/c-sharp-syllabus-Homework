@@ -50,6 +50,7 @@
     <Compile Include="Core\Cell.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Core\Counter.cs" />
     <Compile Include="Minesweeper.cs">
       <SubType>Form</SubType>
     </Compile>

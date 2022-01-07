@@ -15,10 +15,12 @@ namespace Minesweeper
     {
         public Minesweeper()
         {
-            InitializeComponent();
+            InitializeComponent(this);
 
             var board = new Board(this, 9, 9, 10);
             board.SetupBoard();
+            this.AutoSize = true;
+            
         }
     }
 }
