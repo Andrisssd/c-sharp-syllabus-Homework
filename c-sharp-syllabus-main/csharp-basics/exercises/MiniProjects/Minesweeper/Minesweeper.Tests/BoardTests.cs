@@ -62,22 +62,11 @@ namespace Minesweeper.Tests
         {
             //Arrange
             int expectedMineCount = 0;
-            //Act
             Board board = _board["FiveFiveZero"];
             board.SetupBoard();
             board.PutMines();
-            int actualMineCount = 0;
-            for(int i = 0; i < board.Cells.GetLength(0); i++)
-            {
-                for(int j = 0; j < board.Cells.GetLength(1); j++)
-                {
-                    if(board.Cells[i,j].CellType == CellType.Mine)
-                    {
-                        actualMineCount++;
-                    }
-                }
-            }
-
+            //Act
+            int actualMineCount = board.CountAllBombs();
             //Assert
             Microsoft.VisualStudio.TestTools.UnitTesting.Assert.AreEqual(expectedMineCount, actualMineCount);
         }
@@ -87,22 +76,11 @@ namespace Minesweeper.Tests
         {
             //Arrange
             int expectedMineCount = 5;
-            //Act
             Board board = _board["FiveFiveFive"];
             board.SetupBoard();
             board.PutMines();
-            int actualMineCount = 0;
-            for (int i = 0; i < board.Cells.GetLength(0); i++)
-            {
-                for (int j = 0; j < board.Cells.GetLength(1); j++)
-                {
-                    if (board.Cells[i, j].CellType == CellType.Mine)
-                    {
-                        actualMineCount++;
-                    }
-                }
-            }
-
+            //Act
+            int actualMineCount = board.CountAllBombs();
             //Assert
             Microsoft.VisualStudio.TestTools.UnitTesting.Assert.AreEqual(expectedMineCount, actualMineCount);
         }
@@ -112,22 +90,11 @@ namespace Minesweeper.Tests
         {
             //Arrange
             int expectedMineCount = 0;
-            //Act
             Board board = _board["OneOneOne"];
             board.SetupBoard();
             board.PutMines();
-            int actualMineCount = 0;
-            for (int i = 0; i < board.Cells.GetLength(0); i++)
-            {
-                for (int j = 0; j < board.Cells.GetLength(1); j++)
-                {
-                    if (board.Cells[i, j].CellType == CellType.Mine)
-                    {
-                        actualMineCount++;
-                    }
-                }
-            }
-
+            //Act
+            int actualMineCount = board.CountAllBombs();
             //Assert
             Microsoft.VisualStudio.TestTools.UnitTesting.Assert.AreEqual(expectedMineCount, actualMineCount);
         }
@@ -137,24 +104,13 @@ namespace Minesweeper.Tests
         {
             //Arrange
             int expectedOpenCellCount = 25;
-            //Act
             Board board = _board["FiveFiveZero"];
             board.SetupBoard();
             Cell cell = board.Cells[2, 2];
             cell.OnClick();
             board.OpenAllCellsNeighbors(cell);
-            int actualOpenCellCount = 0;
-            for (int i = 0; i < board.Cells.GetLength(0); i++)
-            {
-                for (int j = 0; j < board.Cells.GetLength(1); j++)
-                {
-                    if (board.Cells[i, j].CellState == CellState.Opened)
-                    {
-                        actualOpenCellCount++;
-                    }
-                }
-            }
-
+            //Act
+            int actualOpenCellCount = board.CountAllOpenCells();
             //Assert
             Microsoft.VisualStudio.TestTools.UnitTesting.Assert.AreEqual(expectedOpenCellCount, actualOpenCellCount);
         }
