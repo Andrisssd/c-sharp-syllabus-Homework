@@ -45,12 +45,15 @@ namespace TextManager_Tests
 
         [Test]
         public void dd()
-        {
+        {    
+            //Arrange
             string expectedResult = "***\t***\t***\t***\t***\t***\t***\t***\t***\t***\t1\n* *\t* *\t* *\t* *\t* *\t* *\t* *\t* *\t* *\t* *\t0\nhel \thell \thello \tell \tello \tllo \twor \tworl \tworld \torl \t\n8.33%\t8.33%\t8.33%\t8.33%\t8.33%\t8.33%\t8.33%\t8.33%\t8.33%\t8.33%\t";
             var words = TextManager.getWordsWithLengthMoreThan3(_path1);
             var combinations = TextManager.GetCombinationsFrom(words);
             var combinationsToCompare = TextManager.GetDictionaryToCompareFrom(combinations);
+            //Act
             string actualResult = TextManager.GetTable(combinationsToCompare);
+            //Assert
             Assert.AreEqual(expectedResult, actualResult);
         }
     }
