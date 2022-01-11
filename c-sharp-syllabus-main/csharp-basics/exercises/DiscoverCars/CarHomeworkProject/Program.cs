@@ -10,7 +10,7 @@ namespace CarHomeworkProject
         private static string _path = @"C:\Users\Andri\source\repos\CarHomeworkProgram\CarHomeworkProject\Text.txt";
         static void Main(string[] args)
         {
-            string[] wordsWithLengthMoreThan3 = TextManager.getWordsWithLengthMoreThan3(_path);
+            string[] wordsWithLengthMoreThan3 = TextManager.GetWordsWithLengthMoreThan3(_path);
             
             Dictionary<string, CountAndPercent> combinationsAndCounts = TextManager.GetCombinationsFrom(wordsWithLengthMoreThan3);
 

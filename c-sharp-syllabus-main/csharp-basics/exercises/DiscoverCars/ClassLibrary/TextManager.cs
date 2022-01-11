@@ -9,7 +9,7 @@ namespace ClassLibrary
 {
     public static class TextManager
     {
-        public static string[] getWordsWithLengthMoreThan3(string path)
+        public static string[] GetWordsWithLengthMoreThan3(string path)
         {
             string fullPath = Path.GetFullPath(path);
             string fullText = File.ReadAllText(fullPath);

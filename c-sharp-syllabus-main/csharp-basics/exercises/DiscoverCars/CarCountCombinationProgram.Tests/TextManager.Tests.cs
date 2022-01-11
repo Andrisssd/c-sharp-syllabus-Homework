@@ -13,7 +13,7 @@ namespace TextManager_Tests
             //Arrange
             int expectedLength = 2;
             //Act
-            int actualLength = TextManager.getWordsWithLengthMoreThan3(_path1).Length;
+            int actualLength = TextManager.GetWordsWithLengthMoreThan3(_path1).Length;
             //Assert
             Assert.AreEqual(expectedLength, actualLength);
         }
@@ -23,7 +23,7 @@ namespace TextManager_Tests
         {
             //Arrange
             int expectedLength = 12;
-            string[] words = TextManager.getWordsWithLengthMoreThan3(_path1);
+            string[] words = TextManager.GetWordsWithLengthMoreThan3(_path1);
             //Act
             int actualLength = TextManager.GetCombinationsFrom(words).Values.Count;
             //Assert
@@ -35,7 +35,7 @@ namespace TextManager_Tests
         {
             //Arrange
             int expectedLength = 10;
-            var words = TextManager.getWordsWithLengthMoreThan3(_path1);
+            var words = TextManager.GetWordsWithLengthMoreThan3(_path1);
             var combinations = TextManager.GetCombinationsFrom(words);
             //Act
             int actualLength = TextManager.GetDictionaryToCompareFrom(combinations).Values.Count;
@@ -48,7 +48,7 @@ namespace TextManager_Tests
         {    
             //Arrange
             string expectedResult = "***\t***\t***\t***\t***\t***\t***\t***\t***\t***\t1\n* *\t* *\t* *\t* *\t* *\t* *\t* *\t* *\t* *\t* *\t0\nhel \thell \thello \tell \tello \tllo \twor \tworl \tworld \torl \t\n8.33%\t8.33%\t8.33%\t8.33%\t8.33%\t8.33%\t8.33%\t8.33%\t8.33%\t8.33%\t";
-            var words = TextManager.getWordsWithLengthMoreThan3(_path1);
+            var words = TextManager.GetWordsWithLengthMoreThan3(_path1);
             var combinations = TextManager.GetCombinationsFrom(words);
             var combinationsToCompare = TextManager.GetDictionaryToCompareFrom(combinations);
             //Act
