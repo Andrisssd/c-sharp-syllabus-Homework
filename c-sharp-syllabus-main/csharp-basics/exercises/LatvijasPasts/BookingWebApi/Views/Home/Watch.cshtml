@@ -4,6 +4,7 @@
 }
 <h1>@Model.FirstName @Model.LastName</h1>
 <p>Phone number: @Model.PhoneNumber</p>
+<p>Email: @Model.Email</p>
 <h1>Adress</h1>
 <p>Country: @Model.Adress.Country</p>
 <p>Index: @Model.Adress.Country</p>
@@ -13,7 +14,6 @@
 <h1>Last work:</h1>
 <p>Work name: @Model.Work.Name</p>
 <p>Work position: @Model.Work.Position</p>
-<p>WorkLoad: @Model.Work.WorkLoad</p>
 <p>Total time spent on this work: @Model.Work.TotalTimeSpentWorking</p>
 <p>Medium daily spent time on this work: @Model.Work.DailySpentTime</p>
 <h1>Education:</h1>
@@ -22,4 +22,5 @@
 <p>Field of study: @Model.Education.FieldOfStudy</p>
 <p>Medium daily spent time on study: @Model.Education.DailySpentTime</p>
 <p>Education status: @Model.Education.Status</p>
+<h2><a href="/Home/Index">Go back</a></h2>
 

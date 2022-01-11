@@ -20,29 +20,29 @@ namespace BookingWebApi.Models
                 Id = 1,
                 FirstName = "Andris",
                 LastName = "Kuliss",
-                Adress = new Adress { City = "",
-                Country = "",
-                HomeNumber = "",
-                Index = "",
-                Street = "",},
+                PhoneNumber = "86957403",
+                Email = "Email@gmail.com",
+                Adress = new Adress { City = "SomeCity",
+                    Country = "ComeCountry",
+                    HomeNumber = "SomeHomeNumber",
+                    Index = "SomeIndex",
+                    Street = "SomeStreet", },
                 Education = new Education
                 {
-                    DailySpentTime = "",
-                    Faculty = "",
-                    FieldOfStudy = "",
-                    Name = "",
+                    DailySpentTime = "4h",
+                    Faculty = "SomeFaculty",
+                    FieldOfStudy = "SomeFieldOfStudy",
+                    Name = "SomeName",
                     Status = EducationStatus.Completed,
                 },
                 Work = new Work
                 {
-                    DailySpentTime = "",
-                    Name = "",
-                    Position = "",
-                    TotalTimeSpentWorking = "",
-                    WorkLoad = "",
+                    DailySpentTime = "8h",
+                    Name = "SomeName",
+                    Position = "SomePosition",
+                    TotalTimeSpentWorking = "Half a year",
                 },
             }) ;
-            
             base.Seed(context);
         }
     }
