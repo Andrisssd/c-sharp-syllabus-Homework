@@ -23,33 +23,40 @@ namespace Risks.Tests
         [TestMethod]
         public void AddRisk_OneRisk_ShouldIncrementAvailableRisksListCount()
         {
+            //Arrange
             int expectedCount = 1;
             _insuranceCompany.AddRisk("PolicyName", new Risk("Something", 9999), new DateTime(2000, 10, 10));
+            //Act
             int actualCount = _insuranceCompany.AvailableRisks.Count();
+            //Assert
             Assert.AreEqual(expectedCount, actualCount);
         }
 
         [TestMethod]
         public void AddRisk_OneRisk_ShouldIncrementPolicysRiskListCount()
         {
+            //Arrange
             int expectedCount = 2;
-
             _insuranceCompany.SellPolicy("Policy", new DateTime(2000, 10, 10), 1, _insuranceCompany.AvailableRisks);
             _insuranceCompany.AddRisk("Policy", new Risk("Something1", 1), new DateTime(2000, 10, 10));
             _insuranceCompany.AddRisk("Policy", new Risk("Something2", 2), new DateTime(2000, 10, 10));
+            //Act
             int actualCount = _insuranceCompany.GetPolicy("Policy", new DateTime(2000, 10, 10, 10, 10, 10)).InsuredRisks.Count();
+            //Assert
             Assert.AreEqual(expectedCount, actualCount);
         }
 
         [TestMethod]
         public void AddRist_OutdatedRisk_ShouldntIncrementPolicysRiskListCount()
         {
+            //Arrange
             int expectedCount = 1;
-
             _insuranceCompany.SellPolicy("Policy", new DateTime(2000, 10, 10), 1, _insuranceCompany.AvailableRisks);
             _insuranceCompany.AddRisk("Policy", new Risk("Something1", 1), new DateTime(2000, 10, 10));
             _insuranceCompany.AddRisk("Policy", new Risk("Something2", 2), new DateTime(2000, 10, 9));
+            //Act
             int actualCount = _insuranceCompany.GetPolicy("Policy", new DateTime(2000, 10, 10, 10, 10, 10)).InsuredRisks.Count();
+            //Assert
             Assert.AreEqual(expectedCount, actualCount);
         }
 
@@ -59,56 +66,66 @@ namespace Risks.Tests
         [DataRow("SomeAnotherName")]
         public void GetPolicy_ValidData_ShouldReturnPolicy(string nameOfInsuredObject)
         {
+            //Arrange
             string expectedPolicyName = nameOfInsuredObject;
             _insuranceCompany.SellPolicy(nameOfInsuredObject, new DateTime(2000, 10, 10), 1, _insuranceCompany.AvailableRisks);
             IPolicy policy = _insuranceCompany.GetPolicy(nameOfInsuredObject, new DateTime(2000, 11, 9));
+            //Act
             string actualPolicyName = policy.NameOfInsuredObject;
+            //Assert
             Assert.AreEqual(expectedPolicyName, actualPolicyName);
         }
 
         [TestMethod]
         public void GetPolicy_InvalidData_ShouldThrowException()
         {
+            //Assert
             Assert.ThrowsException<PolicyNotFoundException>(() => _insuranceCompany.GetPolicy("SomeName", new DateTime(1000, 10, 10)));
         }
 
         [TestMethod]
         public void SellPolicy_ValidData_ReturnNewPolicy()
         {
-            var actualObject = _insuranceCompany.SellPolicy("SomeName", new DateTime(2000, 10, 10), 1, new List<Risk>());
+            //Arrange
+            var actualObject = _insuranceCompany.SellPolicy("SomeName", new DateTime(2000, 10, 10), 1, _insuranceCompany.AvailableRisks);
+            //Assert
             Assert.IsTrue(actualObject is Policy);
         }
 
         [TestMethod]
         public void SellPolicy_InvalidData_ShouldThrowException1()
         {
-
-            _insuranceCompany.SellPolicy("Company", new DateTime(2000, 10, 10), 1, new List<Risk>());
-            Assert.ThrowsException<ObjectAlreadyInsuredException>(() => _insuranceCompany.SellPolicy("Company", new DateTime(2000, 10, 10), 1, new List<Risk>()));
+            //Arrange
+            _insuranceCompany.SellPolicy("Company", new DateTime(2000, 10, 10), 1, _insuranceCompany.AvailableRisks);
+            //Assert
+            Assert.ThrowsException<ObjectAlreadyInsuredException>(() => _insuranceCompany.SellPolicy("Company", new DateTime(2000, 10, 10), 1, _insuranceCompany.AvailableRisks));
         }
 
         [TestMethod]
         public void SellPolicy_InvalidData_ShouldThrowException2()
         {
-
-            _insuranceCompany.SellPolicy("Company", new DateTime(2000, 10, 10), 1, new List<Risk>());
-            Assert.ThrowsException<ObjectAlreadyInsuredException>(() => _insuranceCompany.SellPolicy("Company", new DateTime(2000, 10, 9), 1, new List<Risk>()));
+            //Arrange
+            _insuranceCompany.SellPolicy("Company", new DateTime(2000, 10, 10), 1, _insuranceCompany.AvailableRisks);
+            //Assert
+            Assert.ThrowsException<ObjectAlreadyInsuredException>(() => _insuranceCompany.SellPolicy("Company", new DateTime(2000, 10, 9), 1, _insuranceCompany.AvailableRisks));
         }
 
         [TestMethod]
         public void SellPolicy_InvalidData_ShouldThrowException3()
         {
-
-            _insuranceCompany.SellPolicy("Company", new DateTime(2000, 10, 10), 1, new List<Risk>());
-            Assert.ThrowsException<ObjectAlreadyInsuredException>(() => _insuranceCompany.SellPolicy("Company", new DateTime(2000, 10, 11), 1, new List<Risk>()));
+            //Arrange
+            _insuranceCompany.SellPolicy("Company", new DateTime(2000, 10, 10), 1, _insuranceCompany.AvailableRisks);
+            //Assert
+            Assert.ThrowsException<ObjectAlreadyInsuredException>(() => _insuranceCompany.SellPolicy("Company", new DateTime(2000, 10, 11), 1, _insuranceCompany.AvailableRisks));
         }
 
         [TestMethod]
         public void SellPolicy_InvalidData_ShouldThrowException4()
         {
-
-            _insuranceCompany.SellPolicy("Company", new DateTime(2000, 10, 10), 1, new List<Risk>());
-            Assert.ThrowsException<ValidMonthsNegativeException>(() => _insuranceCompany.SellPolicy("Company", new DateTime(2000, 11, 10), -1, new List<Risk>()));
+            //Arrange
+            _insuranceCompany.SellPolicy("Company", new DateTime(2000, 10, 10), 1, _insuranceCompany.AvailableRisks);
+            //Assert
+            Assert.ThrowsException<ValidMonthsNegativeException>(() => _insuranceCompany.SellPolicy("Company", new DateTime(2000, 11, 10), -1, _insuranceCompany.AvailableRisks));
         }
     }
 }
