@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Risks.Exceptions
 {
-    public class PolicyNotFoundException : Exception
+    public class ObjectAlreadyInsuredException : Exception
     {
-        public PolicyNotFoundException()
+        public ObjectAlreadyInsuredException()
         {
         }
     }

@@ -55,9 +55,9 @@ namespace Risks.Tests
             _insuranceCompany.AddRisk("Policy", new Risk("Something1", 1), new DateTime(2000, 10, 10));
             _insuranceCompany.AddRisk("Policy", new Risk("Something2", 2), new DateTime(2000, 10, 9));
             //Act
-            int actualCount = _insuranceCompany.GetPolicy("Policy", new DateTime(2000, 10, 10, 10, 10, 10)).InsuredRisks.Count();
+            var actualPolicy = _insuranceCompany.GetPolicy("Policy", new DateTime(2000, 10, 10, 10, 10, 10));
             //Assert
-            Assert.AreEqual(expectedCount, actualCount);
+            Assert.AreEqual(expectedCount, actualPolicy.InsuredRisks.Count());
         }
 
         [TestMethod]
@@ -69,11 +69,10 @@ namespace Risks.Tests
             //Arrange
             string expectedPolicyName = nameOfInsuredObject;
             _insuranceCompany.SellPolicy(nameOfInsuredObject, new DateTime(2000, 10, 10), 1, _insuranceCompany.AvailableRisks);
-            IPolicy policy = _insuranceCompany.GetPolicy(nameOfInsuredObject, new DateTime(2000, 11, 9));
             //Act
-            string actualPolicyName = policy.NameOfInsuredObject;
+            IPolicy policy = _insuranceCompany.GetPolicy(nameOfInsuredObject, new DateTime(2000, 11, 9));
             //Assert
-            Assert.AreEqual(expectedPolicyName, actualPolicyName);
+            Assert.AreEqual(expectedPolicyName, policy.NameOfInsuredObject);
         }
 
         [TestMethod]

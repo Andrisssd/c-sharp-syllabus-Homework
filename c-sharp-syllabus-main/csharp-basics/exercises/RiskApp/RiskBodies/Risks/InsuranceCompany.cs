@@ -6,14 +6,13 @@ namespace Risks
     {
         public string Name { get; }
 
-        public IList<Policy> Policies { get; }
+        private IList<Policy> Policies = new List<Policy>();
 
         public IList<Risk> AvailableRisks { get; set; }
 
         public InsuranceCompany(string name)
         {
             Name = name;
-            Policies = new List<Policy>();
             AvailableRisks = new List<Risk>();
         }
 
@@ -33,7 +32,7 @@ namespace Risks
             Policy policy = Policies.Where(p => p.ValidTill >= effectiveDate && p.ValidFrom <= effectiveDate && p.NameOfInsuredObject == nameOfInsuredObject).FirstOrDefault();
             if (policy != null)
             {
-                return (IPolicy)new Policy(policy);
+                return new Policy(policy);
             }
 
             throw new PolicyNotFoundException();
@@ -41,12 +40,12 @@ namespace Risks
 
         public IPolicy SellPolicy(string nameOfInsuredObject, DateTime validFrom, short validMonths, IList<Risk> selectedRisks)
         {
-            if (Validator.PolicyIsValid(nameOfInsuredObject, validFrom, validMonths, this.Policies))
+            if (Validator.IsPolicyValid(nameOfInsuredObject, validFrom, validMonths, this.Policies))
             {
                 DateTime validTill = validFrom.AddMonths(validMonths);
                 Policy policy = new Policy(nameOfInsuredObject, validFrom, validTill, selectedRisks.ToList());
                 Policies.Add(policy);
-                return (IPolicy)new Policy(policy);
+                return new Policy(policy);
             }
 
             throw new ObjectAlreadyInsuredException();
