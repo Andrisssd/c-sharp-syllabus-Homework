@@ -13,5 +13,6 @@ namespace Sudoku
         public string level { get; set; }
         public string is_manual { get; set; }
         public string c_time { get; set; }
+        public string closed_cells { get; set; }
     }
 }

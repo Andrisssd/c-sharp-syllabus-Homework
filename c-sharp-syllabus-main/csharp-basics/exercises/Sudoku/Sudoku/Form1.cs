@@ -14,6 +14,7 @@ namespace Sudoku
         private bool GameStarted = false;
         private string currentLevel = "manual";
         private TextBox[] _cells;
+        private SudokuData _data;
 
         public Form1()
         {
@@ -30,6 +31,7 @@ namespace Sudoku
                 SudokuData[] sudokus = GetCellsFromDB("easy").ToArray();
                 int randomIndex = new Random().Next(sudokus.Length);
                 SudokuData sudoku = sudokus[randomIndex];
+                _data = sudoku;
                 int sudokusId = sudoku.id;
                 string[] numbers = sudoku.sudoku.Split(" ");
 
@@ -68,6 +70,7 @@ namespace Sudoku
             currentLevel = "manual";
             tBSudokuNumber.Text = "X";
             GameStarted = false;
+            _data = null;
         }
 
         private TextBox[] GetCells()
@@ -181,6 +184,7 @@ namespace Sudoku
                 SudokuData[] sudokus = GetCellsFromDB("hard").ToArray();
                 int randomIndex = new Random().Next(sudokus.Length);
                 SudokuData sudoku = sudokus[randomIndex];
+                _data = sudoku;
                 int sudokusId = sudoku.id;
                 string[] numbers = sudoku.sudoku.Split(" ");
 
@@ -219,6 +223,7 @@ namespace Sudoku
             currentLevel = "manual";
             tBSudokuNumber.Text = "X";
             GameStarted = false;
+            _data = null;
         }
 
         private void bStartMiddleGame_Click(object sender, EventArgs e)
@@ -228,6 +233,7 @@ namespace Sudoku
                 SudokuData[] sudokus = GetCellsFromDB("medium").ToArray();
                 int randomIndex = new Random().Next(sudokus.Length);
                 SudokuData sudoku = sudokus[randomIndex];
+                _data = sudoku;
                 int sudokusId = sudoku.id;
                 string[] numbers = sudoku.sudoku.Split(" ");
 
@@ -266,6 +272,7 @@ namespace Sudoku
             currentLevel = "manual";
             tBSudokuNumber.Text = "X";
             GameStarted = false;
+            _data = null;
         }
 
         private SudokuData[] GetCellsFromDB(string level = "", bool fromSaves = false)
@@ -327,9 +334,10 @@ namespace Sudoku
                     data.sudoku = numbersStr;
                     data.level = currentLevel;
                     data.c_time = DateTime.Now.ToString();
+                    data.closed_cells = _data.closed_cells;
 
 
-                    cnn.Execute("insert into TableSaves (id, sudoku, level, c_time) values (@id, @sudoku, @level, @c_time);", data);
+                    cnn.Execute("insert into TableSaves (id, sudoku, level, c_time, closed_cells) values (@id, @sudoku, @level, @c_time, @closed_cells);", data);
 
                     LoadSaveList();
                 }
@@ -353,12 +361,19 @@ namespace Sudoku
                 SudokuData[] sudokus = GetCellsFromDB(fromSaves:true).Where(x => x.c_time==time).ToArray();
                 int randomIndex = new Random().Next(sudokus.Length);
                 SudokuData sudoku = sudokus[randomIndex];
+                _data = sudoku;
+                int[] cellStates = sudoku.closed_cells.Split(" ").Select(x => int.Parse(x.ToString())).ToArray();
                 int sudokusId = sudoku.id;
                 string[] numbers = sudoku.sudoku.Split(" ");
 
                 int index = 0;
                 for (int j = 0; j < WIDTH * HEIGHT; j++)
                 {
+                    if (cellStates[index] == 1)
+                    {
+                        _cells[index].ReadOnly = true;
+                    }
+
                     if (numbers[j] == "X")
                     {
                         _cells[index].Text = "";
@@ -367,10 +382,8 @@ namespace Sudoku
                     else
                     {
                         _cells[index].Text = numbers[j];
-                        _cells[index].ReadOnly = true;
                         index++;
                     }
-
                 }
                 tBSudokuNumber.Text = $"{sudokusId}";
                 tBDifficultyLevel.Text = sudoku.level;
@@ -391,6 +404,7 @@ namespace Sudoku
             currentLevel = "manual";
             tBSudokuNumber.Text = "X";
             GameStarted = false;
+            _data = null;
         }
     }
 }
