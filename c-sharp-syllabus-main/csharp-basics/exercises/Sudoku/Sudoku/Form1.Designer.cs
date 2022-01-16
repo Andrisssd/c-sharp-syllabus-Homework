@@ -1076,7 +1076,7 @@
             this.tBDifficultyLevel.Name = "tBDifficultyLevel";
             this.tBDifficultyLevel.Size = new System.Drawing.Size(69, 32);
             this.tBDifficultyLevel.TabIndex = 90;
-            this.tBDifficultyLevel.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.tBDifficultyLevel.TextAlign = HorizontalAlignment.Center;
             // 
             // bSaveCells
             // 
@@ -1132,11 +1132,11 @@
             // 
             this.textBox3.Location = new System.Drawing.Point(24, 887);
             this.textBox3.Name = "textBox3";
+            this.textBox3.ReadOnly = true;
             this.textBox3.Size = new System.Drawing.Size(110, 27);
             this.textBox3.TabIndex = 99;
             this.textBox3.Text = "Select save:";
             this.textBox3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.textBox3.ReadOnly = true;
             // 
             // Form1
             // 
