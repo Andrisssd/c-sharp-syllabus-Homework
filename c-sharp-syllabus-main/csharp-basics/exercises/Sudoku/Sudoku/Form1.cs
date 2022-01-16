@@ -57,8 +57,11 @@ namespace Sudoku
             }
             foreach (var cell in this._cells)
             {
-                cell.Text = "";
-                cell.ReadOnly = false;
+                if (cell.Name != "textBox3")
+                {
+                    cell.Text = "";
+                    cell.ReadOnly = false;
+                }
             }
 
             tBDifficultyLevel.Text = "Non";
@@ -205,8 +208,11 @@ namespace Sudoku
             }
             foreach (var cell in this._cells)
             {
-                cell.Text = "";
-                cell.ReadOnly = false;
+                if (cell.Name != "textBox3")
+                {
+                    cell.Text = "";
+                    cell.ReadOnly = false;
+                }
             }
 
             tBDifficultyLevel.Text = "Non";
@@ -249,8 +255,11 @@ namespace Sudoku
             }
             foreach (var cell in this._cells)
             {
-                cell.Text = "";
-                cell.ReadOnly = false;
+                if (cell.Name != "textBox3")
+                {
+                    cell.Text = "";
+                    cell.ReadOnly = false;
+                }
             }
 
             tBDifficultyLevel.Text = "Non";
