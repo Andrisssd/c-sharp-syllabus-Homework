@@ -363,8 +363,8 @@ namespace Sudoku
 
                 }
                 tBSudokuNumber.Text = $"{sudokusId}";
-                tBDifficultyLevel.Text = "Medium";
-                currentLevel = "medium";
+                tBDifficultyLevel.Text = sudoku.level;
+                currentLevel = sudoku.level;
                 GameStarted = true;
                 return;
             }
