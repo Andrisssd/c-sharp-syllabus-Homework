@@ -118,6 +118,9 @@
             this.bSaveCells = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
+            this.cBLoadList = new System.Windows.Forms.ComboBox();
+            this.bLoadSave = new System.Windows.Forms.Button();
+            this.textBox3 = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // bStartEasyGame
@@ -1107,12 +1110,42 @@
             this.textBox2.Text = "Current sudoku\'s ID:";
             this.textBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
+            // cBLoadList
+            // 
+            this.cBLoadList.FormattingEnabled = true;
+            this.cBLoadList.Location = new System.Drawing.Point(140, 887);
+            this.cBLoadList.Name = "cBLoadList";
+            this.cBLoadList.Size = new System.Drawing.Size(318, 28);
+            this.cBLoadList.TabIndex = 97;
+            // 
+            // bLoadSave
+            // 
+            this.bLoadSave.Location = new System.Drawing.Point(464, 887);
+            this.bLoadSave.Name = "bLoadSave";
+            this.bLoadSave.Size = new System.Drawing.Size(190, 29);
+            this.bLoadSave.TabIndex = 98;
+            this.bLoadSave.Text = "Load";
+            this.bLoadSave.UseVisualStyleBackColor = true;
+            this.bLoadSave.Click += new System.EventHandler(this.bLoadSave_Click);
+            // 
+            // textBox3
+            // 
+            this.textBox3.Location = new System.Drawing.Point(24, 887);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(110, 27);
+            this.textBox3.TabIndex = 99;
+            this.textBox3.Text = "Select save:";
+            this.textBox3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::Sudoku.Properties.Resources.background;
-            this.ClientSize = new System.Drawing.Size(667, 897);
+            this.ClientSize = new System.Drawing.Size(667, 953);
+            this.Controls.Add(this.textBox3);
+            this.Controls.Add(this.bLoadSave);
+            this.Controls.Add(this.cBLoadList);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.bSaveCells);
@@ -1305,5 +1338,8 @@
         private Button bSaveCells;
         private TextBox textBox1;
         private TextBox textBox2;
+        private ComboBox cBLoadList;
+        private Button bLoadSave;
+        private TextBox textBox3;
     }
 }
