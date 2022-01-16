@@ -1,3 +1,8 @@
+using Dapper;
+using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
+using System.Data.SQLite;
 using System.IO;
 
 namespace Sudoku
@@ -10,6 +15,7 @@ namespace Sudoku
         private const int WIDTH = 9;
         private const int HEIGHT = 9;
         private bool GameStarted = false;
+        private string currentLevel = "manual";
         private TextBox[] _cells;
 
         public Form1()
@@ -22,10 +28,12 @@ namespace Sudoku
         {
             if (!GameStarted)
             {
-                string path = Path.GetFullPath(_pathEasy);
-                int sudokuVars = File.ReadAllLines(path).Count();
-                int randomIndex = new Random().Next(sudokuVars);
-                string[] numbers = File.ReadAllLines(path).Select(line => line.Split(" ")).ToArray()[randomIndex];
+                SudokuData[] sudokus = GetCellsFromDB("easy").Where(x=>x.is_manual!="true").ToArray();
+                int randomIndex = new Random().Next(sudokus.Length);
+                SudokuData sudoku = sudokus[randomIndex];
+                int sudokusId = sudoku.id;
+                string[] numbers = sudoku.sudoku.Split(" ");
+
                 int index = 0;
                 for (int j = 0; j < WIDTH * HEIGHT; j++)
                 {
@@ -42,18 +50,20 @@ namespace Sudoku
                     }
 
                 }
-                tBSudokuNumber.Text = numbers.Last().ToString();
+                tBSudokuNumber.Text = $"{sudokusId}";
                 tBDifficultyLevel.Text = "Easy";
+                currentLevel = "easy";
                 GameStarted = true;
                 return;
             }
-            foreach(var cell in this._cells)
+            foreach (var cell in this._cells)
             {
                 cell.Text = "";
                 cell.ReadOnly = false;
             }
 
             tBDifficultyLevel.Text = "Non";
+            currentLevel = "manual";
             tBSudokuNumber.Text = "X";
             GameStarted = false;
         }
@@ -62,7 +72,10 @@ namespace Sudoku
         {
             IEnumerable<TextBox> allTexboxes = Controls.OfType<TextBox>();
             TextBox[] sortedTextBoxes = allTexboxes
-                                     .Where(i => String.IsNullOrEmpty(i.Text) && i.Name != "tBSudokuNumber")
+                                     .Where(i => String.IsNullOrEmpty(i.Text) && i.Name != "tBDifficultyLevel" &&
+                                     i.Name != "tBSudokuNumber" &&
+                                     i.Name != "textBox2" &&
+                                     i.Name != "textBox1")
                                      .OrderBy(i => i.Name)
                                      .ToArray();
             return sortedTextBoxes;
@@ -72,7 +85,10 @@ namespace Sudoku
         {
             if (GameStarted)
             {
-                var allCells = Controls.OfType<TextBox>().Where(cell => cell.Name != "tBDifficultyLevel" && cell.Name != "tBSudokuNumber").ToArray();
+                var allCells = Controls.OfType<TextBox>().Where(cell => cell.Name != "tBDifficultyLevel" &&
+                cell.Name != "tBSudokuNumber" &&
+                cell.Name != "textBox2" && 
+                cell.Name != "textBox1").ToArray();
                 bool allCellValuesAreNumbers = true;
                 bool allCellLengthIsOne = true;
                 bool allRowsAreUnique = true;
@@ -159,10 +175,12 @@ namespace Sudoku
         {
             if (!GameStarted)
             {
-                string path = Path.GetFullPath(_pathHard);
-                int sudokuVars = File.ReadAllLines(path).Count();
-                int randomIndex = new Random().Next(sudokuVars);
-                string[] numbers = File.ReadAllLines(path).Select(line => line.Split(" ")).ToArray()[randomIndex];
+                SudokuData[] sudokus = GetCellsFromDB("hard").Where(x=>x.is_manual!="true").ToArray();
+                int randomIndex = new Random().Next(sudokus.Length);
+                SudokuData sudoku = sudokus[randomIndex];
+                int sudokusId = sudoku.id;
+                string[] numbers = sudoku.sudoku.Split(" ");
+
                 int index = 0;
                 for (int j = 0; j < WIDTH * HEIGHT; j++)
                 {
@@ -179,8 +197,9 @@ namespace Sudoku
                     }
 
                 }
-                tBSudokuNumber.Text = numbers.Last().ToString();
+                tBSudokuNumber.Text = $"{sudokusId}";
                 tBDifficultyLevel.Text = "Hard";
+                currentLevel = "hard";
                 GameStarted = true;
                 return;
             }
@@ -191,6 +210,7 @@ namespace Sudoku
             }
 
             tBDifficultyLevel.Text = "Non";
+            currentLevel = "manual";
             tBSudokuNumber.Text = "X";
             GameStarted = false;
         }
@@ -199,10 +219,12 @@ namespace Sudoku
         {
             if (!GameStarted)
             {
-                string path = Path.GetFullPath(_pathMiddle);
-                int sudokuVars = File.ReadAllLines(path).Count();
-                int randomIndex = new Random().Next(sudokuVars);
-                string[] numbers = File.ReadAllLines(path).Select(line => line.Split(" ")).ToArray()[randomIndex];
+                SudokuData[] sudokus = GetCellsFromDB("medium").Where(x=>x.is_manual!="true").ToArray();
+                int randomIndex = new Random().Next(sudokus.Length);
+                SudokuData sudoku = sudokus[randomIndex];
+                int sudokusId = sudoku.id;
+                string[] numbers = sudoku.sudoku.Split(" ");
+
                 int index = 0;
                 for (int j = 0; j < WIDTH * HEIGHT; j++)
                 {
@@ -219,8 +241,9 @@ namespace Sudoku
                     }
 
                 }
-                tBSudokuNumber.Text = numbers.Last().ToString();
+                tBSudokuNumber.Text = $"{sudokusId}";
                 tBDifficultyLevel.Text = "Medium";
+                currentLevel = "medium";
                 GameStarted = true;
                 return;
             }
@@ -231,8 +254,58 @@ namespace Sudoku
             }
 
             tBDifficultyLevel.Text = "Non";
+            currentLevel = "manual";
             tBSudokuNumber.Text = "X";
             GameStarted = false;
+        }
+
+        private SudokuData[] GetCellsFromDB(string level)
+        {
+            using(IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            {
+                var output = cnn.Query<SudokuData>("select * from TableSudoku", new DynamicParameters()).ToList();
+                var neededSudokus = output.Where(x => x.level == level).ToArray();
+                return neededSudokus;
+            }
+        }
+
+        private static string LoadConnectionString(string id = "Default")
+        {
+            return ConfigurationManager.ConnectionStrings[id].ConnectionString;
+        }
+
+        private void bSaveCells_Click(object sender, EventArgs e)
+        {
+            using(var cnn = new SQLiteConnection(LoadConnectionString()))
+            {
+                SudokuData data = new SudokuData();
+                var allCells = Controls.OfType<TextBox>().Where(cell => cell.Name != "tBDifficultyLevel" &&
+                cell.Name != "tBSudokuNumber" &&
+                cell.Name != "textBox2" &&
+                cell.Name != "textBox1").ToArray();
+                
+                var numbers = new List<string>();
+                for(int i =0; i<81; i++)
+                {
+                    if(allCells[i].Text == "")
+                    {
+                        numbers.Add("X");
+                    }
+                    else
+                    {
+                        numbers.Add(allCells[i].Text);
+                    }
+                }
+                string[] numbersArr = numbers.ToArray();
+                Array.Reverse(numbersArr);
+                string numbersStr = string.Join(" ", numbersArr);
+                data.sudoku = numbersStr;
+                data.level = currentLevel;
+                data.is_manual = "true";
+                
+
+                cnn.Execute("insert into TableSudoku (sudoku, level, is_manual) values (@sudoku, @level, @is_manual);",data);
+            }
         }
     }
 }
