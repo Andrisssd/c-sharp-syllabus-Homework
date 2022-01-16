@@ -20,6 +20,7 @@ namespace Sudoku
             InitializeComponent();
             _cells = GetCells();
             LoadSaveList();
+            textBox3.ReadOnly = true;
         }
 
         private void bStartEasyGame_Click(object sender, EventArgs e)
@@ -370,8 +371,11 @@ namespace Sudoku
             }
             foreach (var cell in this._cells)
             {
-                cell.Text = "";
-                cell.ReadOnly = false;
+                if (cell.Name != "textBox3")
+                {
+                    cell.Text = "";
+                    cell.ReadOnly = false;
+                }
             }
 
             tBDifficultyLevel.Text = "Non";
