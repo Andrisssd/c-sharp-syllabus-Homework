@@ -1136,6 +1136,7 @@
             this.textBox3.TabIndex = 99;
             this.textBox3.Text = "Select save:";
             this.textBox3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.textBox3.ReadOnly = true;
             // 
             // Form1
             // 
