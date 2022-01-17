@@ -11,10 +11,10 @@ namespace Sudoku
     {
         private const int WIDTH = 9;
         private const int HEIGHT = 9;
-        private bool GameStarted = false;
         private string currentLevel = "manual";
         private TextBox[] _cells;
         private SudokuData _data;
+        private bool gameStarted = false;
 
         public Form1()
         {
@@ -22,55 +22,12 @@ namespace Sudoku
             _cells = GetCells();
             LoadSaveList();
             textBox3.ReadOnly = true;
+            cBLoadList.DropDownStyle = ComboBoxStyle.DropDownList;
         }
 
         private void bStartEasyGame_Click(object sender, EventArgs e)
         {
-            if (!GameStarted)
-            {
-                SudokuData[] sudokus = GetCellsFromDB("easy").ToArray();
-                int randomIndex = new Random().Next(sudokus.Length);
-                SudokuData sudoku = sudokus[randomIndex];
-                _data = sudoku;
-                int sudokusId = sudoku.id;
-                string[] numbers = sudoku.sudoku.Split(" ");
-
-                int index = 0;
-                for (int j = 0; j < WIDTH * HEIGHT; j++)
-                {
-                    if (numbers[j] == "X")
-                    {
-                        _cells[index].Text = "";
-                        index++;
-                    }
-                    else
-                    {
-                        _cells[index].Text = numbers[j];
-                        _cells[index].ReadOnly = true;
-                        index++;
-                    }
-
-                }
-                tBSudokuNumber.Text = $"{sudokusId}";
-                tBDifficultyLevel.Text = "Easy";
-                currentLevel = "easy";
-                GameStarted = true;
-                return;
-            }
-            foreach (var cell in this._cells)
-            {
-                if (cell.Name != "textBox3")
-                {
-                    cell.Text = "";
-                    cell.ReadOnly = false;
-                }
-            }
-
-            tBDifficultyLevel.Text = "Non";
-            currentLevel = "manual";
-            tBSudokuNumber.Text = "X";
-            GameStarted = false;
-            _data = null;
+            MakeField("easy");
         }
 
         private TextBox[] GetCells()
@@ -88,89 +45,86 @@ namespace Sudoku
 
         private void bSubmit_Click(object sender, EventArgs e)
         {
-            if (GameStarted)
+            var allCells = Controls.OfType<TextBox>().Where(cell => cell.Name != "tBDifficultyLevel" &&
+            cell.Name != "tBSudokuNumber" &&
+            cell.Name != "textBox2" &&
+            cell.Name != "textBox1" &&
+            cell.Name != "textBox3").ToArray();
+            bool allCellValuesAreNumbers = true;
+            bool allCellLengthIsOne = true;
+            bool allRowsAreUnique = true;
+            bool allColumnsAreUnique = true;
+            bool allBoxesAreUnique = true;
+            foreach (var cell in allCells)
             {
-                var allCells = Controls.OfType<TextBox>().Where(cell => cell.Name != "tBDifficultyLevel" &&
-                cell.Name != "tBSudokuNumber" &&
-                cell.Name != "textBox2" && 
-                cell.Name != "textBox1" &&
-                cell.Name != "textBox3").ToArray();
-                bool allCellValuesAreNumbers = true;
-                bool allCellLengthIsOne = true;
-                bool allRowsAreUnique = true;
-                bool allColumnsAreUnique = true;
-                bool allBoxesAreUnique = true;
-                foreach (var cell in allCells)
+                if (cell.Text != "")
                 {
-                    if (cell.Text != "")
-                    {
-                        if (!Char.IsDigit(cell.Text[0]))
-                        {
-                            allCellValuesAreNumbers = false;
-                        }
-
-                        if (cell.Text.Length != 1)
-                        {
-                            allCellLengthIsOne = false;
-                        }
-                    }
-                    else
+                    if (!Char.IsDigit(cell.Text[0]))
                     {
                         allCellValuesAreNumbers = false;
                     }
+
+                    if (cell.Text.Length != 1)
+                    {
+                        allCellLengthIsOne = false;
+                    }
                 }
-                if (allCellLengthIsOne && allCellValuesAreNumbers)
+                else
                 {
-                    for(int i = 0; i < 9; i++)
+                    allCellValuesAreNumbers = false;
+                }
+            }
+            if (allCellLengthIsOne && allCellValuesAreNumbers)
+            {
+                for (int i = 0; i < 9; i++)
+                {
+                    var row = new HashSet<int>();
+                    for (int j = 0; j < 9; j++)
                     {
-                        var row = new HashSet<int>();
-                        for(int j = 0; j < 9; j++)
-                        {
-                            row.Add(int.Parse(allCells[(i * 9) + j].Text));
-                        }
+                        row.Add(int.Parse(allCells[(i * 9) + j].Text));
+                    }
 
-                        if (row.Count() != 9)
+                    if (row.Count() != 9)
+                    {
+                        allRowsAreUnique = false;
+                    }
+                }
+
+                for (int i = 0; i < 81; i += 9)
+                {
+                    var column = new HashSet<int>();
+                    for (int j = 0; j < 9; j++)
+                    {
+                        column.Add(int.Parse(allCells[i + j].Text));
+                    }
+
+                    if (column.Count() != 9)
+                    {
+                        allColumnsAreUnique = false;
+                    }
+                }
+
+                for (int i = 0; i <= 60; i += 27)
+                {
+                    var box = new HashSet<int>();
+                    for (int j = 0; j < 3; j++)
+                    {
+                        for (int k = 0; k <= 19; k += 9)
                         {
-                            allRowsAreUnique = false;
+                            box.Add(int.Parse((allCells[j + k + i].Text)));
                         }
                     }
 
-                    for (int i = 0; i < 81; i += 9)
+                    if (box.Count() != 9)
                     {
-                        var column = new HashSet<int>();
-                        for (int j = 0; j < 9; j++)
-                        {
-                            column.Add(int.Parse(allCells[i + j].Text));
-                        }
-
-                        if(column.Count() != 9)
-                        {
-                            allColumnsAreUnique = false;
-                        }
+                        allBoxesAreUnique = false;
                     }
+                }
 
-                    for(int i = 0; i <= 60; i+=27)
-                    {
-                        var box = new HashSet<int>();
-                        for(int j =0; j<3; j++)
-                        {
-                            for(int k =0; k <= 19; k += 9)
-                            {
-                                box.Add(int.Parse((allCells[j + k + i].Text)));
-                            }
-                        }
-
-                        if(box.Count() != 9)
-                        {
-                            allBoxesAreUnique = false;
-                        }
-                    }
-
-                    if (allBoxesAreUnique && allColumnsAreUnique && allRowsAreUnique)
-                    {
-                        MessageBox.Show("You win!");
-                        return;
-                    }
+                if (allBoxesAreUnique && allColumnsAreUnique && allRowsAreUnique)
+                {
+                    MessageBox.Show("You win!");
+                    return;
                 }
             }
 
@@ -179,100 +133,12 @@ namespace Sudoku
 
         private void bStartHardGame_Click(object sender, EventArgs e)
         {
-            if (!GameStarted)
-            {
-                SudokuData[] sudokus = GetCellsFromDB("hard").ToArray();
-                int randomIndex = new Random().Next(sudokus.Length);
-                SudokuData sudoku = sudokus[randomIndex];
-                _data = sudoku;
-                int sudokusId = sudoku.id;
-                string[] numbers = sudoku.sudoku.Split(" ");
-
-                int index = 0;
-                for (int j = 0; j < WIDTH * HEIGHT; j++)
-                {
-                    if (numbers[j] == "X")
-                    {
-                        _cells[index].Text = "";
-                        index++;
-                    }
-                    else
-                    {
-                        _cells[index].Text = numbers[j];
-                        _cells[index].ReadOnly = true;
-                        index++;
-                    }
-
-                }
-                tBSudokuNumber.Text = $"{sudokusId}";
-                tBDifficultyLevel.Text = "Hard";
-                currentLevel = "hard";
-                GameStarted = true;
-                return;
-            }
-            foreach (var cell in this._cells)
-            {
-                if (cell.Name != "textBox3")
-                {
-                    cell.Text = "";
-                    cell.ReadOnly = false;
-                }
-            }
-
-            tBDifficultyLevel.Text = "Non";
-            currentLevel = "manual";
-            tBSudokuNumber.Text = "X";
-            GameStarted = false;
-            _data = null;
+            MakeField("hard");
         }
 
         private void bStartMiddleGame_Click(object sender, EventArgs e)
         {
-            if (!GameStarted)
-            {
-                SudokuData[] sudokus = GetCellsFromDB("medium").ToArray();
-                int randomIndex = new Random().Next(sudokus.Length);
-                SudokuData sudoku = sudokus[randomIndex];
-                _data = sudoku;
-                int sudokusId = sudoku.id;
-                string[] numbers = sudoku.sudoku.Split(" ");
-
-                int index = 0;
-                for (int j = 0; j < WIDTH * HEIGHT; j++)
-                {
-                    if (numbers[j] == "X")
-                    {
-                        _cells[index].Text = "";
-                        index++;
-                    }
-                    else
-                    {
-                        _cells[index].Text = numbers[j];
-                        _cells[index].ReadOnly = true;
-                        index++;
-                    }
-
-                }
-                tBSudokuNumber.Text = $"{sudokusId}";
-                tBDifficultyLevel.Text = "Medium";
-                currentLevel = "medium";
-                GameStarted = true;
-                return;
-            }
-            foreach (var cell in this._cells)
-            {
-                if (cell.Name != "textBox3")
-                {
-                    cell.Text = "";
-                    cell.ReadOnly = false;
-                }
-            }
-
-            tBDifficultyLevel.Text = "Non";
-            currentLevel = "manual";
-            tBSudokuNumber.Text = "X";
-            GameStarted = false;
-            _data = null;
+            MakeField("medium");
         }
 
         private SudokuData[] GetCellsFromDB(string level = "", bool fromSaves = false)
@@ -310,7 +176,7 @@ namespace Sudoku
 
         private void bSaveCells_Click(object sender, EventArgs e)
         {
-            if (GameStarted)
+            if (gameStarted)
             {
                 using (var cnn = new SQLiteConnection(LoadConnectionString()))
                 {
@@ -341,7 +207,11 @@ namespace Sudoku
 
                     LoadSaveList();
                 }
+
+                return;
             }
+
+            MessageBox.Show("Load or start game to save it");
         }
 
         private void LoadSaveList()
@@ -355,10 +225,69 @@ namespace Sudoku
 
         private void bLoadSave_Click(object sender, EventArgs e)
         {
-            var time = cBLoadList.Text;
-            if (!GameStarted)
+            LoadField();
+        }
+
+        private void MakeField(string level)
+        {
+            gameStarted = true;
+            foreach (var cell in this._cells)
             {
-                SudokuData[] sudokus = GetCellsFromDB(fromSaves:true).Where(x => x.c_time==time).ToArray();
+                if (cell.Name != "textBox3")
+                {
+                    cell.Text = "";
+                    cell.ReadOnly = false;
+                }
+            }
+
+            _data = null;
+            int currentId = 0;
+            int.TryParse(tBSudokuNumber.Text, out currentId);
+            SudokuData[] sudokus = GetCellsFromDB(level).Where(x=>x.id!=currentId).ToArray();
+            int randomIndex = new Random().Next(sudokus.Length);
+            SudokuData sudoku = sudokus[randomIndex];
+            _data = sudoku;
+            int sudokusId = sudoku.id;
+            string[] numbers = sudoku.sudoku.Split(" ");
+
+            int index = 0;
+            for (int j = 0; j < WIDTH * HEIGHT; j++)
+            {
+                if (numbers[j] == "X")
+                {
+                    _cells[index].Text = "";
+                    index++;
+                }
+                else
+                {
+                    _cells[index].Text = numbers[j];
+                    _cells[index].ReadOnly = true;
+                    index++;
+                }
+
+            }
+            tBSudokuNumber.Text = $"{sudokusId}";
+            tBDifficultyLevel.Text = level.Substring(0, 1).ToUpper() + level.Substring(1).ToLower(); ;
+            currentLevel = level;
+            return;
+        }
+
+        private void LoadField()
+        {
+            if (cBLoadList.Items.Count != 0)
+            {
+                gameStarted = true;
+                var time = cBLoadList.Text;
+                foreach (var cell in this._cells)
+                {
+                    if (cell.Name != "textBox3")
+                    {
+                        cell.Text = "";
+                        cell.ReadOnly = false;
+                    }
+                }
+                _data = null;
+                SudokuData[] sudokus = GetCellsFromDB(fromSaves: true).Where(x => x.c_time == time).ToArray();
                 int randomIndex = new Random().Next(sudokus.Length);
                 SudokuData sudoku = sudokus[randomIndex];
                 _data = sudoku;
@@ -388,23 +317,10 @@ namespace Sudoku
                 tBSudokuNumber.Text = $"{sudokusId}";
                 tBDifficultyLevel.Text = sudoku.level;
                 currentLevel = sudoku.level;
-                GameStarted = true;
                 return;
             }
-            foreach (var cell in this._cells)
-            {
-                if (cell.Name != "textBox3")
-                {
-                    cell.Text = "";
-                    cell.ReadOnly = false;
-                }
-            }
 
-            tBDifficultyLevel.Text = "Non";
-            currentLevel = "manual";
-            tBSudokuNumber.Text = "X";
-            GameStarted = false;
-            _data = null;
+            MessageBox.Show("No save selected!");
         }
     }
 }
