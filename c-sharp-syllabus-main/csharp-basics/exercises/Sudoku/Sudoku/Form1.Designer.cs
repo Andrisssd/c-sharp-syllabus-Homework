@@ -121,6 +121,7 @@
             this.cBLoadList = new System.Windows.Forms.ComboBox();
             this.bLoadSave = new System.Windows.Forms.Button();
             this.textBox3 = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // bStartEasyGame
@@ -1076,7 +1077,7 @@
             this.tBDifficultyLevel.Name = "tBDifficultyLevel";
             this.tBDifficultyLevel.Size = new System.Drawing.Size(69, 32);
             this.tBDifficultyLevel.TabIndex = 90;
-            this.tBDifficultyLevel.TextAlign = HorizontalAlignment.Center;
+            this.tBDifficultyLevel.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // bSaveCells
             // 
@@ -1138,12 +1139,23 @@
             this.textBox3.Text = "Select save:";
             this.textBox3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(24, 920);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(630, 29);
+            this.button1.TabIndex = 100;
+            this.button1.Text = "Delete selected save";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::Sudoku.Properties.Resources.background;
             this.ClientSize = new System.Drawing.Size(667, 953);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.textBox3);
             this.Controls.Add(this.bLoadSave);
             this.Controls.Add(this.cBLoadList);
@@ -1342,5 +1354,6 @@
         private ComboBox cBLoadList;
         private Button bLoadSave;
         private TextBox textBox3;
+        private Button button1;
     }
 }

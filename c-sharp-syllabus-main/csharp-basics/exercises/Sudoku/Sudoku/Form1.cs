@@ -219,13 +219,32 @@ namespace Sudoku
             var data = GetCellsFromDB(fromSaves: true);
             if (data.Count() > 0)
             {
-                cBLoadList.DataSource = data.Select(x => x.c_time.ToString()).ToArray();
+                cBLoadList.DataSource = data.Reverse().Select(x => x.c_time.ToString()).ToArray();
+            }
+
+            if(data.Count() == 0)
+            {
+                cBLoadList.Text = "";
+                cBLoadList.DataSource = null;
             }
         }
 
         private void bLoadSave_Click(object sender, EventArgs e)
         {
             LoadField();
+        }
+
+        private void DeleteSaveFromDB(string dateTime)
+        {
+            var data = GetCellsFromDB(fromSaves: true);
+            if (data.Count() > 0)
+            {
+                using (var cnn = new SQLiteConnection(LoadConnectionString()))
+                {
+                    cnn.Execute($"delete from TableSaves where c_time='{dateTime}';");
+                }
+                LoadSaveList();
+            }
         }
 
         private void MakeField(string level)
@@ -276,8 +295,17 @@ namespace Sudoku
         {
             if (cBLoadList.Items.Count != 0)
             {
-                gameStarted = true;
                 var time = cBLoadList.Text;
+                SudokuData[] sudokus = GetCellsFromDB(fromSaves: true).Where(x => x.c_time == time).ToArray();
+                int randomIndex = new Random().Next(sudokus.Length);
+                if (sudokus.Count() == 0)
+                {
+                    MessageBox.Show("This save doesn't exist!");
+                    return;
+                }
+
+                gameStarted = true;
+                
                 foreach (var cell in this._cells)
                 {
                     if (cell.Name != "textBox3")
@@ -286,9 +314,7 @@ namespace Sudoku
                         cell.ReadOnly = false;
                     }
                 }
-                _data = null;
-                SudokuData[] sudokus = GetCellsFromDB(fromSaves: true).Where(x => x.c_time == time).ToArray();
-                int randomIndex = new Random().Next(sudokus.Length);
+
                 SudokuData sudoku = sudokus[randomIndex];
                 _data = sudoku;
                 int[] cellStates = sudoku.closed_cells.Split(" ").Select(x => int.Parse(x.ToString())).ToArray();
@@ -321,6 +347,12 @@ namespace Sudoku
             }
 
             MessageBox.Show("No save selected!");
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            string dateTime = cBLoadList.Text;
+            DeleteSaveFromDB(dateTime);
         }
     }
 }
