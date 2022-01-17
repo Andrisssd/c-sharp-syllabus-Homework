@@ -25,7 +25,7 @@ namespace Risks.Tests
         {
             //Arrange
             int expectedCount = 1;
-            _insuranceCompany.AddRisk("PolicyName", new Risk("Something", 9999), new DateTime(2000, 10, 10));
+            _insuranceCompany.AddRisk("PolicyName", new Risk() { Name="Something",YearlyPrice=9999}, new DateTime(2000, 10, 10));
             //Act
             int actualCount = _insuranceCompany.AvailableRisks.Count();
             //Assert
@@ -38,8 +38,8 @@ namespace Risks.Tests
             //Arrange
             int expectedCount = 2;
             _insuranceCompany.SellPolicy("Policy", new DateTime(2000, 10, 10), 1, _insuranceCompany.AvailableRisks);
-            _insuranceCompany.AddRisk("Policy", new Risk("Something1", 1), new DateTime(2000, 10, 10));
-            _insuranceCompany.AddRisk("Policy", new Risk("Something2", 2), new DateTime(2000, 10, 10));
+            _insuranceCompany.AddRisk("Policy", new Risk() { Name="Something",YearlyPrice=1}, new DateTime(2000, 10, 10));
+            _insuranceCompany.AddRisk("Policy", new Risk() { Name="Something2",YearlyPrice=2}, new DateTime(2000, 10, 10));
             //Act
             int actualCount = _insuranceCompany.GetPolicy("Policy", new DateTime(2000, 10, 10, 10, 10, 10)).InsuredRisks.Count();
             //Assert
@@ -52,8 +52,8 @@ namespace Risks.Tests
             //Arrange
             int expectedCount = 1;
             _insuranceCompany.SellPolicy("Policy", new DateTime(2000, 10, 10), 1, _insuranceCompany.AvailableRisks);
-            _insuranceCompany.AddRisk("Policy", new Risk("Something1", 1), new DateTime(2000, 10, 10));
-            _insuranceCompany.AddRisk("Policy", new Risk("Something2", 2), new DateTime(2000, 10, 9));
+            _insuranceCompany.AddRisk("Policy", new Risk() { Name="Something1",YearlyPrice=1}, new DateTime(2000, 10, 10));
+            _insuranceCompany.AddRisk("Policy", new Risk() { Name="Something2",YearlyPrice=2}, new DateTime(2000, 10, 9));
             //Act
             var actualPolicy = _insuranceCompany.GetPolicy("Policy", new DateTime(2000, 10, 10, 10, 10, 10));
             //Assert

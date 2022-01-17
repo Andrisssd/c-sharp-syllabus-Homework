@@ -20,13 +20,13 @@ namespace Risks.Tests
         {
             _list1 = new List<Risk>
             {
-                new Risk("1", 2),
-                new Risk("2", 8),
+                new Risk(){Name="1",YearlyPrice=2},
+                new Risk(){Name="2",YearlyPrice=8},
             };
             _list2 = new List<Risk>
             {
-                new Risk("1", 100),
-                new Risk("2", 100),
+                new Risk(){Name="1",YearlyPrice=100},
+                new Risk(){Name="2",YearlyPrice=100},
             };
             _list3 = new List<Risk>();
         }

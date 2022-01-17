@@ -6,7 +6,7 @@ namespace Risks
     {
         public string Name { get; }
 
-        private IList<Policy> Policies = new List<Policy>();
+        private IList<Policy> _policies = new List<Policy>();
 
         public IList<Risk> AvailableRisks { get; set; }
 
@@ -19,7 +19,7 @@ namespace Risks
         public void AddRisk(string nameOfInsuredObject, Risk risk, DateTime validFrom)
         {
             AvailableRisks.Add(risk);
-            List<Policy> policies = Policies.Where(p => p.NameOfInsuredObject == nameOfInsuredObject && p.ValidFrom <= validFrom).ToList();
+            List<Policy> policies = _policies.Where(p => p.NameOfInsuredObject == nameOfInsuredObject && p.ValidFrom <= validFrom).ToList();
             foreach (var policy in policies)
             {
                 policy.InsuredRisks.Add(risk);
@@ -29,7 +29,7 @@ namespace Risks
 
         public IPolicy GetPolicy(string nameOfInsuredObject, DateTime effectiveDate)
         {
-            Policy policy = Policies.Where(p => p.ValidTill >= effectiveDate && p.ValidFrom <= effectiveDate && p.NameOfInsuredObject == nameOfInsuredObject).FirstOrDefault();
+            Policy policy = _policies.Where(p => p.ValidTill >= effectiveDate && p.ValidFrom <= effectiveDate && p.NameOfInsuredObject == nameOfInsuredObject).FirstOrDefault();
             if (policy != null)
             {
                 return new Policy(policy);
@@ -40,11 +40,11 @@ namespace Risks
 
         public IPolicy SellPolicy(string nameOfInsuredObject, DateTime validFrom, short validMonths, IList<Risk> selectedRisks)
         {
-            if (Validator.IsPolicyValid(nameOfInsuredObject, validFrom, validMonths, this.Policies))
+            if (Validator.IsPolicyValid(nameOfInsuredObject, validFrom, validMonths, this._policies))
             {
                 DateTime validTill = validFrom.AddMonths(validMonths);
                 Policy policy = new Policy(nameOfInsuredObject, validFrom, validTill, selectedRisks.ToList());
-                Policies.Add(policy);
+                _policies.Add(policy);
                 return new Policy(policy);
             }
 
