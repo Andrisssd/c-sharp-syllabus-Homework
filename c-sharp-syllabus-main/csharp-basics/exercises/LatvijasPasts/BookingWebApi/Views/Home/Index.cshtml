@@ -1,0 +1,29 @@
+﻿@{
+    ViewBag.Title = "CV Manager";
+}
+
+<div>
+    <h3>All CV,s</h3>
+    <table class="styled-table">
+        <tr>
+            <td><p>Id</p></td>
+            <td><p>FirstName</p></td>
+            <td><p>LastName</p></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        @foreach (var cv in ViewBag.CVs)
+        {
+    <tr>
+        <td><p>@cv.Id</p></td>
+        <td><p>@cv.FirstName</p></td>
+        <td><p>@cv.LastName</p></td>
+        <td><p><a href="/Home/Remove/@cv.Id">Remove</a></p></td>
+        <td><p><a href="/Home/Edit/@cv.Id">Edit</a></p></td>
+        <td><p><a href=" /Home/Watch/@cv.Id">Watch</a></p></td>
+    </tr>
+        }
+        <p><a href="/Home/AddCV/">Add new CV</a></p>
+    </table>
+</div>

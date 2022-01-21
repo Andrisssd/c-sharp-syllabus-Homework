@@ -1,0 +1,70 @@
+﻿@model BookingWebApi.Models.CV
+@{ ViewBag.Title = "AddCV"; }
+
+<h2>AddCV</h2>
+<div>
+    <h3>Form for adding new CV</h3>
+    <form method="post">
+        <h1>FirstName LastName</h1>
+        <div class="form-group">
+            FirstName:@Html.TextBoxFor(x => x.FirstName, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            LastName:@Html.TextBoxFor(x => x.LastName, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            Phone number:@Html.TextBoxFor(x => x.PhoneNumber, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            Email:@Html.TextBoxFor(x => x.Email, new { @class = "form-control" })
+        </div>
+        <h1>Last work info</h1>
+        <div class="form-group">
+            Last work name:@Html.TextBoxFor(x => x.Work.Name, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            Work position:@Html.TextBoxFor(x => x.Work.Position, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            Total time spent on work:@Html.TextBoxFor(x => x.Work.TotalTimeSpentWorking, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            Dayly time spent on work:@Html.TextBoxFor(x => x.Work.DailySpentTime, new { @class = "form-control" })
+        </div>
+        <h1>Adress:</h1>
+        <div class="form-group">
+            Country:@Html.TextBoxFor(x => x.Adress.Country, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            Index:@Html.TextBoxFor(x => x.Adress.Index, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            City:@Html.TextBoxFor(x => x.Adress.City, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            Street:@Html.TextBoxFor(x => x.Adress.Street, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            Home number:@Html.TextBoxFor(x => x.Adress.HomeNumber, new { @class = "form-control" })
+        </div>
+        <h1>Education:</h1>
+        <div class="form-group">
+            Name:@Html.TextBoxFor(x => x.Education.Name, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            Faculty:@Html.TextBoxFor(x => x.Education.Faculty, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            Field of study:@Html.TextBoxFor(x => x.Education.FieldOfStudy, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            Daily spent time on studies:@Html.TextBoxFor(x => x.Education.DailySpentTime, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            Education status:@Html.TextBoxFor(x => x.Education.Status, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            <button class="btn btn-success">Add CV</button>
+        </div>
+    </form>
+</div>
