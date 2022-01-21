@@ -1050,10 +1050,10 @@
             // 
             // bSubmit
             // 
-            this.bSubmit.Location = new System.Drawing.Point(675, 739);
+            this.bSubmit.Location = new System.Drawing.Point(216, 833);
             this.bSubmit.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.bSubmit.Name = "bSubmit";
-            this.bSubmit.Size = new System.Drawing.Size(276, 85);
+            this.bSubmit.Size = new System.Drawing.Size(438, 49);
             this.bSubmit.TabIndex = 87;
             this.bSubmit.Text = "Click this button if you think you\'re done!";
             this.bSubmit.UseVisualStyleBackColor = true;
@@ -1081,11 +1081,11 @@
             // 
             // bSaveCells
             // 
-            this.bSaveCells.Location = new System.Drawing.Point(675, 103);
+            this.bSaveCells.Location = new System.Drawing.Point(24, 833);
             this.bSaveCells.Name = "bSaveCells";
-            this.bSaveCells.Size = new System.Drawing.Size(276, 49);
+            this.bSaveCells.Size = new System.Drawing.Size(185, 49);
             this.bSaveCells.TabIndex = 94;
-            this.bSaveCells.Text = "Save current game";
+            this.bSaveCells.Text = "Save";
             this.bSaveCells.UseVisualStyleBackColor = true;
             this.bSaveCells.Click += new System.EventHandler(this.bSaveCells_Click);
             // 
@@ -1114,36 +1114,36 @@
             // cBLoadList
             // 
             this.cBLoadList.FormattingEnabled = true;
-            this.cBLoadList.Location = new System.Drawing.Point(675, 228);
+            this.cBLoadList.Location = new System.Drawing.Point(140, 887);
             this.cBLoadList.Name = "cBLoadList";
-            this.cBLoadList.Size = new System.Drawing.Size(276, 23);
+            this.cBLoadList.Size = new System.Drawing.Size(318, 28);
             this.cBLoadList.TabIndex = 97;
             // 
             // bLoadSave
             // 
-            this.bLoadSave.Location = new System.Drawing.Point(675, 262);
+            this.bLoadSave.Location = new System.Drawing.Point(464, 887);
             this.bLoadSave.Name = "bLoadSave";
-            this.bLoadSave.Size = new System.Drawing.Size(276, 55);
+            this.bLoadSave.Size = new System.Drawing.Size(190, 29);
             this.bLoadSave.TabIndex = 98;
-            this.bLoadSave.Text = "Load selected save";
+            this.bLoadSave.Text = "Load";
             this.bLoadSave.UseVisualStyleBackColor = true;
             this.bLoadSave.Click += new System.EventHandler(this.bLoadSave_Click);
             // 
             // textBox3
             // 
-            this.textBox3.Location = new System.Drawing.Point(675, 197);
+            this.textBox3.Location = new System.Drawing.Point(24, 887);
             this.textBox3.Name = "textBox3";
             this.textBox3.ReadOnly = true;
-            this.textBox3.Size = new System.Drawing.Size(276, 23);
+            this.textBox3.Size = new System.Drawing.Size(110, 27);
             this.textBox3.TabIndex = 99;
             this.textBox3.Text = "Select save:";
             this.textBox3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(675, 323);
+            this.button1.Location = new System.Drawing.Point(24, 920);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(276, 55);
+            this.button1.Size = new System.Drawing.Size(630, 71);
             this.button1.TabIndex = 100;
             this.button1.Text = "Delete selected save";
             this.button1.UseVisualStyleBackColor = true;
@@ -1151,10 +1151,9 @@
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackgroundImage = global::Sudoku.Properties.Resources.background;
-            this.ClientSize = new System.Drawing.Size(963, 843);
+            this.ClientSize = new System.Drawing.Size(667, 1003);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.textBox3);
             this.Controls.Add(this.bLoadSave);
@@ -1249,6 +1248,7 @@
             this.Controls.Add(this.bStartMiddleGame);
             this.Controls.Add(this.tB11);
             this.Controls.Add(this.bStartEasyGame);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.MaximizeBox = false;
             this.Name = "Form1";

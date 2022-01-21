@@ -23,7 +23,6 @@ namespace Sudoku
             LoadSaveList();
             textBox3.ReadOnly = true;
             cBLoadList.DropDownStyle = ComboBoxStyle.DropDownList;
-            AutoScaleMode = AutoScaleMode.Dpi;
         }
 
         private void bStartEasyGame_Click(object sender, EventArgs e)
