@@ -1116,7 +1116,7 @@
             this.cBLoadList.FormattingEnabled = true;
             this.cBLoadList.Location = new System.Drawing.Point(675, 228);
             this.cBLoadList.Name = "cBLoadList";
-            this.cBLoadList.Size = new System.Drawing.Size(276, 28);
+            this.cBLoadList.Size = new System.Drawing.Size(276, 23);
             this.cBLoadList.TabIndex = 97;
             // 
             // bLoadSave
@@ -1134,7 +1134,7 @@
             this.textBox3.Location = new System.Drawing.Point(675, 197);
             this.textBox3.Name = "textBox3";
             this.textBox3.ReadOnly = true;
-            this.textBox3.Size = new System.Drawing.Size(276, 27);
+            this.textBox3.Size = new System.Drawing.Size(276, 23);
             this.textBox3.TabIndex = 99;
             this.textBox3.Text = "Select save:";
             this.textBox3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -1151,7 +1151,8 @@
             // 
             // Form1
             // 
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackgroundImage = global::Sudoku.Properties.Resources.background;
             this.ClientSize = new System.Drawing.Size(963, 843);
             this.Controls.Add(this.button1);
